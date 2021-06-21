@@ -196,12 +196,14 @@ class ADC:
     ATTN_2_5DB = 1
     ATTN_6DB = 2
     ATTN_11DB = 3
+
     def __init__(self, pin):
         """
         Create an ADC object associated with the given pin.
         This allows you to then read analog values on that pin.
         """
         pass
+
     def read_timed(self):
         pass
 
@@ -224,18 +226,18 @@ class ADC:
         """
         pass
 
-class CAN:
 
+class CAN:
     NORMAL = "NORMAL"
     LOOPBACK = "LOOPBACK"
     SILENT = "SILENT"
     SILENT_LOOPBACK = "SILENT_LOOPBACK"
-    
+
     LIST16 = "LIST16"
     MASK16 = "MASK16"
     LIST32 = "LIST32"
     MASK32 = "MASK32"
-    
+
     def __init__(self, bus, mode=None, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
         """
         Construct a CAN object on the given bus.
@@ -299,10 +301,9 @@ class CAN:
 
 
 class DAC:
-
     NORMAL = "NORMAL"
     CIRCULAR = "CIRCULAR"
-    
+
     def __init__(self, port, bits=8):
         """
         Construct a new DAC object.
@@ -346,7 +347,6 @@ class DAC:
 
 
 class ExtInt:
-
     IRQ_FALLING = "IRQ_FALLING"
     IRQ_RISING = "IRQ_RISING"
     IRQ_RISING_FALLING = "IRQ_RISING_FALLING"
@@ -390,7 +390,6 @@ class ExtInt:
 
 
 class I2C:
-
     MASTER = "MASTER"
     SLAVE = "SLAVE"
 
@@ -399,7 +398,6 @@ class I2C:
         Construct an I2C object on the given bus.
         """
         pass
-
 
     def deinit(self):
         """
@@ -448,6 +446,7 @@ class I2C:
         Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
         """
         pass
+
 
 class LCD:
 
@@ -547,17 +546,17 @@ class LED:
 
 class _board(object):
     """ object has any attribute, returns 1 for requested attribute's value """
+
     def __getattr__(self, *args, **kwargs):
         return 1
 
 
 class Pin:
-
     AF_OD = "AF_OD"
     AF_PP = "AF_PP"
     ANALOG = "ANALOG"
     IN = "IN"
-    OUT= "OUT"
+    OUT = "OUT"
     OUT_OD = "OUT_OD"
     OUT_PP = "OUT_PP"
     PULL_DOWN = "PULL_DOWN"
@@ -566,13 +565,11 @@ class Pin:
     board = _board()
     cpu = _board()
 
-
     def __init__(self, *args, **kwargs):
         """
         Create a new Pin object associated with the id.
         """
         pass
-        
 
     @classmethod
     def debug(cls, state):
@@ -667,6 +664,7 @@ class Pin:
         """
         pass
 
+
 class PinAF:
 
     def __str__(self):
@@ -728,6 +726,7 @@ class RTC:
         """
         pass
 
+
 class Servo:
 
     def __init__(self, id):
@@ -764,7 +763,6 @@ class Servo:
 
 
 class SPI:
-
     MASTER = "MASTER"
     SLAVE = "SLAVE"
     LSB = "LSB"
@@ -782,7 +780,7 @@ class SPI:
         """
         pass
 
-    def init(self, mode,  prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None):
+    def init(self, mode, prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None):
         """
         Initialise the SPI bus with the given parameters:
         """
@@ -826,6 +824,7 @@ class Switch:
         Register the given function to be called when the switch is pressed down.
         """
         pass
+
 
 class Timer:
 
@@ -923,7 +922,6 @@ class TimerChannel:
 
 
 class UART:
-
     RTS = "RTS"
     CTS = "CTS"
 
@@ -1000,6 +998,7 @@ class UART:
         """
         pass
 
+
 class USB_HID:
     """
     Create a new USB_HID object.
@@ -1016,6 +1015,7 @@ class USB_HID:
         Send data over the USB HID interface:
         """
         pass
+
 
 class USB_VCP:
 
@@ -1090,4 +1090,15 @@ class USB_VCP:
         """
         Send data over the USB VCP.
         """
+        pass
+
+
+class PWM:
+    def __init__(self, pin, frequ):
+        """
+        Create PWM object associated with the given pin.
+        """
+        pass
+
+    def duty(self, angle):
         pass
