@@ -1094,9 +1094,9 @@ class USB_VCP:
 
 
 class PWM:
-    def __init__(self, pin, frequ):
+    def __init__(self, pin, freq):
         """
-        Create PWM object associated with the given pin.
+        Create PWM object associated with the given pin and frequency
         """
         pass
 

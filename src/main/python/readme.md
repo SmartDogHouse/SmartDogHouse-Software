@@ -50,6 +50,6 @@ git clone https://github.com/micropython/webrepl
 #### to fast forward flashing memory and upload firmware on your ESP you can use:
 bash upload_firmware.sh
 #### to fast forward moving files to your ESP you can use:
-bash upload_files.sh 
+bash upload_folder_files.sh 
 #### it doesn't upload file "machine.py", the stub to make the files work with normal python
 

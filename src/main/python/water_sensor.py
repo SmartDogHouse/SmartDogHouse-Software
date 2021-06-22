@@ -9,11 +9,11 @@ class WaterSensor:
 
     last_measure = -1
 
-    def __init__(self, pin_num, range_min=0, range_max=2000, mean_converge_speed=1 / 2, max_liters=0.5):
+    def __init__(self, pin_num, range_min=0, range_max=4000, mean_converge_speed=1/2, max_liters=0.5):
         """ constuctor.
-        :param pin_num: number pin of sensor,
-        :param range_min: min value of sensor (empty ),
-        :param range_max: max value of sensor (full ),
+        :param pin_num: number pin that will read value, it has to be ADC, analog to digital converter
+        :param range_min: min value of sensor (empty),
+        :param range_max: max value of sensor (full),
         :param max_liters: liters contained in the bowl full  """
         self.pin = machine.ADC(machine.Pin(pin_num))
         self.pin.atten(machine.ADC.ATTN_6DB)  # increase reading voltage to 2V

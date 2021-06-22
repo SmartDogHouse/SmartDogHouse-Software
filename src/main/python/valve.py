@@ -7,7 +7,7 @@ class Valve:
 
     def __init__(self, pin_num, initial_opened=True):
         """ constuctor.
-        :param pin_num: number pin of servo,
+        :param pin_num: number of pin that will command valve with PWM
         :param initial_opened: if it has to be open at the beginning
         """
         self.servo = Servo(pin_num)
