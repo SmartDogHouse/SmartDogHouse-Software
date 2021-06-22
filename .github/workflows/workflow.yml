@@ -1,0 +1,52 @@
+name: LateX Build
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  TestJob:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Setup Git repo
+        uses: actions/checkout@v2
+      - name: Run Tests
+        shell: bash
+        run: python -m unittest discover -s ./src/test/
+
+
+  TelegramJobFailure:
+      needs: [TestJob] #when finished this job
+      if: failure() # if its failed
+      runs-on: ubuntu-20.04
+      steps:
+      - name: Send custom Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+                ${{ github.event_name }} event,
+                on github.com/${{ github.repository }},
+                by ${{ github.actor }}:
+                <b>${{ github.event.head_commit.message }}</b>
+                ❌ <b>FAILED</b> ❌
+          format: html
+          disable_web_page_preview: true
+
+  TelegramJobSuccess:
+        needs: [TestJob] #when finished this job
+        if: success() #only on success
+        runs-on: ubuntu-20.04
+        steps:
+        - name: Send custom Telegram message
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+                ${{ github.event_name }} event,
+                on github.com/${{ github.repository }},
+                by ${{ github.actor }}:
+                <b>${{ github.event.head_commit.message }}</b>
+                ✅ <b>SUCCEDED</b>
+            format: html
+            disable_web_page_preview: true
