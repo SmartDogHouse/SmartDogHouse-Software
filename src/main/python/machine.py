@@ -68,7 +68,7 @@ def enable_irq(state=True):
     pass
 
 
-def freq(sysclk, hclk, pclk1, pclk2):
+def freq(self, sysclk=None, hclk=None, pclk1=None, pclk2=None):
     """
     If given no arguments, returns a tuple of clock frequencies.
     """
@@ -598,11 +598,11 @@ class Pin:
         """
         pass
 
-    def value(self, value):
+    def value(self, value=None):
         """
         Get or set the digital logic level of the pin.
         """
-        pass
+        return 0
 
     def __str__(self):
         """

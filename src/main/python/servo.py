@@ -6,7 +6,7 @@ class Servo:
     current_angle = 0
 
     def __init__(self, pin_num, range_min=30, range_max=130, frequency=50):
-        """ constuctor.
+        """ constructor.
         :param pin_num: number of pin that will command servo with PWM
         :param range_min: min angle the servo works
         :param range_max: max angle the servo works
