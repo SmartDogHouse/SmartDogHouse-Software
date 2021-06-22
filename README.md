@@ -2,12 +2,12 @@
 
 
 ### Run Tests
-inside project folder
-single test
+inside project folder <br>
+single test:
 ```
 python -m src.test.python.test_water_sensor
 ```
-all tests 
+all tests:
 ```
 python -m unittest discover -s ./src/test/
 ```
