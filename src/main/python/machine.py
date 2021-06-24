@@ -664,6 +664,12 @@ class Pin:
         """
         pass
 
+    def on(self):
+        pass
+
+    def off(self):
+        pass
+
 
 class PinAF:
 

@@ -4,13 +4,13 @@ from src.main.python.valve import Valve
 
 
 class TestValve(unittest.TestCase):
+    valve = Valve(99)
 
     def test_create(self):
-        self.valve = Valve(99)
         v2 = Valve(34)
         self.assertEqual(self.valve.status(), v2.status())
 
-    def open_close(self):
+    def test_open_close(self):
         v3 = Valve(88, initial_opened=True)
         self.assertTrue(v3.is_open())
         self.assertFalse(v3.is_closed())
@@ -32,7 +32,7 @@ class TestValve(unittest.TestCase):
         self.assertFalse(v3.is_open())
         self.assertFalse(v4.is_open())
 
-    def switch(self):
+    def test_switch(self):
         v3 = Valve(88, initial_opened=True)  # switched below
         v4 = Valve(88, initial_opened=False)  # switched below
         # switch
@@ -57,7 +57,7 @@ class TestValve(unittest.TestCase):
         self.assertTrue(v4.is_open())
         self.assertFalse(v4.is_closed())
 
-    def status(self):
+    def test_status(self):
         v5 = Valve(99, initial_opened=True)
         self.assertEqual("opened", v5.status())
         v5.switch()
@@ -65,7 +65,10 @@ class TestValve(unittest.TestCase):
         v5.switch()
         self.assertEqual("opened", v5.status())
 
-    def printSensor(self):
+    def test_printSensor(self):
+        v6 = Valve(45, initial_opened=True)
+        v6.switch()
+        print(v6)
         print(self.valve)
 
 

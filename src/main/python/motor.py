@@ -8,21 +8,23 @@ class Motor:
         """ constructor.
         :param pin_num: number of pin that will give power to the motor
         """
-        self.pin = machine.Pin(25, machine.Pin.OUT)
-        self.pin.value(running)  # 1 to run, 0 to stop
+        self.pin = machine.Pin(pin_num, machine.Pin.OUT)
         self.running = running
+        self.pin.value(running)  # 1 to run, 0 to stop
 
     def __str__(self):
         """ prints the object """
-        return "Motor currently is : {}".format(self.running)
+        return "Motor currently is running: {}".format(self.running)
 
     def on(self):
         """ starts motor  """
         self.pin.on()
+        self.running = True
 
     def off(self):
         """ stops motor  """
         self.pin.off()
+        self.running = False
 
     def is_running(self):
         """ if the motor is running or not """
