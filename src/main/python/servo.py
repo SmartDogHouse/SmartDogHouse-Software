@@ -2,7 +2,7 @@ import machine
 
 
 class Servo:
-    """Servo rotates in a range """
+    """Servo rotates in a range, given an angle"""
     current_angle = 0
 
     def __init__(self, pin_num, range_min=30, range_max=130, frequency=50):
