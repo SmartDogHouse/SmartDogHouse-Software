@@ -2,11 +2,12 @@ import machine
 
 
 class Motor:
-    """Motor DC rotates in one direction with current """
+    """Motor DC rotates in one direction with current , it's a "one pin controller" """
 
     def __init__(self, pin_num, running=False):
         """ constructor.
         :param pin_num: number of pin that will give power to the motor
+        :param running: the initial condition of the motor
         """
         self.pin = machine.Pin(pin_num, machine.Pin.OUT)
         self.running = running
