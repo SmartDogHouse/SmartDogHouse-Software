@@ -15,6 +15,7 @@ class Scale(Sensor):
         :param pin_out_dt: number pin that will read data value, is has to be GPIO
         :param range_min: min value of sensor (empty), used for percentage
         :param range_max: max value of sensor (full), used for percentage
+        :param average_converging_speed: speed the average goes towards the last measure (range 0-1)
         :param val_to_g_conversion: to convert signal to grams (signal/val = g)"""
         super().__init__(range_min, range_max, average_converging_speed)
         machine.freq(160000000)

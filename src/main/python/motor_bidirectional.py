@@ -1,8 +1,8 @@
 import machine
-from actuator import Actuator
+from motor import Motor
 
 
-class MotorBidirectional(Actuator):
+class MotorBidirectional(Motor):
     """ Motor DC rotates in one or the other direction with current, it can be inverted,
     it's basically mandatory to use a H-Bridge, a pin (0,04 A) doesn't have enough Ampere to move a motor"""
 
@@ -72,10 +72,6 @@ class MotorBidirectional(Actuator):
         pin1.off()
         pin2 = machine.Pin(self.pin2_num, machine.Pin.OUT)
         pin2.off()
-
-    def is_running(self):
-        """ if the motor is running or not """
-        return self.running
 
     def get_direction(self):
         """ the direction selected """

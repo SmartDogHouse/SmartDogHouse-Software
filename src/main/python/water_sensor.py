@@ -10,6 +10,7 @@ class WaterSensor(SensorADC):
         :param pin_num: number pin that will read value, it has to be ADC, analog to digital converter
         :param range_min: min value of sensor (empty),
         :param range_max: max value of sensor (full),
+        :param average_converging_speed: speed the average goes towards the last measure (range 0-1)
         :param capacity: liters contained in the bowl full  """
         super().__init__(pin_num, range_min, range_max, average_converging_speed)
         self.capacity = capacity
