@@ -1,7 +1,8 @@
 from servo import Servo
+from actuator import Actuator
 
 
-class Valve:
+class Valve(Actuator):
     """Valve opens and closes """
     opened = True
 

@@ -1,7 +1,8 @@
 import machine
+from actuator import Actuator
 
 
-class Motor:
+class Motor(Actuator):
     """Motor DC rotates in one direction with current , it's a "one pin controller" """
 
     def __init__(self, pin_num, running=False):

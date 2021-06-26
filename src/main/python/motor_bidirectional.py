@@ -1,7 +1,8 @@
 import machine
+from actuator import Actuator
 
 
-class MotorBidirectional:
+class MotorBidirectional(Actuator):
     """ Motor DC rotates in one or the other direction with current, it can be inverted,
     it's basically mandatory to use a H-Bridge, a pin (0,04 A) doesn't have enough Ampere to move a motor"""
 

@@ -1,7 +1,8 @@
 import machine
+from actuator import Actuator
 
 
-class Servo:
+class Servo(Actuator):
     """Servo rotates in a range, given an angle"""
     current_angle = 0
 
