@@ -17,11 +17,11 @@ class TestWaterSensor(unittest.TestCase):
     def test_otherFunctions(self):
         self.ws.measure()
         self.ws.get_percentage()
-        self.ws.get_mean()
+        self.ws.get_average()
         self.ws.get_liters()
 
     def test_printSensor(self):
-        ws3 = WaterSensor(99, range_min=200, range_max=1000, mean_converge_speed=1, max_liters=2)
+        ws3 = WaterSensor(99, range_min=200, range_max=1000, average_converging_speed=1, capacity=2)
         ws3.measure()
         print(ws3)
         print(self.ws)

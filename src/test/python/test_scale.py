@@ -19,15 +19,15 @@ class TestScaleSensor(unittest.TestCase):
         self.scale.raw_value()
         self.scale.tare()
         self.scale.measure()
-        self.scale.get_mean()
-        self.scale.percentage()
+        self.scale.get_average()
+        self.scale.get_percentage()
 
     def test_weight(self):
         self.scale.measure()
         self.assertEqual(self.scale.weight() * 1000, self.scale.weight_kg())
 
     def test_printSensor(self):
-        sc3 = Scale(77, 66, range_min=100, range_max=9000, mean_converge_speed=1/6,
+        sc3 = Scale(77, 66, range_min=100, range_max=9000, average_converging_speed=1 / 6,
                     val_to_g_conversion=1000)
         sc3.measure()
         print(sc3)

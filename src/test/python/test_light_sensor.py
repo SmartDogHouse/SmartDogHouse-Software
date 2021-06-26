@@ -17,11 +17,11 @@ class TestLightSensor(unittest.TestCase):
     def test_otherFunctions(self):
         self.ls.measure()
         self.ls.get_percentage()
-        self.ls.get_mean()
+        self.ls.get_average()
         self.assertEqual(self.ls.is_light(), not self.ls.is_dark())
 
     def test_printSensor(self):
-        ls3 = LightSensor(99, range_min=100, range_max=3000, mean_converge_speed=1/9, threshold=2500)
+        ls3 = LightSensor(99, range_min=100, range_max=3000, average_converging_speed=1 / 9, threshold=2500)
         ls3.measure()
         print(ls3)
         print(self.ls)
