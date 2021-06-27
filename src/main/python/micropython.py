@@ -1,5 +1,5 @@
 def alloc_emergency_exception_buf():
-    pass
+    """stub method"""
 
 
 def const(self):
@@ -7,32 +7,32 @@ def const(self):
 
 
 def heap_lock():
-    pass
+    """stub method"""
 
 
 def heap_unlock():
-    pass
+    """stub method"""
 
 
 def kbd_intr():
-    pass
+    """stub method"""
 
 
 def mem_info():
-    pass
+    """stub method"""
 
 
 def opt_level():
-    pass
+    """stub method"""
 
 
 def qstr_info():
-    pass
+    """stub method"""
 
 
 def schedule():
-    pass
+    """stub method"""
 
 
 def stack_use():
-    pass
+    """stub method"""

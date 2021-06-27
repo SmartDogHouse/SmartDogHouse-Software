@@ -23,7 +23,7 @@ def localtime(secs) -> tuple:
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.localtime
     """
-    pass
+    
 
 def mktime():
     """
@@ -31,7 +31,7 @@ def mktime():
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.mktime
     """
-    pass
+    
 
 def sleep(seconds):
     """
@@ -43,7 +43,7 @@ def sleep(seconds):
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.sleep
     """
-    pass
+    
 
 def sleep_ms(ms):
     """
@@ -55,7 +55,7 @@ def sleep_ms(ms):
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_ms
     """
-    pass
+    
 
 def sleep_us(us):
     """
@@ -68,7 +68,7 @@ def sleep_us(us):
     http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_us
 
     """
-    pass
+    
 
 def ticks_add(ticks, delta):
     """
@@ -81,7 +81,7 @@ def ticks_add(ticks, delta):
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_add
     """
-    pass
+    
 
 def ticks_cpu():
     """
@@ -89,7 +89,7 @@ def ticks_cpu():
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_cpu
     """
-    pass
+    
 
 def ticks_diff(ticks1, ticks2):
     """
@@ -100,13 +100,13 @@ def ticks_diff(ticks1, ticks2):
     - ticks1
     - ticks2
 
-    The argument order is the same as for subtraction operator, ticks_diff(ticks1, ticks2) has the same meaning as ticks1 - ticks2. However, values returned by ticks_ms(), etc. functions may wrap around, so directly using subtraction on them will produce incorrect result. That is why ticks_diff() is needed, it implements modular (or more specifically, ring) arithmetics to produce correct result even for wrap-around values (as long as they not too distant inbetween, see below). The function returns signed value in the range [-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1] (that’s a typical range definition for two’s-complement signed binary integers). If the result is negative, it means that ticks1 occurred earlier in time than ticks2. Otherwise, it means that ticks1 occurred after ticks2. This holds only if ticks1 and ticks2 are apart from each other for no more than TICKS_PERIOD/2-1 ticks. If that does not hold, incorrect result will be returned. Specifically, if two tick values are apart for TICKS_PERIOD/2-1 ticks, that value will be returned by the function. However, if TICKS_PERIOD/2 of real-time ticks has passed between them, the function will return -TICKS_PERIOD/2 instead, i.e. result value will wrap around to the negative range of possible values.
+    The argument order is the same as for subtraction operator, ticks_diff(ticks1, ticks2) has the same meaning as ticks1 - ticks2. However, values returned by ticks_ms(), etc. functions may wrap around, so directly using subtraction on them will produce incorrect result. That is why ticks_diff() is needed, it implements modular (or more specifically, ring) arithmetics to produce correct result even for wrap-around values (as long as they not too distant inbetween, see below). The function returns signed value in the range [-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1] (that’s a typical range definition for two’s-complement signed binary integers). If the result is negative, it means that ticks1 occurred earlier in time than ticks2. Otherwise, it means that ticks1 occurred after ticks2. This holds only if ticks1 and ticks2 are apart from each other for no more than TICKS_PERIOD/2-1 ticks. If that does not hold, incorrect result will be returned. Specifically, if two tick values are apart for TICKS_PERIOD/2-1 ticks, that value will be returned by the function. However, if TICKS_PERIOD/2 of real-time ticks has ed between them, the function will return -TICKS_PERIOD/2 instead, i.e. result value will wrap around to the negative range of possible values.
 
-    Informal rationale of the constraints above: Suppose you are locked in a room with no means to monitor passing of time except a standard 12-notch clock. Then if you look at dial-plate now, and don’t look again for another 13 hours (e.g., if you fall for a long sleep), then once you finally look again, it may seem to you that only 1 hour has passed. To avoid this mistake, just look at the clock regularly. Your application should do the same. “Too long sleep” metaphor also maps directly to application behavior: don’t let your application run any single task for too long. Run tasks in steps, and do time-keeping inbetween.
+    Informal rationale of the constraints above: Suppose you are locked in a room with no means to monitor ing of time except a standard 12-notch clock. Then if you look at dial-plate now, and don’t look again for another 13 hours (e.g., if you fall for a long sleep), then once you finally look again, it may seem to you that only 1 hour has ed. To avoid this mistake, just look at the clock regularly. Your application should do the same. “Too long sleep” metaphor also maps directly to application behavior: don’t let your application run any single task for too long. Run tasks in steps, and do time-keeping inbetween.
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_diff
     """
-    pass
+    
 
 def ticks_ms():
     """
@@ -114,11 +114,11 @@ def ticks_ms():
 
     The wrap-around value is not explicitly exposed, but we will refer to it as TICKS_MAX to simplify discussion. Period of the values is TICKS_PERIOD = TICKS_MAX + 1. TICKS_PERIOD is guaranteed to be a power of two, but otherwise may differ from port to port. The same period value is used for all of ticks_ms(), ticks_us(), ticks_cpu() functions (for simplicity). Thus, these functions will return a value in range [0 .. TICKS_MAX], inclusive, total TICKS_PERIOD values. Note that only non-negative values are used. For the most part, you should treat values returned by these functions as opaque. The only operations available for them are ticks_diff() and ticks_add() functions described below.
 
-    Note: Performing standard mathematical operations (+, -) or relational operators (<, <=, >, >=) directly on these value will lead to invalid result. Performing mathematical operations and then passing their results as arguments to ticks_diff() or ticks_add() will also lead to invalid results from the latter functions.
+    Note: Performing standard mathematical operations (+, -) or relational operators (<, <=, >, >=) directly on these value will lead to invalid result. Performing mathematical operations and then ing their results as arguments to ticks_diff() or ticks_add() will also lead to invalid results from the latter functions.
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_ms
     """
-    pass
+    
 
 def ticks_us():
     """
@@ -126,7 +126,7 @@ def ticks_us():
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_us
     """
-    pass
+    
 
 def time() -> int:
     """
