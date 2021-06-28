@@ -70,3 +70,55 @@ jobs:
                 ✅ <b>SUCCEDED</b>
             format: html
             disable_web_page_preview: true
+            
+  FindTagJob:
+        needs: TestJob
+        if: success()
+        runs-on: ubuntu-20.04
+        # Map a step output to a job output
+        outputs:
+          outputTagJob: ${{ steps.relese_msg.outputs.RELESE_NAME }}
+        steps:
+          - name: Clone Repo with Checkout 
+            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+          - name: Extract relese message if present
+            shell: bash
+            id: relese_msg
+            run: |
+              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
+
+  DeployJob:
+        needs: FindTagJob
+        if: ${{ needs.FindTagJob.outputs.outputTagJob != '' }} #if environment variable is set
+        runs-on: ubuntu-20.04
+        steps:
+          - name: Clone Repo with Checkout 
+            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+          - name: Extract relese message if present
+            shell: bash
+            id: relese_msg
+            run: |
+              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
+          - name: Create relese if tag commit contain a tag message
+            id: create_release
+            if: ${{ steps.relese_msg.outputs.RELESE_NAME != '' }}
+            uses: actions/create-release@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+            with:
+              tag_name: ${{ steps.relese_msg.outputs.RELESE_NAME }}
+              release_name: Release ${{ steps.relese_msg.outputs.RELESE_NAME }}
+              draft: false
+              prerelease: false
+          - name: Download Artifacts
+            uses: actions/download-artifact@v2
+            with:
+              name: Artifacts
+          - name: Upload Release Asset
+            if: success()
+            uses: actions/upload-release-asset@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            with:
+              upload_url: ${{ steps.create_release.outputs.upload_url }}
+              asset_content_type: Release
