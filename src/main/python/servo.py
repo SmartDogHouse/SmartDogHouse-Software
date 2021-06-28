@@ -3,10 +3,12 @@ from actuator import Actuator
 
 
 class Servo(Actuator):
+
     """Servo rotates in a range, given an angle"""
     current_angle = 0
 
     def __init__(self, pin_num, range_min=30, range_max=130, frequency=50):
+
         """ constructor.
         :param pin_num: number of pin that will command servo with PWM
         :param range_min: min angle the servo works
@@ -19,11 +21,11 @@ class Servo(Actuator):
         self.frequency = frequency
 
     def __str__(self):
-        """ prints the object """
+        """prints the object."""
         return "Servo: current angle: {}, ".format(self.current_angle)
 
     def angle(self, angle):
-        """ moves sensor to angle  """
+        """moves sensor to angle."""
         if self.range_min <= angle <= self.range_max:
             self.current_angle = angle
             self.servo.duty(angle)
@@ -32,5 +34,5 @@ class Servo(Actuator):
             return False
 
     def get_angle(self):
-        """ current angle """
+        """current angle."""
         return self.current_angle

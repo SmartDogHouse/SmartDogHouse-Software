@@ -6,16 +6,16 @@ Codacy: [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b0b479212d0
 
 SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SmartDogHouse_SmartDogHouse-Software&metric=alert_status)](https://sonarcloud.io/dashboard?id=SmartDogHouse_SmartDogHouse-Software)
 
-### Run Tests
+## Run Tests
 inside project folder <br> 
-#### without coverage
+### without coverage
 ```bash
 python -m src.test.python.test_water_sensor #single test
 ```
 ```bash
 python -m unittest discover -s ./src/test/ #all tests
 ```
-#### with coverage:
+### with coverage
 ```bash
 pip install coverage
 ```

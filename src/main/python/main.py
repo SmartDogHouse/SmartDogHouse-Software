@@ -1,7 +1,6 @@
 # AWS MQTT client cert example for esp8266 or esp32 running MicroPython 1.9
 from umqtt.robust import MQTTClient
 import time
-import machine
 from machine import Pin, ADC
 import secrets
 # Certs for ESP32s

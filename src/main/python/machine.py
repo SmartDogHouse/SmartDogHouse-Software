@@ -2,7 +2,6 @@ def delay(ms):
     """
     Delay for the given number of milliseconds.
     """
-    
 
 
 def udelay(us):
@@ -185,10 +184,10 @@ class Accel:
         
 
     def write(self, register, value):
-        """write"""
+        """write."""
 
     def read(self, register):
-        """read"""
+        """read."""
 
 
 class ADC:
@@ -202,16 +201,16 @@ class ADC:
         Create an ADC object associated with the given pin.
         This allows you to then read analog values on that pin.
         """
-        
+
 
     def read_timed(self):
-        """read timeout"""
+        """read timeout."""
 
     def atten(self, num):
-        """attenutaiton"""
+        """attenutaiton."""
 
     def read_timed_stop(self):
-        """read timed"""
+        """read timed."""
 
     def read(self):
         """
@@ -269,31 +268,31 @@ class CAN:
         """
         
 
-    def clearfilter(bank):
+    def clearfilter(self, bank):
         """
         Clear and disables a filter bank.
         """
         
 
-    def any(fifo):
+    def any(self, fifo):
         """
         Return True if any message waiting on the FIFO, else False.
         """
         
 
-    def recv(fifo, timeout=5000):
+    def recv(self, fifo, timeout=5000):
         """
         Receive data on the bus.
         """
         
 
-    def send(data, id, timeout=0, rtr=False):
+    def send(self, data, id, timeout=0, rtr=False):
         """
         Send a message on the bus.
         """
         
 
-    def rxcallback(fifo, fun):
+    def rxcallback(self, fifo, fun):
         """
         Register a function to be called when a message is accepted into a empty fifo:
         """
@@ -545,7 +544,7 @@ class LED:
 
 
 class _board(object):
-    """ object has any attribute, returns 1 for requested attribute's value """
+    """object has any attribute, returns 1 for requested attribute's value."""
 
     def __getattr__(self, *args, **kwargs):
         return 1
@@ -616,7 +615,7 @@ class Pin:
         """
         
 
-    def af_list(cls, ):
+    def af_list(self, cls):
         """
         Returns an array of alternate functions available for this pin.
         """
@@ -665,10 +664,10 @@ class Pin:
         
 
     def on(self):
-        """on"""
+        """on."""
 
     def off(self):
-        """off"""
+        """off."""
 
 
 class PinAF:
@@ -686,9 +685,7 @@ class PinAF:
         
 
     def name(self):
-        """
-        Return the name of the alternate function.
-        """
+        """Return the name of the alternate function."""
         
 
     def reg(self):
@@ -989,14 +986,7 @@ class UART:
         """
         Write the buffer of bytes to the bus.
         """
-        
 
-    def writechar(char):
-        """
-        Write a single character on the bus. char is an integer to write.
-        Return value: None. See note below if CTS flow control is used.
-        """
-        
 
     def sendbreak(self):
         """
@@ -1006,17 +996,15 @@ class UART:
 
 
 class USB_HID:
-    """
-    Create a new USB_HID object.
-    """
+    """Create a new USB_HID object."""
 
-    def recv(data, timeout=5000):
+    def recv(self, data, timeout=5000):
         """
         Receive data on the bus.
         """
         
 
-    def send(data):
+    def send(self, data):
         """
         Send data over the USB HID interface:
         """
@@ -1102,10 +1090,9 @@ class USB_VCP:
 class PWM:
     def __init__(self, pin, freq):
         """
-        Create PWM object associated with the given pin and frequency
+        Create PWM object associated with the given pin and frequency.
         """
         
 
     def duty(self, angle):
-        """ move to angle """
-        
+        """move to angle."""

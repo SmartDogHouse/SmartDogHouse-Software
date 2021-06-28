@@ -12,7 +12,6 @@ WIFI_PW = secrets.WIFI_PW
 
 # This file is executed on every boot (including wake-boot from deepsleep)
 def do_connect():
-    import network
     sta_if = network.WLAN(network.STA_IF)
     if not sta_if.isconnected():
         print('Connecting to network...')

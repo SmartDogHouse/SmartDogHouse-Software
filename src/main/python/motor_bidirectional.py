@@ -3,6 +3,7 @@ from motor import Motor
 
 
 class MotorBidirectional(Motor):
+
     """ Motor DC rotates in one or the other direction with current, it can be inverted,
     it's basically mandatory to use a H-Bridge, a pin (0,04 A) doesn't have enough Ampere to move a motor"""
 
@@ -21,11 +22,11 @@ class MotorBidirectional(Motor):
             self.on()
 
     def __str__(self):
-        """ prints the object """
+        """prints the object."""
         return "Motor bidirectional currently is running: {}, direction: {}".format(self.running, self.direction)
 
     def on_pin(self, pin_num):
-        """ turns on given pin and off the other """
+        """Turns on given pin and off the other."""
         # for safety off-everything
         self.off()
         # turning on only one pin
@@ -48,25 +49,25 @@ class MotorBidirectional(Motor):
             pin2.on()
 
     def on_direction(self, direct):
-        """ starts motor in direction specified """
+        """starts motor in direction specified."""
         if direct == 1:
             self.on_pin(self.pin1_num)
         if direct == 2:
             self.on_pin(self.pin2_num)
 
     def on(self):
-        """ starts motor, in direction memorized """
+        """starts motor, in direction memorized."""
         self.on_direction(self.direction)
 
     def on_direction_opposite(self):
-        """ starts motor in the opposite direction """
+        """starts motor in the opposite direction."""
         if self.direction == 1:
             self.on_direction(2)
         if self.direction == 2:
             self.on_direction(1)
 
     def off(self):
-        """ stops motor """
+        """stops motor."""
         self.running = False
         pin1 = machine.Pin(self.pin1_num, machine.Pin.OUT)
         pin1.off()
@@ -74,5 +75,5 @@ class MotorBidirectional(Motor):
         pin2.off()
 
     def get_direction(self):
-        """ the direction selected """
+        """the direction selected."""
         return self.direction

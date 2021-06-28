@@ -1,6 +1,4 @@
-"""
-Module: 'utime' on esp32 1.11.0
-"""
+"""Module: 'utime' on esp32 1.11.0"""
 import time as dummy
 # MCU: (sysname='esp32', nodename='esp32', release='1.11.0', version='v1.11-580-g973f68780 on 2019-11-17', machine='ESP32 module with ESP32')
 # Stubber: 1.3.2
@@ -11,7 +9,6 @@ def localtime(secs) -> tuple:
     Parameters
     ----------
     - [secs]
-    
     year includes the century (for example 2014).
     - month is 1-12
     - mday is 1-31

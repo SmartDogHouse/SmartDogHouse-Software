@@ -17,6 +17,7 @@ class DeviceIsNotReady(HX711Exception):
 
 
 class HX711(object):
+
     """
     Micropython driver for Avia Semiconductor's HX711
     24-Bit Analog-to-Digital Converter
@@ -56,6 +57,7 @@ class HX711(object):
         1 pulse for Channel A with gain 128
         """
         for i in range(self._channel):
+            print(i)
             self.pd_sck_pin.value(1)
             self.pd_sck_pin.value(0)
 
@@ -99,6 +101,7 @@ class HX711(object):
             self._wait()
 
         for i in range(self.DATA_BITS):
+            print(i)
             self.pd_sck_pin.value(1)
             self.pd_sck_pin.value(0)
 

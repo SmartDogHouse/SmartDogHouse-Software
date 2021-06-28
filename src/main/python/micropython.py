@@ -1,5 +1,5 @@
 def alloc_emergency_exception_buf():
-    """stub method"""
+    """stub method."""
 
 
 def const(self):
@@ -7,32 +7,32 @@ def const(self):
 
 
 def heap_lock():
-    """stub method"""
+    """stub method."""
 
 
 def heap_unlock():
-    """stub method"""
+    """stub method."""
 
 
 def kbd_intr():
-    """stub method"""
+    """stub method."""
 
 
 def mem_info():
-    """stub method"""
+    """stub method."""
 
 
 def opt_level():
-    """stub method"""
+    """stub method."""
 
 
 def qstr_info():
-    """stub method"""
+    """stub method."""
 
 
 def schedule():
-    """stub method"""
+    """stub method."""
 
 
 def stack_use():
-    """stub method"""
+    """stub method."""
