@@ -1,4 +1,3 @@
-import machine
 from sensor_adc import SensorADC
 
 
@@ -23,7 +22,7 @@ class LightSensor(SensorADC):
                                                                                                  self.threshold)
 
     def measure(self):
-        """measures sensor  (0 is lighter)"""
+        """measures sensor (0 is lighter)"""
         return super().measure()
 
     def get_percentage(self):

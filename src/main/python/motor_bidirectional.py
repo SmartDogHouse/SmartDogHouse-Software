@@ -26,7 +26,7 @@ class MotorBidirectional(Motor):
         return "Motor bidirectional currently is running: {}, direction: {}".format(self.running, self.direction)
 
     def on_pin(self, pin_num):
-        """turns on given pin and off the other."""
+        """Turns on given pin and off the other."""
         # for safety off-everything
         self.off()
         # turning on only one pin

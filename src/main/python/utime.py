@@ -9,7 +9,6 @@ def localtime(secs) -> tuple:
     Parameters
     ----------
     - [secs]
-    
     year includes the century (for example 2014).
     - month is 1-12
     - mday is 1-31

@@ -2,7 +2,6 @@ def delay(ms):
     """
     Delay for the given number of milliseconds.
     """
-    
 
 
 def udelay(us):
@@ -987,14 +986,7 @@ class UART:
         """
         Write the buffer of bytes to the bus.
         """
-        
 
-    def writechar(char):
-        """
-        Write a single character on the bus. char is an integer to write.
-        Return value: None. See note below if CTS flow control is used.
-        """
-        
 
     def sendbreak(self):
         """

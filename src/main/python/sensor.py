@@ -5,7 +5,6 @@ class Sensor:
     last_measure = -1
 
     def __init__(self, range_min=0, range_max=4095, average_converging_speed=1 / 2):
-
         """ constructor.
         :param range_min: min value of sensor
         :param range_max: max value of sensor
@@ -16,7 +15,7 @@ class Sensor:
         self.average = (range_min + range_max) / 2
 
     def __str__(self):
-        """prints the object."""
+        """Prints the object."""
         return "Sensor: average: {}, last measure {}, percentage: {}".format(self.get_average(),
                                                                              self.get_last_measure(),
                                                                              self.get_percentage())

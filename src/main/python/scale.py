@@ -33,7 +33,7 @@ class Scale(Sensor):
                                                                                         self.weight())
 
     def raw_value(self):
-        """measures sensor, returns raw value, not tared."""
+        """Measures sensor, returns raw value, not tared."""
         return self.driver.read()
 
     def tare(self):

@@ -1,11 +1,11 @@
 ### NOTES MICROPYTHON
-  - Connect ESP32
+ - Connect ESP32
 
 if using VirtualBox:
-  - VirtualBox -> Settings -> Usb -> Add "SiliconLabs ..." (or the Usb of the ESP)
-  - in Ubuntu (or the OS emulated), on the top: Devices -> Usb -> Select it
+ - VirtualBox -> Settings -> Usb -> Add "SiliconLabs ..." (or the Usb of the ESP)
+ - in Ubuntu (or the OS emulated), on the top: Devices -> Usb -> Select it
 
-  - check if you can see it with command ```ls /dev/ttyU*```
+ - check if you can see it with command ```ls /dev/ttyU*```
 
 #### install esptool
 sudo pip3 install esptool
