@@ -16,19 +16,20 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git fetch --all
-      - name: Coverage site gh-pages 
+      - name: Test, build Coverage site on gh-pages 
         shell: bash
         run: |
+          git checkout develop
           git checkout gh-pages
           git clean -fxd #remove things that may be carried with checkout
-          git rm -rf . #remove everything exept .git
+          git rm -rf docs #remove docs
           git checkout develop src #take src folder
           coverage run -m unittest discover -s ./src/test/
-          coverage html #generate site
+          coverage html #generate site in htmlcov folder
           mv htmlcov docs #rename folder 
-          git rm -rf src  #remove src folder
+          rm -rdf src  #remove src folder
           git add .
-          git commit -m 'Updated gh-pages'
+          git commit -m 'Updated gh-pages coverage'
           git push
 
 
