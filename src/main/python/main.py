@@ -4,7 +4,7 @@ import time
 import machine
 from machine import Pin, ADC
 import secrets
-# Certs for ESP32
+# Certs for ESP32s
 # The certificates are .der format
 CERT_FILE = "/flash/cert"
 KEY_FILE = "/flash/key"

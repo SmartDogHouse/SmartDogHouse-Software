@@ -1,0 +1,124 @@
+name: LateX Build
+on:
+  push:
+  workflow_dispatch:
+jobs:
+  TestJob:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Install Coverage
+        shell: bash
+        run: pip install coverage
+      - name: Setup Git repo
+        uses: actions/checkout@v2
+      - name: Github config and fetch branches  
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git fetch --all
+      - name: Test, build Coverage site on gh-pages 
+        shell: bash
+        run: |
+          git checkout develop
+          git checkout gh-pages
+          git clean -fxd #remove things that may be carried with checkout
+          git rm -rf docs #remove docs
+          git checkout develop src #take src folder
+          coverage run -m unittest discover -s ./src/test/
+          coverage html #generate site in htmlcov folder
+          mv htmlcov docs #rename folder 
+          rm -rdf src  #remove src folder
+          git add .
+          git commit -m 'Updated gh-pages coverage'
+          git push
+
+
+  TelegramJobFailure:
+      needs: [TestJob] #when finished this job
+      if: failure() # if its failed
+      runs-on: ubuntu-20.04
+      steps:
+      - name: Send custom Telegram message
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+                ${{ github.event_name }} event,
+                on github.com/${{ github.repository }},
+                by ${{ github.actor }}:
+                <b>${{ github.event.head_commit.message }}</b>
+                ❌ <b>FAILED</b> ❌
+          format: html
+          disable_web_page_preview: true
+
+  TelegramJobSuccess:
+        needs: [TestJob] #when finished this job
+        if: success() #only on success
+        runs-on: ubuntu-20.04
+        steps:
+        - name: Send custom Telegram message
+          uses: appleboy/telegram-action@master
+          with:
+            to: ${{ secrets.TELEGRAM_TO }}
+            token: ${{ secrets.TELEGRAM_TOKEN }}
+            message: |
+                ${{ github.event_name }} event,
+                on github.com/${{ github.repository }},
+                by ${{ github.actor }}:
+                <b>${{ github.event.head_commit.message }}</b>
+                ✅ <b>SUCCEDED</b>
+            format: html
+            disable_web_page_preview: true
+            
+  FindTagJob:
+        needs: TestJob
+        if: success()
+        runs-on: ubuntu-20.04
+        # Map a step output to a job output
+        outputs:
+          outputTagJob: ${{ steps.relese_msg.outputs.RELESE_NAME }}
+        steps:
+          - name: Clone Repo with Checkout 
+            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+          - name: Extract relese message if present
+            shell: bash
+            id: relese_msg
+            run: |
+              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
+
+  DeployJob:
+        needs: FindTagJob
+        if: ${{ needs.FindTagJob.outputs.outputTagJob != '' }} #if environment variable is set
+        runs-on: ubuntu-20.04
+        steps:
+          - name: Clone Repo with Checkout 
+            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
+          - name: Extract relese message if present
+            shell: bash
+            id: relese_msg
+            run: |
+              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
+          - name: Create relese if tag commit contain a tag message
+            id: create_release
+            if: ${{ steps.relese_msg.outputs.RELESE_NAME != '' }}
+            uses: actions/create-release@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+            with:
+              tag_name: ${{ steps.relese_msg.outputs.RELESE_NAME }}
+              release_name: Release ${{ steps.relese_msg.outputs.RELESE_NAME }}
+              draft: false
+              prerelease: false
+          - name: Download Artifacts
+            uses: actions/download-artifact@v2
+            with:
+              name: Artifacts
+          - name: Upload Release Asset
+            if: success()
+            uses: actions/upload-release-asset@v1
+            env:
+              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            with:
+              upload_url: ${{ steps.create_release.outputs.upload_url }}
+              asset_content_type: Release
