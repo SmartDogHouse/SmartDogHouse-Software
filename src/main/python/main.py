@@ -2,7 +2,9 @@
 from umqtt.robust import MQTTClient
 import time
 from machine import Pin, ADC
-import secrets
+import secret
+import uasyncio
+
 # Certs for ESP32s
 # The certificates are .der format
 CERT_FILE = "/flash/cert"
@@ -16,16 +18,13 @@ MQTT_PORT = 8883
 MQTT_TOPIC = b"TESTONE"
 
 # Change the following three settings to match your environment
-WIFI_SSID = secrets.WIFI_SSID
-WIFI_PW = secrets.WIFI_PW
-MQTT_HOST = secrets.MQTT_HOST
+MQTT_HOST = secret.MQTT_HOST
 
 mqtt_client = None
 
 
 def on_message_come(topic, msg):
     print(topic + " " + ":" + str(msg))
-    print("sadsdasad")
 
 
 def pub_msg(msg):
@@ -43,12 +42,10 @@ def connect_mqtt():
     try:
         with open(KEY_FILE, "r") as f:
             key = f.read()
-
         print("Got Key")
 
         with open(CERT_FILE, "r") as f:
             cert = f.read()
-
         print("Got Cert")
 
         mqtt_client = MQTTClient(client_id=MQTT_CLIENT_ID, server=MQTT_HOST, port=MQTT_PORT,  ssl=True,
@@ -62,18 +59,24 @@ def connect_mqtt():
     except Exception as e:
         print('Cannot connect MQTT: ' + str(e))
 
+
+async def ascolto():
+        uasyncio.createTask(mqtt_client.wait_msg())
+
+
 # start execution
 try:
-
     print("Connecting MQTT")
     connect_mqtt()
     print("Publishing")
-    #pub_msg("{\"AWS-MQTT-8266-01\":" + str(time.time()) + "}")
+    pub_msg("{\"AWS-MQTT-8266-01\":" + str(time.time()) + "}")
     print("OK")
 
+    #ascolto() # spawna task in ascolto
+    
     x = 0
     while True:
-        #mqtt_client.wait_msg()
+        #mqtt_client.wait_msg() #bloccante
         print(x)
         mqtt_client.check_msg()
         x = x+1

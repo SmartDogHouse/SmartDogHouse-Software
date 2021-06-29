@@ -1,8 +1,11 @@
 .gradle
 .idea
 /build/
-htmlcov
-.coverage
+/htmlcov/
+/.coverage
+secret.py
+key
+cert
 
 # Ignore Gradle GUI config
 gradle-app.setting
