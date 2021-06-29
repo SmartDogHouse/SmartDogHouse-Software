@@ -8,7 +8,6 @@ def udelay(us):
     """
     Delay for the given number of microseconds.
     """
-    
 
 
 def millis():
@@ -1092,7 +1091,6 @@ class PWM:
         """
         Create PWM object associated with the given pin and frequency.
         """
-        
 
     def duty(self, angle):
         """move to angle."""

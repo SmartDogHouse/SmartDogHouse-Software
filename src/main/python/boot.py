@@ -18,7 +18,7 @@ def do_connect():
         sta_if.active(True)
         sta_if.connect(WIFI_SSID, WIFI_PW)
         while not sta_if.isconnected():
-            pass
+            print(".")
     print('Network config:', sta_if.ifconfig())
 
 
