@@ -2,7 +2,6 @@ import sys
 import machine
 import gc
 import esp
-import webrepl
 import secret
 import time
 import network
@@ -29,6 +28,5 @@ sys.path.reverse()
 machine.freq(240000000)
 gc.enable()
 esp.osdebug(None)
-webrepl.start()
 gc.collect()
 do_connect()
