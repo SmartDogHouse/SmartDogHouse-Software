@@ -9,13 +9,13 @@ then
 	then
 
 		echo --Downloading Firmware
-		wget https://micropython.org/resources/firmware/esp32-20210618-v1.16.bin
+		wget https://micropython.org/resources/firmware/esp32-20210623-v1.16.bin
 		echo --Erasing Flash, --Press boot on ESP if stuck on connecting--
 		esptool.py --chip esp32 --port "$DEVICE" erase_flash
 		echo --Writing Firmware
-		esptool.py --chip esp32 --port "$DEVICE" write_flash -z 0x1000 esp32-20210618-v1.16.bin
+		esptool.py --chip esp32 --port "$DEVICE" write_flash -z 0x1000 esp32-20210623-v1.16.bin
 		echo --Removing Download
-		rm esp32-20210618-v1.16.bin
+		rm esp32-20210623-v1.16.bin
 		echo --Done!
 	fi
 else 
