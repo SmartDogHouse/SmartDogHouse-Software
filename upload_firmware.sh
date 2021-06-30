@@ -15,7 +15,7 @@ then
 		echo --Writing Firmware
 		esptool.py --chip esp32 --port "$DEVICE" write_flash -z 0x1000 esp32-20210623-v1.16.bin
 		echo --Removing Download
-		rm esp32-20210618-v1.16.bin
+		rm esp32-20210623-v1.16.bin
 		echo --Done!
 	fi
 else 
