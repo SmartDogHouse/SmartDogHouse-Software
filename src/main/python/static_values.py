@@ -8,7 +8,7 @@ MQTT_CLIENT_ID = "COGLIONE"
 MQTT_PORT = 8883
 
 # if you change the topic make sure update AWS policy
-MQTT_TOPIC = b"TESTONE"
+MQTT_RECEIVE_TOPIC = b"TESTONE"
 
 DEF_MAX_WATER_LVL = 10000
 DEF_MIN_WATER_LVL = 1000
