@@ -48,3 +48,6 @@ class MQTTManager:
 
     def checkMsgCome(self):
         self.mqtt_client.check_msg()
+
+    def sendMsg(self, topic, msg):
+        self.mqtt_client.publish(topic, msg)
