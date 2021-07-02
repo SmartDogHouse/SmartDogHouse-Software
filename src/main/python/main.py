@@ -2,13 +2,14 @@
 from umqtt.robust import MQTTClient
 import time
 from machine import Pin, ADC
-import secret
-import pins
-import static_values as values
+from secret import *
+from pins import *
+from static_values import *
 import uasyncio as asyncio
 from scheduler import Scheduler
 from mqtt_manager import MQTTManager
-from smart_valve import SmartValve
+from smart_water_bowl import SmartWaterBowl
+from smart_food_bowl import SmartFoodBowl
 
 
 def on_message_come(topic, msg):
@@ -16,7 +17,7 @@ def on_message_come(topic, msg):
 
 
 async def on_message_come1(topic, msg):
-    print(str(topic,"utf-8") + " " + ":" + str(msg,"utf-8"))
+    print(str(topic, "utf-8") + " " + ":" + str(msg, "utf-8"))
 
 
 async def on_message_come3(topic, msg):
@@ -32,7 +33,7 @@ def pub_msg(msg):
         raise
 
 
-def checkMsg():
+def mqttMessageHandler():
     while True:
         mqm.checkMsgCome()
         await asyncio.sleep(2)
@@ -58,20 +59,24 @@ def foo():
 
 
 print("Crate objects")
-mqm = MQTTManager(key=values.KEY_FILE, cert=values.CERT_FILE, port=values.MQTT_PORT, client_id=values.MQTT_CLIENT_ID,
-                  server=secret.MQTT_HOST,
-                  topic=values.MQTT_RECEIVE_TOPIC, callback=on_message_come)
-
-svb = SmartValve(valve_pin=pins.VALVE_PIN, water_pin=pins.WATER_SENSOR_PIN, max_lvl=values.DEF_MAX_WATER_LVL,
-                min_lvl=values.DEF_MIN_WATER_LVL, mqtt_manager=mqm, topic=values.MQTT_RECEIVE_TOPIC).behaviour()
-
-print("Connecting MQTT")
-
+mqm = MQTTManager(key=KEY_FILE, cert=CERT_FILE, port=MQTT_PORT, client_id=MQTT_CLIENT_ID,
+                  server=MQTT_HOST,
+                  topic=MQTT_RECEIVE_TOPIC, callback=on_message_come)
 try:
     mqm.connect()
 except Exception as e:
     print('Cannot connect MQTT: ' + str(e))
 
-tasks = [checkMsg(),svb()]
+svb = SmartWaterBowl(valve_pin=VALVE_PIN, water_pin=WATER_SENSOR_PIN, max_lvl=DEF_MAX_WATER_LVL,
+                     min_lvl=DEF_MIN_WATER_LVL, mqtt_manager=mqm, topic=MQTT_RECEIVE_TOPIC).behaviour()
+
+#sfb = SmartFoodBowl(scale_pin1=SCALE_PIN_1, scale_pin2=SCALE_PIN_2, bmotor_pinb=B_MOTOR_PIN, bmotor_pinf=B_MOTOR_PIN,
+#                    motor_pin=MOTOR_PIN, sensor_pin=LIGHT_SENSOR_PIN, laser_pin=LASER_PIN, topic=MQTT_FOOD_TOPIC,
+#                    mqtt_manager=mqm, min_lvl=DEF_MIN_FOOD_LVL, max_lvl=DEF_MAX_FOOD_LVL).behaviour()
+
+print("Connecting MQTT")
+
+tasks = [svb()]
+
 sc = Scheduler()
 sc.start(tasks)
