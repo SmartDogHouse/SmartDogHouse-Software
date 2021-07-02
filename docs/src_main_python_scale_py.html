@@ -22,8 +22,8 @@
         </h1>
         <img id="keyboard_icon" src="keybd_closed.png" alt="Show keyboard shortcuts" />
         <h2 class="stats">
-            23 statements &nbsp;
-            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">23 run</button>
+            22 statements &nbsp;
+            <button type="button" class="run shortkey_r button_toggle_run" title="Toggle lines run">22 run</button>
             <button type="button" class="mis show_mis shortkey_m button_toggle_mis" title="Toggle lines missing">0 missing</button>
             <button type="button" class="exc show_exc shortkey_x button_toggle_exc" title="Toggle lines excluded">0 excluded</button>
         </h2>
@@ -74,7 +74,7 @@
     <p id="t20" class="pln"><span class="n"><a href="#t20">20</a></span><span class="t"><span class="str">        :param average_converging_speed: speed the average goes towards the last measure (range 0-1)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t21" class="pln"><span class="n"><a href="#t21">21</a></span><span class="t"><span class="str">        :param val_to_g_conversion: to convert signal to grams (signal/val = g)"""</span>&nbsp;</span><span class="r"></span></p>
     <p id="t22" class="run"><span class="n"><a href="#t22">22</a></span><span class="t">        <span class="nam">super</span><span class="op">(</span><span class="op">)</span><span class="op">.</span><span class="nam">__init__</span><span class="op">(</span><span class="nam">range_min</span><span class="op">,</span> <span class="nam">range_max</span><span class="op">,</span> <span class="nam">average_converging_speed</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
-    <p id="t23" class="run"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="nam">machine</span><span class="op">.</span><span class="nam">freq</span><span class="op">(</span><span class="num">160000000</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
+    <p id="t23" class="pln"><span class="n"><a href="#t23">23</a></span><span class="t">        <span class="com"># machine.freq(160000000) is this really necessary? it cause some problem</span>&nbsp;</span><span class="r"></span></p>
     <p id="t24" class="run"><span class="n"><a href="#t24">24</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">driver</span> <span class="op">=</span> <span class="nam">HX711</span><span class="op">(</span><span class="nam">d_out</span><span class="op">=</span><span class="nam">pin_out_dt</span><span class="op">,</span> <span class="nam">pd_sck</span><span class="op">=</span><span class="nam">pin_sck</span><span class="op">)</span>&nbsp;</span><span class="r"></span></p>
     <p id="t25" class="pln"><span class="n"><a href="#t25">25</a></span><span class="t">        <span class="com"># channel can be set with: self.driver.channel = HX711.CHANNEL_A_64</span>&nbsp;</span><span class="r"></span></p>
     <p id="t26" class="run"><span class="n"><a href="#t26">26</a></span><span class="t">        <span class="nam">self</span><span class="op">.</span><span class="nam">val_to_g_conversion</span> <span class="op">=</span> <span class="nam">val_to_g_conversion</span>&nbsp;</span><span class="r"></span></p>
@@ -111,7 +111,7 @@
     <div class="content">
         <p>
             <a class="nav" href="index.html">&#xab; index</a> &nbsp; &nbsp; <a class="nav" href="https://coverage.readthedocs.io">coverage.py v5.5</a>,
-            created at 2021-06-30 12:57 +0000
+            created at 2021-07-02 10:57 +0000
         </p>
     </div>
 </div>
