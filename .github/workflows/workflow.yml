@@ -11,8 +11,7 @@ jobs:
       - name: Test Code current branch
         shell: bash
         run: |
-          git checkout develop 
-          echo "${GITHUB_REF#refs/heads/}" #GITHUB_REF##*/
+          echo "currently on branch ${GITHUB_REF#refs/heads/}" #GITHUB_REF##*/
           python -m unittest discover -s ./src/test/
           
   TelegramJobFailure:
