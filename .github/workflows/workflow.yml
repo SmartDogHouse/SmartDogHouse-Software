@@ -79,6 +79,7 @@ jobs:
           - name: Test and build coverage html for develop
             shell: bash
             run: |
+              git checkout develop
               git checkout gh-pages
               git clean -fxd #Remove things that may be carried with checkout
               git checkout develop src #Take src folder from develop
@@ -89,6 +90,7 @@ jobs:
           - name: Test and build coverage html for main
             shell: bash
             run: |
+              git checkout main
               git checkout gh-pages
               git clean -fxd #Remove things that may be carried with checkout
               git checkout main src #Take src folder from main
