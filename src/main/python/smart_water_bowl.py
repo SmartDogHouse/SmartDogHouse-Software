@@ -1,11 +1,15 @@
 import machine
+from static_values import *
 from valve import Valve
 from water_sensor import WaterSensor
 from mqtt_manager import MQTTManager
 import uasyncio as asyncio
 
+ERROR_WAITING = 1
 
-class SmartValve:
+
+
+class SmartWaterBowl:
 
     def __init__(self, valve_pin: int, water_pin: int, min_lvl: int, max_lvl: int, mqtt_manager: MQTTManager,
                  topic: str):
@@ -25,22 +29,31 @@ class SmartValve:
     async def __getBehaviour(self):
         while True:
             await asyncio.sleep(2)
-            print("Valvola chiamata")
+            print("\t\t\tValvola chiamata")
             self.waterSensor.measure()
-            self.mqm.sendMsg(self.topic, "Valore valvola" + str(self.waterSensor.get_average()))
-            if self.waterSensor.get_average() < self.minLvl:
-                self.mqm.sendMsg(self.topic, "RIempimento valvola" + str(self.waterSensor.get_average()))
+            # self.mqm.sendMsg(self.topic, "Valore valvola" + str(self.waterSensor.get_percentage()))
+            if self.waterSensor.get_percentage() < self.minLvl:
+                # self.mqm.sendMsg(self.topic, "RIempimento valvola" + str(self.waterSensor.get_percentage()))
                 print("Livello acqua critico apertura valvola")
                 self.valve.open()
+                print("1")
+
                 x = 0
-                while self.waterSensor.get_average() < self.maxLvl:
+                while self.waterSensor.get_percentage() < self.maxLvl:
+                    print("Valore di " + str(x))
                     if x >= 10:
                         self.valve.close()
-                        self.mqm.sendMsg(self.topic, "Emergenza! valvola rotta")
+                        while True:
+                            # self.mqm.sendMsg(MQTT_ERROR_TOPIC, "Eroor in water delivery")
+                            print("\t\t\tErrore" + str(self.waterSensor.get_percentage()))
+                            self.waterSensor.measure()
+                            await asyncio.sleep(ERROR_WAITING)
 
-                    x = x+1
+   
+                    x = x + 1
                     await asyncio.sleep(1)
                     self.waterSensor.measure()
+
                 self.valve.close()
                 print("Livello acqua ripristinato")
 
@@ -52,3 +65,6 @@ class SmartValve:
 
     def setMinWaterLevel(self, min_lvl):
         self.minLvl = min_lvl
+
+
+
