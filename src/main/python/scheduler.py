@@ -14,9 +14,9 @@ class Scheduler:
     def __set_global_exception(self):
         def handle_exception(loop, context):
             import sys
+            print("\t Eroore!!")
             sys.print_exception(context["exception"])
-            sys.exit()
-
+            #sys.exit()
         loop = asyncio.get_event_loop()
         loop.set_exception_handler(handle_exception)
 
@@ -33,7 +33,10 @@ class Scheduler:
         asyncio.create_task(task)  # Or you might do this
 
     def __start(self, task):
-        await asyncio.gather(*task, return_exceptions=True)
+        try:
+            await asyncio.gather(*task, return_exceptions=True)
+        except Exception as e:
+            print("Caught it!"+str(e))
         # await task()  # Non-terminating method
 
     def start(self, task):
