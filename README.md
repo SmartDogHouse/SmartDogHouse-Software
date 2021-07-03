@@ -43,7 +43,8 @@ create report and report website:
 coverage report	        #report in shell
 coverage html		#report website, open index.html in htmlcov folder
 ```
-
+you can find the coverage report for both all branches at:
+[https://smartdoghouse.github.io/SmartDogHouse-Software/](https://smartdoghouse.github.io/SmartDogHouse-Software/)
 
 ## INSTALLATION on Esp
 ### MICROPYTHON
