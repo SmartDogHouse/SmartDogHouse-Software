@@ -70,13 +70,16 @@ except Exception as e:
 svb = SmartWaterBowl(valve_pin=VALVE_PIN, water_pin=WATER_SENSOR_PIN, max_lvl=DEF_MAX_WATER_LVL,
                      min_lvl=DEF_MIN_WATER_LVL, mqtt_manager=mqm, topic=MQTT_RECEIVE_TOPIC).behaviour()
 
-#sfb = SmartFoodBowl(scale_pin1=SCALE_PIN_1, scale_pin2=SCALE_PIN_2, bmotor_pinb=B_MOTOR_PIN, bmotor_pinf=B_MOTOR_PIN,
-#                    motor_pin=MOTOR_PIN, sensor_pin=LIGHT_SENSOR_PIN, laser_pin=LASER_PIN, topic=MQTT_FOOD_TOPIC,
-#                    mqtt_manager=mqm, min_lvl=DEF_MIN_FOOD_LVL, max_lvl=DEF_MAX_FOOD_LVL).behaviour()
+sfb = SmartFoodBowl(scale_pin_sck=SCALE_PIN_SCK, scale_pin_dt=SCALE_PIN_DT, bmotor_pinb=B_MOTOR_PIN,
+                    bmotor_pinf=F_MOTOR_PIN,
+                    motor_pin=MOTOR_PIN, sensor_pin=LIGHT_SENSOR_PIN, laser_pin=LASER_PIN, topic=MQTT_FOOD_TOPIC,
+                    mqtt_manager=mqm, min_lvl=DEF_MIN_FOOD_LVL, max_lvl=DEF_MAX_FOOD_LVL,
+                    limit_switch_close_pin=LIMIT_SWITCH_CLOSE_PIN,
+                    limit_switch_open_pin=LIMIT_SWITCH_OPEN_PIN).behaviour()
 
 print("Connecting MQTT")
 
-tasks = [svb()]
+tasks = [sfb()]
 
 sc = Scheduler()
 sc.start(tasks)

@@ -19,29 +19,40 @@ LASER_THRESHOLD = 10
 
 class SmartFoodBowl:
 
-    def __init__(self, scale_pin1: int, scale_pin2: int, motor_pin: int, bmotor_pinf: int, bmotor_pinb: int,
+    def __init__(self, scale_pin_sck: int, scale_pin_dt: int, motor_pin: int, bmotor_pinf: int, bmotor_pinb: int,
                  sensor_pin: int, laser_pin: int,
                  min_lvl: int, max_lvl: int, mqtt_manager: MQTTManager,
-                 topic: str):
+                 topic: str,limit_switch_open_pin:str,limit_switch_close_pin:str):
         """ constructor.
         """
         self.topic = topic
         self.mqm = mqtt_manager
         self.minLvl = min_lvl
         self.maxLvl = max_lvl
-        self.scale = Scale(scale_pin1, scale_pin2)
+        self.scale = Scale(pin_sck=scale_pin_sck, pin_out_dt=scale_pin_dt)
         self.motor = Motor(motor_pin)
-        self.bmotor = MotorBidirectional(bmotor_pinf, bmotor_pinb)
+        self.bmotor = MotorBidirectional(bmotor_pinb, bmotor_pinf)
         self.sensor = LightSensor(sensor_pin)
-        self.laserPin = Pin(LASER_PIN, Pin.OUT)
+        self.laserPin = Pin(laser_pin, Pin.OUT)
+        self.switch_open = Pin(limit_switch_open_pin, Pin.IN)
+        self.switch_closed = Pin(limit_switch_close_pin, Pin.IN)
+        self.scale.tare()
 
     def __str__(self):
         """prints the object."""
         return "Motor bidirectional currently is running: {}, direction: {}"
 
     async def __getBehaviour(self):
+        self.bmotor.on_direction_opposite()
         while True:
-            await asyncio.sleep(10)
+            for _ in range(5):
+                print("Misura " + str(self.switch_open.value()))
+                if self.switch_open.value() == 1:
+                    self.bmotor.on_direction_opposite()
+                    break
+            await asyncio.sleep(1)
+
+            """await asyncio.sleep(10)
             print("Refill food")
             # Check food qta
             if self.__calculateScaleAverage() <= self.minLvl:
@@ -71,7 +82,7 @@ class SmartFoodBowl:
                 # Retrieve bowl
                 self.bmotor.on_direction(2)
                 await asyncio.sleep(2)
-                self.bmotor.off()
+                self.bmotor.off()"""
 
     def behaviour(self):
         return self.__getBehaviour
@@ -85,7 +96,7 @@ class SmartFoodBowl:
     def __calculateScaleAverage(self):
         for _ in range(AVERAGE_ESTIMATION):
             self.scale.measure()
-        return self.scale.get_average()
+        return self.scale.weight()
 
     def __checkFoodReserve(self):
         self.laserPin.on()
