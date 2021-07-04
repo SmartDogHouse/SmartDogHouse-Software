@@ -41,7 +41,7 @@ class SmartFoodBowl:
         """prints the object."""
         return "Food Bowl"
 
-    async def __get_behaviour(self):
+    async def get_behaviour(self):
         self.bmotor.on_direction_opposite()
         while True:
             for _ in range(5):
@@ -83,8 +83,6 @@ class SmartFoodBowl:
                 await asyncio.sleep(2)
                 self.bmotor.off()"""
 
-    def behaviour(self):
-        return self.__get_behaviour
 
     def set_max_food(self, max_lvl):
         self.maxLvl = max_lvl
@@ -110,5 +108,5 @@ class SmartFoodBowl:
 
     def __error_state(self):
         while True:
-            self.mqm.send_msg(MQTT_ERROR_TOPIC, "Eroor in food delivery")
+            self.mqm.send_msg(MQTT_ERROR_TOPIC, "Error in food delivery")
             # await asyncio.sleep(ERROR_WAITING)

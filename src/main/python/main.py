@@ -32,29 +32,11 @@ def pub_msg(msg):
         raise
 
 
-def mqtt_message_handler():
+async def mqtt_message_handler():
     while True:
         print('Checking')
         mqtt_manager.check_msg_come()
         await asyncio.sleep(2)
-
-
-def sens0():
-    while True:
-        print('Sens0-A')
-        await asyncio.sleep(2)
-        print('Sens0-B')
-
-
-def sens1():
-    while True:
-        print('Sens1-C')
-        await asyncio.sleep(2)
-        print('Sens1-D')
-
-
-def foo():
-    print('Start timeout coro foo()')
 
 
 print("Main Execution")
@@ -81,7 +63,7 @@ sfb = SmartFoodBowl(scale_pin_sck=SCALE_PIN_SCK, scale_pin_dt=SCALE_PIN_DT, bmot
                     limit_switch_open_pin=LIMIT_SWITCH_OPEN_PIN)
 
 # array of tasks
-tasks = [swb.behaviour()]
+tasks = [sfb.get_behaviour(), mqtt_message_handler()]  # array of corutines
 
 # create the scheduler and start with tasks
 scheduler = Scheduler()

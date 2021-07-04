@@ -30,7 +30,8 @@ class SmartWaterBowl:
         """prints the object."""
         return "Water Bowl"
 
-    async def __get_behaviour(self):
+    async def get_behaviour(self):
+        """ async method called returns a corutine"""
         while True:
             await asyncio.sleep(VALVE_INTERVAL)
             print("\t\t\tValvola chiamata")
@@ -63,9 +64,6 @@ class SmartWaterBowl:
 
                 self.valve.close()
                 print("\t\t\t Livello acqua ripristinato")
-
-    def behaviour(self):
-        return self.__get_behaviour
 
     def set_max_water_level(self, max_lvl):
         self.maxLvl = max_lvl
