@@ -1,3 +1,4 @@
+# List of pins used in the microcontroller
 VALVE_PIN = 32
 WATER_SENSOR_PIN = 35
 

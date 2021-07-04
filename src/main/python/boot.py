@@ -23,6 +23,7 @@ def do_connect():
     print('Network config:', sta_if.ifconfig())
 
 
+print("Starting Program")
 network.WLAN(network.AP_IF).active(False)
 sys.path.reverse()
 machine.freq(240000000)

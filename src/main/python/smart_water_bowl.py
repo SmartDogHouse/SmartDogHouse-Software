@@ -1,8 +1,7 @@
-import machine
-from static_values import *
 from valve import Valve
 from water_sensor import WaterSensor
 from mqtt_manager import MQTTManager
+from static_values import MQTT_ERROR_TOPIC
 import uasyncio as asyncio
 import math
 
@@ -10,6 +9,7 @@ ERROR_WAITING = 1
 VALVE_INTERVAL = 2
 ACTIVATION_SOIL = 0.05
 AVERAGE_ESTIMATION = 3
+
 
 class SmartWaterBowl:
 
@@ -28,20 +28,20 @@ class SmartWaterBowl:
 
     def __str__(self):
         """prints the object."""
-        return "Motor bidirectional currently is running: {}, direction: {}"
+        return "Water Bowl"
 
-    async def __getBehaviour(self):
+    async def __get_behaviour(self):
         while True:
             await asyncio.sleep(VALVE_INTERVAL)
             print("\t\t\tValvola chiamata")
 
-            self.actual = self.__calculateScaleAverage()
+            self.actual = self.__calculate_scale_average()
             diff = math.fabs(self.actual - self.previous)
             if diff >= ACTIVATION_SOIL:
-                self.mqm.sendMsg(self.topic, "Livello acqua" + " " + str(self.actual))
+                self.mqm.send_msg(self.topic, "Livello acqua" + " " + str(self.actual))
                 self.previous = self.actual
             if self.actual < self.minLvl:
-                self.mqm.sendMsg(self.topic, "Livello acqua basso" + " " + str(self.actual))
+                self.mqm.send_msg(self.topic, "Livello acqua basso" + " " + str(self.actual))
                 print("\t\t\t Livello acqua critico apertura valvola")
                 self.valve.open()
                 x = 0
@@ -50,14 +50,14 @@ class SmartWaterBowl:
                     if x >= 10:
                         self.valve.close()
                         while True:
-                            self.actual = self.__calculateScaleAverage()
-                            self.mqm.sendMsg(MQTT_ERROR_TOPIC,
-                                             "Eroor in water delivery" + " " + str(self.actual))
+                            self.actual = self.__calculate_scale_average()
+                            self.mqm.send_msg(MQTT_ERROR_TOPIC,
+                                              "Eroor in water delivery" + " " + str(self.actual))
                             print("\t\t\t Errore" + " " + str(self.actual))
                             self.waterSensor.measure()
                             await asyncio.sleep(ERROR_WAITING)
                     x = x + 1
-                    self.actual = self.__calculateScaleAverage()
+                    self.actual = self.__calculate_scale_average()
                     await asyncio.sleep(1)
                     self.waterSensor.measure()
 
@@ -65,15 +65,15 @@ class SmartWaterBowl:
                 print("\t\t\t Livello acqua ripristinato")
 
     def behaviour(self):
-        return self.__getBehaviour
+        return self.__get_behaviour
 
-    def setMaxWaterLevel(self, max_lvl):
+    def set_max_water_level(self, max_lvl):
         self.maxLvl = max_lvl
 
-    def setMinWaterLevel(self, min_lvl):
+    def set_min_water_level(self, min_lvl):
         self.minLvl = min_lvl
 
-    def __calculateScaleAverage(self):
+    def __calculate_scale_average(self):
         for _ in range(AVERAGE_ESTIMATION):
             self.waterSensor.measure()
         return self.waterSensor.get_percentage()
