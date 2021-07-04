@@ -7,6 +7,7 @@ from machine import Pin
 import uasyncio as asyncio
 
 from pins import LASER_PIN
+from task import Task
 from static_values import MQTT_ERROR_TOPIC
 
 AVERAGE_ESTIMATION = 3
@@ -16,7 +17,7 @@ FEEDING_TIME = 10
 LASER_THRESHOLD = 10
 
 
-class SmartFoodBowl:
+class SmartFoodBowlTask(Task):
 
     def __init__(self, scale_pin_sck: int, scale_pin_dt: int, motor_pin: int, bmotor_pinf: int, bmotor_pinb: int,
                  sensor_pin: int, laser_pin: int,

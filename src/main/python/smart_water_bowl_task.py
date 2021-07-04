@@ -4,6 +4,7 @@ from mqtt_manager import MQTTManager
 from static_values import MQTT_ERROR_TOPIC
 import uasyncio as asyncio
 import math
+from task import Task
 
 ERROR_WAITING = 1
 VALVE_INTERVAL = 2
@@ -11,7 +12,7 @@ ACTIVATION_SOIL = 0.05
 AVERAGE_ESTIMATION = 3
 
 
-class SmartWaterBowl:
+class SmartWaterBowlTask(Task):
 
     def __init__(self, valve_pin: int, water_pin: int, min_lvl: int, max_lvl: int, mqtt_manager: MQTTManager,
                  topic: bytes):

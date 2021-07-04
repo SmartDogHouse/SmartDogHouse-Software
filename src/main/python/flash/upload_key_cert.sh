@@ -8,9 +8,19 @@ then
 	echo    #moves to a new line
 	if [[ $REPLY =~ ^[Yy]$ ]]
 	then
-		ampy -d 1 --port /dev/ttyUSB0 mkdir flash
-		ampy -d 1 --port /dev/ttyUSB0 put "$SCRIPT_DIR"/key /flash/key
-		ampy -d 1 --port /dev/ttyUSB0 put "$SCRIPT_DIR"/cert /flash/cert
+	  #check existing directory
+	  DIR_EXISTS=$(ampy -d 1 --port "$DEVICE" ls | grep /flash )
+	  if [[ -n "$DIR_EXISTS" ]]
+    then
+        echo "The folder exists, will be deleted before."
+        ampy -d 1 --port "$DEVICE" rmdir /flash
+        echo "Deleted."
+    fi
+		ampy -d 1 --port "$DEVICE" mkdir flash
+    echo "Putting key."
+		ampy -d 1 --port "$DEVICE" put "$SCRIPT_DIR"/key /flash/key
+    echo "Putting cert."
+		ampy -d 1 --port "$DEVICE" put "$SCRIPT_DIR"/cert /flash/cert
 	fi
 else 
 	echo device not found
