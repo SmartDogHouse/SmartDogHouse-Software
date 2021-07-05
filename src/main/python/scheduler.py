@@ -1,4 +1,3 @@
-import machine
 import uasyncio as asyncio
 
 

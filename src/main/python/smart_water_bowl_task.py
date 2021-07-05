@@ -3,7 +3,6 @@ from water_sensor import WaterSensor
 from mqtt_manager import MQTTManager
 from static_values import MQTT_ERROR_TOPIC
 import uasyncio as asyncio
-import math
 from task import Task
 
 CHECK_WATER_CONSUMPTION_INTERVAL = 2
