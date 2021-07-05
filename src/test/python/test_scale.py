@@ -13,7 +13,8 @@ class TestScaleSensor(unittest.TestCase):
     def test_measure(self):
         self.scale.raw_measure()
         self.assertEqual(self.scale.raw_measure(), self.scale.raw_measure())
-        self.assertEqual(self.scale.raw_measure(), self.scale.get_last_measure())
+        self.scale.measure()
+        self.assertEqual(self.scale.measure(), self.scale.get_last_measure())
 
     def test_otherFunctions(self):
         self.scale.raw_value()
@@ -24,6 +25,7 @@ class TestScaleSensor(unittest.TestCase):
 
     def test_weight(self):
         self.scale.raw_measure()
+        self.scale.measure()
         self.assertEqual(self.scale.weight() * 1000, self.scale.weight_kg())
 
     def test_printSensor(self):

@@ -12,7 +12,7 @@ class TestLightSensor(unittest.TestCase):
 
     def test_measure(self):
         self.assertEqual(self.ls.raw_measure(), 0)
-        self.assertEqual(self.ls.raw_measure(), self.ls.get_last_measure())
+        self.assertEqual(self.ls.measure(), self.ls.get_last_measure())
 
     def test_otherFunctions(self):
         self.ls.raw_measure()

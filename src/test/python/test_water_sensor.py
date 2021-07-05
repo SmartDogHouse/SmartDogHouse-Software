@@ -12,7 +12,8 @@ class TestWaterSensor(unittest.TestCase):
 
     def test_measure(self):
         self.assertEqual(self.ws.raw_measure(), 0)
-        self.assertEqual(self.ws.raw_measure(), self.ws.get_last_measure())
+        self.ws.measure()
+        self.assertEqual(self.ws.measure(), self.ws.get_last_measure())
 
     def test_otherFunctions(self):
         self.ws.raw_measure()
