@@ -1,4 +1,3 @@
-import machine
 from hx711 import HX711
 from sensor import Sensor
 
@@ -20,7 +19,7 @@ class Scale(Sensor):
         :param average_converging_speed: speed the average goes towards the last measure (range 0-1)
         :param val_to_g_conversion: to convert signal to grams (signal/val = g)"""
         super().__init__(range_min, range_max, average_converging_speed)
-        machine.freq(160000000)
+        # machine.freq(160000000) is this really necessary? it cause some problem
         self.driver = HX711(d_out=pin_out_dt, pd_sck=pin_sck)
         # channel can be set with: self.driver.channel = HX711.CHANNEL_A_64
         self.val_to_g_conversion = val_to_g_conversion
@@ -40,9 +39,9 @@ class Scale(Sensor):
         """tares sensor at empty scale."""
         self.offset = self.driver.read()
 
-    def measure(self):
-        """returns sensor measure with tare (raw value - offset)."""
-        return super().measure( self.driver.read() - self.offset )
+    def raw_measure(self):
+        """returns sensor raw measure with tare (raw value - offset)."""
+        return self.driver.read() - self.offset
 
     def weight(self):
         """actual weight in grams."""

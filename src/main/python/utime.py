@@ -20,7 +20,6 @@ def localtime(secs) -> tuple:
 
     http://docs.micropython.org/en/latest/library/utime.html#utime.localtime
     """
-    
 
 def mktime():
     """
@@ -69,7 +68,7 @@ def sleep_us(us):
 
 def ticks_add(ticks, delta):
     """
-    Offset ticks value by a given number, which can be either positive or negative. Given a ticks value, this function allows to calculate ticks value delta ticks before or after it, following modular-arithmetic definition of tick values (see ticks_ms() above). ticks parameter must be a direct result of call to ticks_ms(), ticks_us(), or ticks_cpu() functions (or from previous call to ticks_add()). However, delta can be an arbitrary integer number or numeric expression. ticks_add() is useful for calculating deadlines for events/tasks. (Note: you must use ticks_diff() function to work with deadlines.)
+    Offset ticks value by a given number, which can be either positive or negative. Given a ticks value, this function allows to calculate ticks value delta ticks before or after it, following modular-arithmetic definition of tick values (see ticks_ms() above). ticks parameter must be a direct result of call to ticks_ms(), ticks_us(), or ticks_cpu() functions (or from previous_sent_perc call to ticks_add()). However, delta can be an arbitrary integer number or numeric expression. ticks_add() is useful for calculating deadlines for events/tasks. (Note: you must use ticks_diff() function to work with deadlines.)
 
     Parameters
     ----------
@@ -125,7 +124,7 @@ def ticks_us():
     """
     
 
-def time() -> int:
+def time() -> float:
     """
     Returns the number of seconds, as an integer, since the Epoch, assuming that underlying RTC is set and maintained as described above. If an RTC is not set, this function returns number of seconds since a port-specific reference point in time (for embedded boards without a battery-backed RTC, usually since power up or reset). If you want to develop portable MicroPython application, you should not rely on this function to provide higher than second precision. If you need higher precision, use ticks_ms() and ticks_us() functions, if you need calendar time, localtime() without an argument is a better choice.
 

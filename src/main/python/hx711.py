@@ -1,4 +1,3 @@
-
 from utime import sleep_us, time
 from machine import Pin
 from micropython import const
@@ -56,8 +55,7 @@ class HX711(object):
         2 pulses for Channel B with gain 32
         1 pulse for Channel A with gain 128
         """
-        for i in range(self._channel):
-            print(i)
+        for _ in range(self._channel):
             self.pd_sck_pin.value(1)
             self.pd_sck_pin.value(0)
 
@@ -100,8 +98,7 @@ class HX711(object):
         if not self.is_ready():
             self._wait()
 
-        for i in range(self.DATA_BITS):
-            print(i)
+        for _ in range(self.DATA_BITS):
             self.pd_sck_pin.value(1)
             self.pd_sck_pin.value(0)
 
@@ -142,7 +139,7 @@ class HX711(object):
             self._wait()
 
         raw_data = 0
-        for i in range(self.DATA_BITS):
+        for _ in range(self.DATA_BITS):
             self.pd_sck_pin.value(1)
             self.pd_sck_pin.value(0)
             raw_data = raw_data << 1 | self.d_out_pin.value()

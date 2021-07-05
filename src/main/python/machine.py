@@ -8,7 +8,6 @@ def udelay(us):
     """
     Delay for the given number of microseconds.
     """
-    
 
 
 def millis():
@@ -858,7 +857,7 @@ class Timer:
     def channel(self, channel, mode):
         """
         If only a channel number is ed, then a previously initialized channel
-        object is returned (or ``None`` if there is no previous channel).
+        object is returned (or ``None`` if there is no previous_sent_perc channel).
         """
         
 
@@ -1092,7 +1091,6 @@ class PWM:
         """
         Create PWM object associated with the given pin and frequency.
         """
-        
 
     def duty(self, angle):
         """move to angle."""

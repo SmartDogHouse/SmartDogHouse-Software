@@ -25,7 +25,7 @@ class Servo(Actuator):
         return "Servo: current angle: {}, ".format(self.current_angle)
 
     def angle(self, angle):
-        """moves sensor to angle."""
+        """moves actuator to angle."""
         if self.range_min <= angle <= self.range_max:
             self.current_angle = angle
             self.servo.duty(angle)

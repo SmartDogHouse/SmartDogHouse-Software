@@ -1,4 +1,4 @@
-name: LateX Build
+name: Workflow
 on:
   push:
   workflow_dispatch:
@@ -6,33 +6,14 @@ jobs:
   TestJob:
     runs-on: ubuntu-20.04
     steps:
-      - name: Install Coverage
-        shell: bash
-        run: pip install coverage
       - name: Setup Git repo
         uses: actions/checkout@v2
-      - name: Github config and fetch branches  
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          git fetch --all
-      - name: Test, build Coverage site on gh-pages 
+      - name: Test Code current branch
         shell: bash
         run: |
-          git checkout develop
-          git checkout gh-pages
-          git clean -fxd #remove things that may be carried with checkout
-          git rm -rf docs #remove docs
-          git checkout develop src #take src folder
-          coverage run -m unittest discover -s ./src/test/
-          coverage html #generate site in htmlcov folder
-          mv htmlcov docs #rename folder 
-          rm -rdf src  #remove src folder
-          git add .
-          git commit -m 'Updated gh-pages coverage'
-          git push
-
-
+          echo "currently on branch ${GITHUB_REF#refs/heads/}" #GITHUB_REF##*/
+          python -m unittest discover -s ./src/test/
+          
   TelegramJobFailure:
       needs: [TestJob] #when finished this job
       if: failure() # if its failed
@@ -70,6 +51,52 @@ jobs:
                 ✅ <b>SUCCEDED</b>
             format: html
             disable_web_page_preview: true
+            
+  CoverageJob:
+        needs: [TestJob] #when finished this job
+        if: success() #only on success
+        runs-on: ubuntu-20.04
+        steps:
+          - name: Install Coverage
+            shell: bash
+            run: pip install coverage
+          - name: Setup Git repo
+            uses: actions/checkout@v2
+          - name: Github config and fetch branches  
+            run: |
+              git config user.name github-actions
+              git config user.email github-actions@github.com
+              git fetch --all
+              git pull --all
+          - name: Clean gh-pages branch 
+            shell: bash
+            run: |
+              git checkout gh-pages
+              git clean -fxd #remove things that may be carried with checkout
+              git rm -rf coverage_dev #remove folder
+              git rm -rf coverage_main #remove folder
+          - name: Test and build coverage html for develop
+            shell: bash
+            run: |
+              git checkout origin/develop src #Take src folder from develop
+              coverage run -m unittest discover -s ./src/test/
+              coverage html #generate site in htmlcov folder
+              mv htmlcov coverage_dev #rename folder 
+              rm -rdf src  #remove src folder
+          - name: Test and build coverage html for main
+            shell: bash
+            run: |
+              git checkout origin/main src #Take src folder from main
+              coverage run -m unittest discover -s ./src/test/
+              coverage html #generate site in htmlcov folder
+              mv htmlcov coverage_main #rename folder 
+              rm -rdf src  #remove src folder
+          - name: Commit changes
+            shell: bash
+            run: |
+              git add .
+              git commit -m 'Updated gh-pages coverage'
+              git push
             
   FindTagJob:
         needs: TestJob

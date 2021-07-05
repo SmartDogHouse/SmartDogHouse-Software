@@ -52,7 +52,7 @@ class MotorBidirectional(Motor):
         """starts motor in direction specified."""
         if direct == 1:
             self.on_pin(self.pin1_num)
-        if direct == 2:
+        elif direct == 2:
             self.on_pin(self.pin2_num)
 
     def on(self):
@@ -63,7 +63,7 @@ class MotorBidirectional(Motor):
         """starts motor in the opposite direction."""
         if self.direction == 1:
             self.on_direction(2)
-        if self.direction == 2:
+        elif self.direction == 2:
             self.on_direction(1)
 
     def off(self):

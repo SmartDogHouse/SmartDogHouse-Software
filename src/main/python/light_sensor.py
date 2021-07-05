@@ -21,17 +21,13 @@ class LightSensor(SensorADC):
                                                                                                  self.get_percentage(),
                                                                                                  self.threshold)
 
-    def measure(self):
-        """measures sensor (0 is lighter)"""
-        return super().measure()
-
     def get_percentage(self):
         """actual percentage of light (0 is lighter)"""
         return super().get_percentage()
 
     def is_light(self):
         """true if below threshold of light"""
-        return self.get_average() < self.threshold
+        return self.measure() < self.threshold
 
     def is_dark(self):
         """true if above threshold"""
