@@ -27,7 +27,7 @@ class LightSensor(SensorADC):
 
     def is_light(self):
         """true if below threshold of light"""
-        return self.get_average() < self.threshold
+        return self.measure() < self.threshold
 
     def is_dark(self):
         """true if above threshold"""

@@ -6,108 +6,198 @@ from motor import Motor
 from machine import Pin
 import uasyncio as asyncio
 
-from pins import LASER_PIN
 from task import Task
-from static_values import MQTT_ERROR_TOPIC
+from static_values import MQTT_ERROR_TOPIC, REFILL_TOPIC
 
-AVERAGE_ESTIMATION = 3
-ERROR_WAITING = 10
-CHECK_BOWL_BEFORE_ERROR = 10
-FEEDING_TIME = 10
-LASER_THRESHOLD = 10
+CHECK_FOOD_CONSUMPTION_INTERVAL = 5
+FOOD_SYSTEM_ERROR_NOTIFY_INTERVAL = 10
+CHECK_FILL_FOOD_BOWL_INTERVAL = 1
+
+PERCENTAGE_CONSUMPTION_THRESHOLD = 10/100
+
+SECONDS_BEFORE_ERROR_FOOD_SYSTEM = 30
 
 
 class SmartFoodBowlTask(Task):
 
     def __init__(self, scale_pin_sck: int, scale_pin_dt: int, motor_pin: int, bmotor_pinf: int, bmotor_pinb: int,
-                 sensor_pin: int, laser_pin: int,
-                 min_lvl: int, max_lvl: int, mqtt_manager: MQTTManager,
+                 light_sensor_pin: int, laser_pin: int,
+                 min_food_lvl_perc: int, max_food_lvl_perc: int, mqtt_manager: MQTTManager,
                  topic: str, limit_switch_open_pin: str, limit_switch_close_pin: str):
         """ constructor.
         """
-        self.topic = topic
-        self.mqm = mqtt_manager
-        self.minLvl = min_lvl
-        self.maxLvl = max_lvl
         self.scale = Scale(pin_sck=scale_pin_sck, pin_out_dt=scale_pin_dt)
-        self.motor = Motor(motor_pin)
-        self.bmotor = MotorBidirectional(bmotor_pinb, bmotor_pinf)
-        self.sensor = LightSensor(sensor_pin)
-        self.laserPin = Pin(laser_pin, Pin.OUT)
+        self.motor_belt = Motor(motor_pin)
+        self.bidirectional_motor = MotorBidirectional(bmotor_pinb, bmotor_pinf)
+        self.light_sensor = LightSensor(light_sensor_pin)
+        self.laser = Pin(laser_pin, Pin.OUT)
+        self.min_food_lvl_perc = min_food_lvl_perc
+        self.max_food_lvl_perc = max_food_lvl_perc
+        self.mqtt_manager = mqtt_manager
+        self.topic = topic
         self.switch_open = Pin(limit_switch_open_pin, Pin.IN)
         self.switch_closed = Pin(limit_switch_close_pin, Pin.IN)
+        # initiate variables
+        self.belt_present = True
+        self.motor_present = True
+        self.food_desired = 350
+        self.wait_before_food_error = SECONDS_BEFORE_ERROR_FOOD_SYSTEM
+        # tare scale
         self.scale.tare()
+        # initiate previous sent percentage to actual
+        self.scale.measure()
+        self.previous_sent_perc = self.scale.get_percentage()
+        self.reduction_percentage = 0
+        # state variable holds the current state, this is the initial state
+        self.state = self.check_food_consumption
+        print("SmartFoodBowlTask Created")
+        self.food_time = True
 
     def __str__(self):
         """prints the object."""
         return "Food Bowl"
 
     async def get_behaviour(self):
-        self.bmotor.on_direction_opposite()
+        """ async method called returns a coroutine"""
         while True:
-            for _ in range(5):
-                print("Misura " + str(self.switch_open.value()))
-                if self.switch_open.value() == 1:
-                    self.bmotor.on_direction_opposite()
-                    break
-            await asyncio.sleep(1)
+            # executes the current state
+            await self.state()
 
-            """await asyncio.sleep(10)
-            print("Refill food")
-            # Check food qta
-            if self.__calculateScaleAverage() <= self.min_water_lvl_perc:
-                print("Activate refill")
-                self.motor.on()
-                x = 0
-                while self.__calculateScaleAverage() < self.max_water_lvl_perc:
-                    if x > CHECK_BOWL_BEFORE_ERROR:
-                        self.motor.off()
-                        self.__errorState()
-                    await asyncio.sleep(1)
-                    x = x + 1
-                print("End refill")
-                self.motor.off()
-                # Check food remaining
-                if self.__checkFoodReserve():
-                    self.mqtt_manager.sendMsg(REFILL_TOPIC, "Food")
-            # Check if is time for food
-            if self.__CheckFoodTime:
-                # Align bowl
-                print("Food time")
-                self.bmotor.on_direction(1)
-                await asyncio.sleep(2)
-                self.bmotor.off()
-                # Feed time
-                await asyncio.sleep(FEEDING_TIME)
-                # Retrieve bowl
-                self.bmotor.on_direction(2)
-                await asyncio.sleep(2)
-                self.bmotor.off()"""
+    def set_max_food(self, max_food_lvl_perc):
+        self.max_food_lvl_perc = max_food_lvl_perc
 
+    def set_min_food(self, min_food_lvl_perc):
+        self.min_food_lvl_perc = min_food_lvl_perc
 
-    def set_max_food(self, max_lvl):
-        self.maxLvl = max_lvl
+    # STATES
+    async def check_food_consumption(self):
+        print("STATE: check food consumption")
+        # evey X seconds
+        await asyncio.sleep(CHECK_FOOD_CONSUMPTION_INTERVAL)
+        # measure
+        self.scale.measure()
+        print("\t\tFood Measure: {:.2f}".format(self.scale.get_percentage()))
+        # check empty
+        if self.food_time and self.scale.get_percentage() < self.min_food_lvl_perc:
+            print("\t\tFood LOW: {:.2f} < {:.2f}".format(self.scale.get_percentage(), self.min_food_lvl_perc))
+            if self.belt_present:
+                if self.motor_present:
+                    print("\t\tInverting Bi-Motor")
+                    self.bidirectional_motor.on_direction_opposite()
+                    self.state = self.opening
+                    return
+                else:  # extracting motor not present
+                    print("\t\tStarting Belt")
+                    self.motor_belt.on()
+                    print("\t\tLaser On")
+                    self.laser.on()
+                    self.state = self.fill_food_bowl
+                    return
+            else:  # belt not present
+                self.state = self.food_finished_notify
+                return
+        # check consumption
+        self.reduction_percentage = self.previous_sent_perc - self.scale.get_percentage()
+        print("\t\tReduction Percentage: {:.2f}".format(self.reduction_percentage))
+        if self.reduction_percentage >= PERCENTAGE_CONSUMPTION_THRESHOLD:
+            self.state = self.send_food_consumption
+            return
 
-    def set_min_food(self, min_lvl):
-        self.minLvl = min_lvl
+    async def send_food_consumption(self):
+        print("STATE: send food consumption")
+        # calculates consumption
+        consumption = self.reduction_percentage * self.scale.range_max / self.scale.val_to_g_conversion
+        # send msg consumption to database
+        self.mqtt_manager.send_msg(self.topic, "Consumption Food: {:.2f} grams".format(consumption))
+        # previous sent percentage to actual percentage
+        self.previous_sent_perc = self.scale.get_percentage()
+        # go to check food consumption again
+        self.state = self.check_food_consumption
+        return
 
-    def __calculate_scale_average(self):
-        for _ in range(AVERAGE_ESTIMATION):
-            self.scale.raw_measure()
-        return self.scale.weight()
+    async def opening(self):
+        # print("STATE: opening")
+        # if open
+        if self.switch_open.value():
+            print("\t\tStop Bi-Motor")
+            self.bidirectional_motor.off()
+            print("\t\tStarting Belt")
+            self.motor_belt.on()
+            print("\t\tLaser On")
+            self.laser.on()
+            self.state = self.fill_food_bowl
+            return
 
-    def __check_food_reserve(self):
-        self.laserPin.on()
-        if self.sensor.raw_measure() > 10:
-            self.laserPin.off()
-            return True
-        self.laserPin.off()
-        return False
+    async def closing(self):
+        # print("STATE: closing ")
+        # if closed
+        if self.switch_closed.value():
+            print("\t\tStop Bi-Motor")
+            self.bidirectional_motor.off()
+            self.state = self.check_food_consumption
+            return
 
-    def __check_food_time(self):
-        return False
+    async def fill_food_bowl(self):
+        print("STATE: filling food bowl")
+        # evey X seconds
+        await asyncio.sleep(CHECK_FILL_FOOD_BOWL_INTERVAL)
+        # measure
+        self.scale.measure()
+        print("\t\tFood Measure: {:.2f} corresponds: {:.2f} grams Time remaining: {}".format(self.scale.get_percentage(), self.scale.weight(), self.wait_before_food_error))
+        # if food is the amount desired
+        if self.scale.weight() > self.food_desired:
+            print("\t\tStop Belt")
+            self.motor_belt.off()
+            print("\t\tLaser OFF")
+            self.laser.off()
+            # reset seconds
+            self.wait_before_food_error = SECONDS_BEFORE_ERROR_FOOD_SYSTEM
+            # set percentage sent to actual percentage
+            self.previous_sent_perc = self.scale.get_percentage()
+            if self.motor_present:
+                print("\t\tInverting Bi-Motor")
+                self.bidirectional_motor.on_direction_opposite()
+                self.state = self.closing
+                return
+            else:
+                self.state = self.check_food_consumption()
+                return
+        # decrement time of period passed
+        self.wait_before_food_error = self.wait_before_food_error - CHECK_FILL_FOOD_BOWL_INTERVAL
+        # if time expired stop belt and go to water system error notify
+        if self.wait_before_food_error < 0:
+            print("\t\tStop Belt")
+            self.motor_belt.off()
+            print("\t\tLaser OFF")
+            self.laser.off()
+            self.wait_before_food_error = SECONDS_BEFORE_ERROR_FOOD_SYSTEM
+            self.state = self.food_system_error_notify
+            return
+        # if light reaches sensor
+        if self.light_sensor.is_light():
+            # send notification
+            self.mqtt_manager.send_msg(MQTT_ERROR_TOPIC, "NOTIFICATION Food Storage low, laser reached sensor!")
+            print("\t\tLaser OFF")
+            self.laser.off()
 
-    def __error_state(self):
-        while True:
-            self.mqm.send_msg(MQTT_ERROR_TOPIC, "Error in food delivery")
-            # await asyncio.sleep(WATER_SYSTEM_ERROR_NOTIFY_INTERVAL)
+    async def food_system_error_notify(self):
+        print("STATE: food system error notify")
+        # evey X seconds
+        await asyncio.sleep(FOOD_SYSTEM_ERROR_NOTIFY_INTERVAL)
+        # send notification
+        self.mqtt_manager.send_msg(self.topic, "NOTIFICATION ERROR FOOD SYSTEM")
+
+    async def food_finished_notify(self):
+        print("STATE: food finished notify")
+        # evey X seconds
+        await asyncio.sleep(FOOD_SYSTEM_ERROR_NOTIFY_INTERVAL)
+        # measure
+        self.scale.measure()
+        # send notification
+        self.mqtt_manager.send_msg(MQTT_ERROR_TOPIC, "NOTIFICATION Food Low: {:.2f}".format(self.scale.get_percentage()))
+        # if food is refilled go back to check food consumption
+        if self.scale.get_percentage() > self.max_food_lvl_perc:
+            # set percentage sent to actual percentage
+            self.previous_sent_perc = self.scale.get_percentage()
+            self.state = self.check_food_consumption
+            return

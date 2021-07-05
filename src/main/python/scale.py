@@ -45,7 +45,7 @@ class Scale(Sensor):
 
     def weight(self):
         """actual weight in grams."""
-        self.raw_measure()
+        self.measure()
         return self.get_last_measure() / self.val_to_g_conversion
 
     def weight_kg(self):
