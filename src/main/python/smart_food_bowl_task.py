@@ -55,11 +55,11 @@ class SmartFoodBowlTask(Task):
             """await asyncio.sleep(10)
             print("Refill food")
             # Check food qta
-            if self.__calculateScaleAverage() <= self.minLvl:
+            if self.__calculateScaleAverage() <= self.min_water_lvl_perc:
                 print("Activate refill")
                 self.motor.on()
                 x = 0
-                while self.__calculateScaleAverage() < self.maxLvl:
+                while self.__calculateScaleAverage() < self.max_water_lvl_perc:
                     if x > CHECK_BOWL_BEFORE_ERROR:
                         self.motor.off()
                         self.__errorState()
@@ -93,12 +93,12 @@ class SmartFoodBowlTask(Task):
 
     def __calculate_scale_average(self):
         for _ in range(AVERAGE_ESTIMATION):
-            self.scale.measure()
+            self.scale.raw_measure()
         return self.scale.weight()
 
     def __check_food_reserve(self):
         self.laserPin.on()
-        if self.sensor.measure() > 10:
+        if self.sensor.raw_measure() > 10:
             self.laserPin.off()
             return True
         self.laserPin.off()
@@ -110,4 +110,4 @@ class SmartFoodBowlTask(Task):
     def __error_state(self):
         while True:
             self.mqm.send_msg(MQTT_ERROR_TOPIC, "Error in food delivery")
-            # await asyncio.sleep(ERROR_WAITING)
+            # await asyncio.sleep(WATER_SYSTEM_ERROR_NOTIFY_INTERVAL)

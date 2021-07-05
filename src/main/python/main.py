@@ -2,7 +2,7 @@ import time
 from secret import MQTT_HOST
 from pins import *
 from static_values import CERT_FILE, KEY_FILE, MQTT_PORT, MQTT_CLIENT_ID, MQTT_FOOD_TOPIC, MQTT_RECEIVE_TOPIC
-from static_values import DEF_MAX_FOOD_LVL, DEF_MAX_WATER_LVL, DEF_MIN_FOOD_LVL, DEF_MIN_WATER_LVL
+from static_values import DEF_MAX_FOOD_LVL, DEF_MAX_WATER_LVL_PERC, DEF_MIN_FOOD_LVL, DEF_MIN_WATER_LVL_PERC
 from scheduler import Scheduler
 from mqtt_manager import MQTTManager
 from smart_water_bowl_task import SmartWaterBowlTask
@@ -29,8 +29,8 @@ except Exception as e:
     print('Cannot connect MQTT: ' + str(e))
 
 # creating bowls
-swb_task = SmartWaterBowlTask(valve_pin=VALVE_PIN, water_pin=WATER_SENSOR_PIN, max_lvl=DEF_MAX_WATER_LVL,
-                              min_lvl=DEF_MIN_WATER_LVL, mqtt_manager=mqtt_manager,
+swb_task = SmartWaterBowlTask(valve_pin=VALVE_PIN, water_pin=WATER_SENSOR_PIN, max_water_lvl_perc=DEF_MAX_WATER_LVL_PERC,
+                              min_water_lvl_perc=DEF_MIN_WATER_LVL_PERC, mqtt_manager=mqtt_manager,
                               topic=MQTT_RECEIVE_TOPIC)
 
 sfb_task = SmartFoodBowlTask(scale_pin_sck=SCALE_PIN_SCK, scale_pin_dt=SCALE_PIN_DT, bmotor_pinb=B_MOTOR_PIN,
@@ -44,7 +44,8 @@ sfb_task = SmartFoodBowlTask(scale_pin_sck=SCALE_PIN_SCK, scale_pin_dt=SCALE_PIN
 mqtt_msg_chk = MqttMessageCheckerTask(mqtt_manager=mqtt_manager)
 
 # array of tasks
-tasks = [sfb_task.get_behaviour(), mqtt_msg_chk.get_behaviour()]  # array of coroutines
+print("Creating attay of tasks")
+tasks = [swb_task.get_behaviour()]  # array of coroutines
 
 # create the scheduler and start with tasks
 scheduler = Scheduler()

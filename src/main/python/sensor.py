@@ -1,5 +1,4 @@
 class Sensor:
-
     """Sensor, measures an amount """
 
     last_measure = -1
@@ -20,10 +19,18 @@ class Sensor:
                                                                              self.get_last_measure(),
                                                                              self.get_percentage())
 
-    def measure(self, last_measure):
-        """measures, updates average, returns raw measure."""
-        self.last_measure = last_measure
-        self.average = self.last_measure * self.average_converging_speed + self.average * (1-self.average_converging_speed)
+    def raw_measure(self):
+        """returns only one raw measure"""
+        raise Exception("raw measure should be implemented")
+
+    def measure(self):
+        """measures 3 times, makes average of them, updates global average, returns measure."""
+        sum_raw_measures = 0
+        for _ in range(3):
+            sum_raw_measures += self.raw_measure()
+        self.last_measure = sum_raw_measures / 3
+        self.average = self.last_measure * self.average_converging_speed + self.average * (
+                    1 - self.average_converging_speed)
         return self.last_measure
 
     def get_average(self):
@@ -31,7 +38,7 @@ class Sensor:
         return self.average
 
     def get_last_measure(self):
-        """last measure, raw data, average() instead returns a weighted average with the previous ones."""
+        """last measure, raw data, average() instead returns a weighted average with the previous_sent_perc ones."""
         return self.last_measure
 
     def get_percentage(self):

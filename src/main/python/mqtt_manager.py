@@ -56,4 +56,5 @@ class MQTTManager:
 
     def send_msg(self, topic, msg):
         """sends a message on the topic."""
+        print("Sending MQTT message: " + msg)
         self.mqtt_client.publish(topic, msg)

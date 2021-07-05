@@ -1,4 +1,3 @@
-import machine
 from hx711 import HX711
 from sensor import Sensor
 
@@ -40,13 +39,13 @@ class Scale(Sensor):
         """tares sensor at empty scale."""
         self.offset = self.driver.read()
 
-    def measure(self):
-        """returns sensor measure with tare (raw value - offset)."""
-        return super().measure( self.driver.read() - self.offset )
+    def raw_measure(self):
+        """returns sensor raw measure with tare (raw value - offset)."""
+        return self.driver.read() - self.offset
 
     def weight(self):
         """actual weight in grams."""
-        self.measure()
+        self.raw_measure()
         return self.get_last_measure() / self.val_to_g_conversion
 
     def weight_kg(self):

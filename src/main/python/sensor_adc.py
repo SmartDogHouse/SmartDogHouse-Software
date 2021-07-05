@@ -17,7 +17,7 @@ class SensorADC(Sensor):
         self.pin = machine.ADC(machine.Pin(pin_num))
         self.pin.atten(machine.ADC.ATTN_6DB)  # increase reading voltage to 2V
 
-    def measure(self):
+    def raw_measure(self):
         """measures, updates average, returns raw measure."""
-        return super().measure(self.pin.read())
+        return self.pin.read()
 

@@ -7,4 +7,4 @@ class Task:
 
     async def get_behaviour(self):
         """":returns the behaviour of the task"""
-        pass
+        raise Exception("a behaviour for the task should be implemented")
