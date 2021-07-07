@@ -1,3 +1,4 @@
+# STUB: do NOT upload to the ESP, it's used to run the tests
 def delay(ms):
     """
     Delay for the given number of milliseconds.
@@ -8,7 +9,6 @@ def udelay(us):
     """
     Delay for the given number of microseconds.
     """
-
 
 def millis():
     """

@@ -13,6 +13,7 @@ then
 			test "$f" = "$SCRIPT_DIR"/machine.py && continue #exept stub
 			test "$f" = "$SCRIPT_DIR"/micropython.py && continue #exept stub
 			test "$f" = "$SCRIPT_DIR"/utime.py && continue #exept stub
+			test "$f" = "$SCRIPT_DIR"/uasyncio.py && continue #exept stub
 			echo "Delivering file: $f"
 			ampy -d 1 --port "$DEVICE" put "$f" #deliver file with ampy in the device fond
 		done

@@ -1,3 +1,4 @@
+# STUB: do NOT upload to the ESP, it's used to run the tests
 def alloc_emergency_exception_buf():
     """stub method."""
 

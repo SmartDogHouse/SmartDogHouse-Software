@@ -1,13 +1,15 @@
 from secret import MQTT_HOST
 from pins import VALVE_PIN, WATER_SENSOR_PIN, SCALE_PIN_SCK, SCALE_PIN_DT, MOTOR_PIN, B_MOTOR_PIN, F_MOTOR_PIN, LIGHT_SENSOR_PIN
-from pins import LASER_PIN, LIMIT_SWITCH_OPEN_PIN, LIMIT_SWITCH_CLOSE_PIN
+from pins import LASER_PIN, LIMIT_SWITCH_OPEN_PIN, LIMIT_SWITCH_CLOSE_PIN, DHT_PIN
 from static_values import CERT_FILE, KEY_FILE, MQTT_PORT, MQTT_CLIENT_ID, MQTT_FOOD_TOPIC, MQTT_RECEIVE_TOPIC
 from static_values import DEF_MAX_FOOD_LVL_PERC, DEF_MAX_WATER_LVL_PERC, DEF_MIN_FOOD_LVL_PERC, DEF_MIN_WATER_LVL_PERC
+from static_values import MQTT_SMARTCOLLAR_TOPIC
 from scheduler import Scheduler
 from mqtt_manager import MQTTManager
 from smart_water_bowl_task import SmartWaterBowlTask
 from smart_food_bowl_task import SmartFoodBowlTask
 from check_bimotor_task import CheckBimotorTask
+from smart_collar_task import SmartCollarTask
 from mqtt_message_checker_task import MqttMessageCheckerTask
 from mqtt_message_handler_task import MqttMessageHandlerTask
 
@@ -51,9 +53,11 @@ check_bimotor_task = CheckBimotorTask(bmotor_pinb=B_MOTOR_PIN,
                                       limit_switch_close_pin=LIMIT_SWITCH_CLOSE_PIN,
                                       limit_switch_open_pin=LIMIT_SWITCH_OPEN_PIN)
 
+scollar_task = SmartCollarTask(mqtt_manager=mqtt_manager, topic=MQTT_SMARTCOLLAR_TOPIC, dht_pin=DHT_PIN)
+
 # array of tasks
 print("Creating array of tasks")
-tasks = [sfb_task.get_behaviour()]  # array of coroutines
+tasks = [scollar_task.get_behaviour()]  # array of coroutines
 
 # create the scheduler and start with tasks
 scheduler = Scheduler()

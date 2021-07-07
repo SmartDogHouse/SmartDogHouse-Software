@@ -1,7 +1,8 @@
 # List of pins used in the microcontroller
+# SMART WATER
 VALVE_PIN = 32
 WATER_SENSOR_PIN = 35
-
+# SMART FOOD BOWL
 LASER_PIN = 14
 MOTOR_PIN = 27
 B_MOTOR_PIN = 12
@@ -11,6 +12,6 @@ SCALE_PIN_DT = 25
 SCALE_PIN_SCK = 26
 LIMIT_SWITCH_OPEN_PIN = 33
 LIMIT_SWITCH_CLOSE_PIN = 34
-
-
-# ADC pins: 0, 2, 4, 12, 13, 14, 15, 25, 26, 27, 32, 33, 34, 35, 36-NO OUT, and 39-NO OUT.
+# SMART COLLAR
+DHT_PIN = 32
+# ADC pins: micropython wants over the num 30: 32, 33, 34, 35, 36-NO OUT, and 39-NO OUT.
