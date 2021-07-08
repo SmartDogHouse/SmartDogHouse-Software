@@ -51,7 +51,7 @@ class MQTTManager:
         self.mqtt_client.subscribe(topic)
 
     def check_msg_come(self):
-        """checks if there i a message on the topic."""
+        """checks if there is a message on the topic."""
         self.mqtt_client.check_msg()
 
     def send_msg(self, topic, msg):
