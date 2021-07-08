@@ -15,7 +15,8 @@ LIMIT_SWITCH_OPEN_PIN = 33
 LIMIT_SWITCH_CLOSE_PIN = 34
 
 # SMART COLLAR
-DHT_PIN = 32
-DS18x20_PIN = 32  # for DS18x20_PIN Be sure to put a 4.7k pull-up resistor between the data line and Vcc
+DHT_PIN = 33
+DS18x20_PIN = 33  # for DS18x20_PIN Be sure to put a 4.7k pull-up resistor between the data line and Vcc
+HEARTBEAT_PIN = 32
 
 # ADC pins: micropython wants over the num 30: 32, 33, 34, 35, 36-NO OUT, and 39-NO OUT.

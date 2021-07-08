@@ -24,7 +24,7 @@ class Sensor:
         raise Exception("raw measure should be implemented")
 
     def measure(self):
-        """measures 3 times, makes average of them, updates global average, returns measure."""
+        """measures 3 times, makes average of them, updates global average, returns local average."""
         sum_raw_measures = 0
         for _ in range(3):
             sum_raw_measures += self.raw_measure()

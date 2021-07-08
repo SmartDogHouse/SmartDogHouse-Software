@@ -6,6 +6,8 @@
 secret.py
 key
 cert
+*.0
+plot_data.py
 
 # Ignore Gradle GUI config
 gradle-app.setting

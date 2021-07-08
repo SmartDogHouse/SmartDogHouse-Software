@@ -7,12 +7,12 @@ import ds18x20, onewire  # for DS18S20 and DS18B20 devices
 
 from task import Task
 
-CHECK_COLLAR_INTERVAL = 5
+CHECK_TEMPERATURE_INTERVAL = 5
 
 
 class SmartCollarTemperatureTask(Task):
 
-    def __init__(self, mqtt_manager: MQTTManager, topic: str, tmp_pin: int, using_ds18x20: bool, min_temp=20, max_temp=35, min_heartbeat=20, max_heartbeat=200):
+    def __init__(self, mqtt_manager: MQTTManager, topic: str, tmp_pin: int, using_ds18x20: bool, min_temp=20, max_temp=35):
         """ constructor.
         """
         self.mqtt_manager = mqtt_manager
@@ -28,8 +28,6 @@ class SmartCollarTemperatureTask(Task):
             self.dht_temp = dht.DHT11(Pin(self.tmp_pin, Pin.IN))
         self.min_temp = min_temp
         self.max_temp = max_temp
-        self.max_heartbeat = max_heartbeat
-        self.min_heartbeat = min_heartbeat
         # state variable holds the current state, this is the initial state
         self.state = self.check_temperature
         print("SmartCollarTemperatureTask Created")
@@ -50,17 +48,11 @@ class SmartCollarTemperatureTask(Task):
     def set_min_temperature(self, min_temp):
         self.min_temp = min_temp
 
-    def set_max_heartbeat(self, max_heartbeat):
-        self.max_heartbeat = max_heartbeat
-
-    def set_min_heartbeat(self, min_heartbeat):
-        self.min_heartbeat = min_heartbeat
-
     # STATES
     async def check_temperature(self):
-        print("STATE: check collar temperature")
         # evey X seconds
-        await asyncio.sleep(CHECK_COLLAR_INTERVAL)
+        await asyncio.sleep(CHECK_TEMPERATURE_INTERVAL)
+        print("STATE: check collar temperature")
         # measure temp
         if self.using_ds18x20:
             temp = self.check_ds18x20()

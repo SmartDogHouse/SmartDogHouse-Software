@@ -5,6 +5,7 @@ import esp
 import secret
 import time
 import network
+from ntptime import settime  # to get current time
 
 WIFI_SSID = secret.WIFI_SSID
 WIFI_PW = secret.WIFI_PW
@@ -31,3 +32,4 @@ gc.enable()
 esp.osdebug(None)
 gc.collect()
 do_connect()
+settime()  # get time from internet
