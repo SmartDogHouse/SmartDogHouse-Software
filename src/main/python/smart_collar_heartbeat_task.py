@@ -2,7 +2,9 @@ from mqtt_manager import MQTTManager
 import uasyncio as asyncio
 import time
 from machine import Pin
+import ujson
 
+from static_values import MQTT_NOTIFY_TOPIC
 from task import Task
 from pulse_sensor import PulseSensor
 
@@ -82,7 +84,7 @@ class SmartCollarHeartbeatTask(Task):
                 # if outside range
                 if bpm < self.min_heartbeat or bpm > self.max_heartbeat:
                     # send notification now
-                    self.mqtt_manager.send_msg(self.topic, "NOTIFICATION Heartbeat is abnormal: {}".format(bpm))
+                    self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Heartbeat is abnormal: {}".format(bpm)}))
                     pass
                 # if enough time (sec) passed since last sending
                 if (time.time() - self.last_sent) > SECONDS_SENDING_HEARTBEAT:

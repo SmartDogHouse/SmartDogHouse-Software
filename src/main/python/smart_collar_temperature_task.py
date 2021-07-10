@@ -2,9 +2,11 @@ from mqtt_manager import MQTTManager
 from machine import Pin
 import uasyncio as asyncio
 import time
+import ujson
 import dht  # for DHT11
 import ds18x20, onewire  # for DS18S20 and DS18B20 devices
 
+from static_values import MQTT_NOTIFY_TOPIC
 from task import Task
 
 CHECK_TEMPERATURE_INTERVAL = 5
@@ -58,11 +60,11 @@ class SmartCollarTemperatureTask(Task):
             temp = self.check_ds18x20()
         else:
             temp = self.check_dht()
-        # send notification
+        # send data
         self.mqtt_manager.send_msg(self.topic, "Temperature: {}".format(temp))
         if temp < self.min_temp or temp > self.max_temp:
             # send notification
-            self.mqtt_manager.send_msg(self.topic, "NOTIFICATION Temperature is abnormal: {}".format(temp))
+            self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Temperature is abnormal: {}".format(temp)}))
 
 
     def check_ds18x20(self):

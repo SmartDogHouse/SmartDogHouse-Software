@@ -7,6 +7,8 @@ Codacy: [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b0b479212d0
 SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SmartDogHouse_SmartDogHouse-Software&metric=alert_status)](https://sonarcloud.io/dashboard?id=SmartDogHouse_SmartDogHouse-Software)
 
 
+## Overview
+Automation of a Dogshelter for SmartCity project. Using Domain-Driven-Design and Build Automation + Continuous-Integration/Continuous-Delivery
 
 ## Setup Repository
 - clone the repo or download the latest release
@@ -145,3 +147,6 @@ and make the test-files work with normal python.
 bash src/main/python/flash/upload_key_cert.sh 
 ```
 
+## License
+
+This project is under a License - see the [LICENSE](LICENSE) file for details
