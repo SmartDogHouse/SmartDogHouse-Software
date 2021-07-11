@@ -1,7 +1,8 @@
 from valve import Valve
 from water_sensor import WaterSensor
 from mqtt_manager import MQTTManager
-from static_values import MQTT_ERROR_TOPIC
+from static_values import MQTT_NOTIFY_TOPIC
+import ujson
 import uasyncio as asyncio
 from task import Task
 
@@ -122,7 +123,7 @@ class SmartWaterBowlTask(Task):
         # evey X seconds
         await asyncio.sleep(WATER_SYSTEM_ERROR_NOTIFY_INTERVAL)
         # send notification
-        self.mqtt_manager.send_msg(self.topic, "NOTIFICATION ERROR WATER SYSTEM")
+        self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"ERROR WATER SYSTEM"}))
 
     async def water_finished_notify(self):
         print("STATE: water finished notify")
@@ -131,7 +132,7 @@ class SmartWaterBowlTask(Task):
         # measure
         self.waterSensor.measure()
         # send notification
-        self.mqtt_manager.send_msg(MQTT_ERROR_TOPIC, "NOTIFICATION Water Low: {:.2f}".format(self.waterSensor.get_percentage()))
+        self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Water Low: {:.2f}".format(self.waterSensor.get_percentage())}))
         # if water is refilled go back to check water consumption
         if self.waterSensor.get_percentage() > self.max_water_lvl_perc:
             # set percentage sent to actual percentage

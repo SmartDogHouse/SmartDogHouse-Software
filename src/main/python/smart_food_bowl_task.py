@@ -7,7 +7,8 @@ from machine import Pin
 import uasyncio as asyncio
 
 from task import Task
-from static_values import MQTT_ERROR_TOPIC, REFILL_TOPIC
+from static_values import MQTT_NOTIFY_TOPIC
+import ujson
 
 CHECK_FOOD_CONSUMPTION_INTERVAL = 5
 FOOD_SYSTEM_ERROR_NOTIFY_INTERVAL = 10
@@ -23,7 +24,7 @@ class SmartFoodBowlTask(Task):
     def __init__(self, scale_pin_sck: int, scale_pin_dt: int, motor_pin: int, bmotor_pinf: int, bmotor_pinb: int,
                  light_sensor_pin: int, laser_pin: int,
                  min_food_lvl_perc: int, max_food_lvl_perc: int, mqtt_manager: MQTTManager,
-                 topic: str, limit_switch_open_pin: str, limit_switch_close_pin: str):
+                 topic: str, limit_switch_open_pin: str, limit_switch_close_pin: str, belt_present=True, motor_present=True):
         """ constructor.
         """
         self.scale = Scale(pin_sck=scale_pin_sck, pin_out_dt=scale_pin_dt)
@@ -38,8 +39,8 @@ class SmartFoodBowlTask(Task):
         self.switch_open = Pin(limit_switch_open_pin, Pin.IN)
         self.switch_closed = Pin(limit_switch_close_pin, Pin.IN)
         # initiate variables
-        self.belt_present = True
-        self.motor_present = True
+        self.belt_present = belt_present
+        self.motor_present = motor_present
         self.food_desired = 350
         self.wait_before_food_error = SECONDS_BEFORE_ERROR_FOOD_SYSTEM
         # tare scale
@@ -68,6 +69,9 @@ class SmartFoodBowlTask(Task):
 
     def set_min_food(self, min_food_lvl_perc):
         self.min_food_lvl_perc = min_food_lvl_perc
+
+    def set_food_desired(self, food_desired):
+        self.food_desired = food_desired
 
     # STATES
     async def check_food_consumption(self):
@@ -176,7 +180,7 @@ class SmartFoodBowlTask(Task):
         # if light reaches sensor
         if self.light_sensor.is_light():
             # send notification
-            self.mqtt_manager.send_msg(MQTT_ERROR_TOPIC, "NOTIFICATION Food Storage low, laser reached sensor!")
+            self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Food Storage for recharge bowl is LOW!"}))
             print("\t\tLaser OFF")
             self.laser.off()
 
@@ -185,7 +189,7 @@ class SmartFoodBowlTask(Task):
         # evey X seconds
         await asyncio.sleep(FOOD_SYSTEM_ERROR_NOTIFY_INTERVAL)
         # send notification
-        self.mqtt_manager.send_msg(self.topic, "NOTIFICATION ERROR FOOD SYSTEM")
+        self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"ERROR FOOD SYSTEM"}))
 
     async def food_finished_notify(self):
         print("STATE: food finished notify")
@@ -194,7 +198,7 @@ class SmartFoodBowlTask(Task):
         # measure
         self.scale.measure()
         # send notification
-        self.mqtt_manager.send_msg(MQTT_ERROR_TOPIC, "NOTIFICATION Food Low: {:.2f}".format(self.scale.get_percentage()))
+        self.mqtt_manager.send_msg(MQTT_NOTIFY_TOPIC, ujson.dumps({"Notify":"Food Low: {:.2f}".format(self.scale.get_percentage())}))
         # if food is refilled go back to check food consumption
         if self.scale.get_percentage() > self.max_food_lvl_perc:
             # set percentage sent to actual percentage

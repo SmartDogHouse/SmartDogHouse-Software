@@ -7,13 +7,15 @@ Codacy: [![Codacy Badge](https://app.codacy.com/project/badge/Grade/2b0b479212d0
 SonarCloud: [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=SmartDogHouse_SmartDogHouse-Software&metric=alert_status)](https://sonarcloud.io/dashboard?id=SmartDogHouse_SmartDogHouse-Software)
 
 
+## Overview
+Automation of a Dogshelter for SmartCity project. Using Domain-Driven-Design and Build Automation + Continuous-Integration/Continuous-Delivery
 
 ## Setup Repository
 - clone the repo or download the latest release
   ```bash
   git clone git@github.com:SmartDogHouse/SmartDogHouse-Software.git
   ```
- - create put your AWS __key__ and __cert__ in the folder "_flash_" under _src/main/python_,
+ - if you want to send data to AWS, put your AWS __key__ and __cert__ in the folder "_flash_" under _src/main/python_,
 they are used to identify your ESP to AWS.
  - substitute you WiFi SSID, Password and amazon host in file _main.py_ (either changing the strings either creating a module "_secret.py_ with the strings that won't be tracked)
 
@@ -27,6 +29,9 @@ python -m src.test.python.test_water_sensor #single test
 python -m unittest discover -s ./src/test/ #all tests
 ```
 ### with coverage report
+#### you can find the coverage report updated for all branches at:
+[https://smartdoghouse.github.io/SmartDogHouse-Software/](https://smartdoghouse.github.io/SmartDogHouse-Software/)
+
 ```bash
 pip install coverage
 ```
@@ -43,8 +48,6 @@ create report and report website:
 coverage report	        #report in shell
 coverage html		#report website, open index.html in htmlcov folder
 ```
-you can find the coverage report for both all branches at:
-[https://smartdoghouse.github.io/SmartDogHouse-Software/](https://smartdoghouse.github.io/SmartDogHouse-Software/)
 
 ## INSTALLATION on Esp
 ### MICROPYTHON
@@ -113,7 +116,7 @@ ws.measure()     # measure
 
 ws.get_last_measure() 
 ```
-#### IP of the ESP: press RST, wait "Connecting WiFi" and check the IP,
+#### IP of the ESP: press RST, wait "Connecting WiFi" and check the IP
 
 ### WebREPL
 #### (optional) if you want to upload files while using the REPL, you can use this instead of Ampy
@@ -144,3 +147,6 @@ and make the test-files work with normal python.
 bash src/main/python/flash/upload_key_cert.sh 
 ```
 
+## License
+
+This project is under a License - see the [LICENSE](LICENSE) file for details
