@@ -73,8 +73,8 @@ jobs:
             run: |
               git checkout gh-pages
               git clean -fxd #remove things that may be carried with checkout
-              git rm -rf coverage_dev #remove folder
-              git rm -rf coverage_main #remove folder
+              git rm -rf coverage_dev || true #remove folder
+              git rm -rf coverage_main || true #remove folder
           - name: Test and build coverage html for develop
             shell: bash
             run: |
