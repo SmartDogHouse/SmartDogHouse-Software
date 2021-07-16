@@ -4,7 +4,7 @@ CERT_FILE = "/flash/cert"
 KEY_FILE = "/flash/key"
 
 # if you change the ClientId make sure update AWS policy
-MQTT_CLIENT_ID = "COGLIONE"
+MQTT_CLIENT_ID = "ClientID"
 MQTT_PORT = 8883
 
 # if you change the topic make sure update AWS policy
