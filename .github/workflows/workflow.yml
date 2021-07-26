@@ -100,7 +100,7 @@ jobs:
             
   FindTagJob:
     needs: CoverageJob
-    if:  success() && (${{github.head_ref}} == 'main')
+    if:  success() && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
     outputs:
       outputTagJob: '${{ steps.relese_msg.outputs.RELESE_NAME }}' #The outuput of the job
