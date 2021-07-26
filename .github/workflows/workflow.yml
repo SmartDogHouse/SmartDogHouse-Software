@@ -1,10 +1,10 @@
-name: Workflow
+name: Software Workflow
 on:
   push:
   workflow_dispatch:
 jobs:
   TestJob:
-    runs-on: ubuntu-20.04
+    runs-on: ubuntu-latest
     steps:
       - name: Setup Git repo
         uses: actions/checkout@v2
@@ -17,7 +17,7 @@ jobs:
   TelegramJobFailure:
       needs: [TestJob] #when finished this job
       if: failure() # if its failed
-      runs-on: ubuntu-20.04
+      runs-on: ubuntu-latest
       steps:
       - name: Send custom Telegram message
         uses: appleboy/telegram-action@master
@@ -36,7 +36,7 @@ jobs:
   TelegramJobSuccess:
         needs: [TestJob] #when finished this job
         if: success() #only on success
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
         - name: Send custom Telegram message
           uses: appleboy/telegram-action@master
@@ -55,7 +55,7 @@ jobs:
   CoverageJob:
         needs: [TestJob] #when finished this job
         if: success() #only on success
-        runs-on: ubuntu-20.04
+        runs-on: ubuntu-latest
         steps:
           - name: Install Coverage
             shell: bash
@@ -99,42 +99,54 @@ jobs:
               git push
             
   FindTagJob:
-        needs: TestJob
-        if: success()
-        runs-on: ubuntu-20.04
-        # Map a step output to a job output
-        outputs:
-          outputTagJob: ${{ steps.relese_msg.outputs.RELESE_NAME }}
-        steps:
-          - name: Clone Repo with Checkout 
-            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
-          - name: Extract relese message if present
-            shell: bash
-            id: relese_msg
-            run: |
-              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
-
+    needs: CoverageJob
+    if: success() && github.head_ref == 'main'
+    runs-on: ubuntu-latest
+    outputs:
+      outputTagJob: '${{ steps.relese_msg.outputs.RELESE_NAME }}' #The outuput of the job
+    steps:
+      - name: Clone Repo with Checkout
+        uses: actions/checkout@v2
+      - name: Extract relese message if present
+        shell: bash
+        id: extract_tag_msg
+        run: >
+          echo "::set-output name=TAG_MSG::$(echo
+          "${{github.event.head_commit.message}}" | grep -o -P
+          '(?<=-TAG{).*(?=})')" #Extract tag name if present
+      - name: Fetch tag
+        shell: bash
+        run: |
+          git fetch --prune --unshallow --tags #Pull all tags
+      - name: Fill tag if empty
+        id: relese_msg
+        shell: bash
+        run: |
+          if [ "${{steps.extract_tag_msg.outputs.TAG_MSG}}" != "" ] #Check if the user has specified a name for the tag
+          then #if yes use it
+              echo "::set-output name=RELESE_NAME::$(echo ${{steps.extract_tag_msg.outputs.TAG_MSG}})" 
+          else #if generate one new tag incrementing fixes number like x.y.z+1
+              val=$(git describe --tags --abbrev=0)
+              newval=$(echo ${val##*.})
+              newval=$((newval+1))
+              newval="${val%.*}.$newval"
+              echo "::set-output name=RELESE_NAME::$(echo $newval)"
+              echo $newval 
+          fi
   DeployJob:
-        needs: FindTagJob
-        if: ${{ needs.FindTagJob.outputs.outputTagJob != '' }} #if environment variable is set
-        runs-on: ubuntu-20.04
-        steps:
-          - name: Clone Repo with Checkout 
-            uses: actions/checkout@v2 # clones repo! Action implemented in this repository, tag "2"
-          - name: Extract relese message if present
-            shell: bash
-            id: relese_msg
-            run: |
-              echo "::set-output name=RELESE_NAME::$(echo "${{github.event.head_commit.message}}" | grep -o -P '(?<=-TAG{).*(?=})')"
-          - name: Create relese if tag commit contain a tag message
-            id: create_release
-            if: ${{ steps.relese_msg.outputs.RELESE_NAME != '' }}
-            uses: actions/create-release@v1
-            env:
-              GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-            with:
-              tag_name: ${{ steps.relese_msg.outputs.RELESE_NAME }}
-              release_name: Release ${{ steps.relese_msg.outputs.RELESE_NAME }}
-              draft: false
-              prerelease: false
-
+    needs: FindTagJob
+    if: '${{ needs.FindTagJob.outputs.outputTagJob != '''' }}'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Clone Repo with Checkout
+        uses: actions/checkout@v2
+      - name: Create relese if tag commit contain a tag message
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: '${{ secrets.GITHUB_TOKEN }}'
+        with:
+          tag_name: '${{ needs.FindTagJob.outputs.outputTagJob }}'
+          release_name: 'Release ${{ needs.FindTagJob.outputs.outputTagJob }}'
+          draft: falses
+          prerelease: false
