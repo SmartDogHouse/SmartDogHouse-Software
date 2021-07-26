@@ -55,14 +55,14 @@ check_bimotor_task = CheckBimotorTask(bmotor_pinb=B_MOTOR_PIN,
                                       limit_switch_close_pin=LIMIT_SWITCH_CLOSE_PIN,
                                       limit_switch_open_pin=LIMIT_SWITCH_OPEN_PIN)
 
-sct_task = SmartCollarTemperatureTask(mqtt_manager=mqtt_manager, topic=MQTT_SMARTCOLLAR_TOPIC, tmp_pin=DS18x20_PIN,
-                                      using_ds18x20=True)
+#sct_task = SmartCollarTemperatureTask(mqtt_manager=mqtt_manager, topic=MQTT_SMARTCOLLAR_TOPIC, tmp_pin=DS18x20_PIN,
+#                                      using_ds18x20=True)
 
-sch_task = SmartCollarHeartbeatTask(mqtt_manager=mqtt_manager, topic=MQTT_SMARTCOLLAR_TOPIC, hb_pin=HEARTBEAT_PIN)
+#sch_task = SmartCollarHeartbeatTask(mqtt_manager=mqtt_manager, topic=MQTT_SMARTCOLLAR_TOPIC, hb_pin=HEARTBEAT_PIN)
 
 # array of tasks
 print("Creating array of tasks")
-tasks = [sct_task.get_behaviour(), sch_task.get_behaviour()]  # array of coroutines
+tasks = [swb_task.get_behaviour(), mqtt_msg_chk_task.get_behaviour()]  # array of coroutines
 
 # create the scheduler and start with tasks
 print("--- Starting Scheduler --- {}-{}-{} {}:{}".format(
