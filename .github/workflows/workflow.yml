@@ -82,6 +82,8 @@ jobs:
               coverage run -m unittest discover -s ./src/test/
               coverage html #generate site in htmlcov folder
               mv htmlcov coverage_dev #rename folder 
+              coverage xml #generate xml coverage
+              mv coverage.xml coverage_dev.xml #rename xml 
               rm -rdf src  #remove src folder
           - name: Test and build coverage html for main
             shell: bash
@@ -90,6 +92,8 @@ jobs:
               coverage run -m unittest discover -s ./src/test/
               coverage html #generate site in htmlcov folder
               mv htmlcov coverage_main #rename folder 
+              coverage xml #generate xml coverage
+              mv coverage.xml coverage_main.xml #rename xml 
               rm -rdf src  #remove src folder
           - name: Commit changes
             shell: bash
