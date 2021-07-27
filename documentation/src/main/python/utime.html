@@ -1,0 +1,503 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.main.python.utime API documentation</title>
+<meta name="description" content="Module: &#39;utime&#39; on esp32 1.11.0" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.main.python.utime</code></h1>
+</header>
+<section id="section-intro">
+<p>Module: 'utime' on esp32 1.11.0</p>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># STUB: do NOT upload to the ESP, it&#39;s used to run the tests
+&#34;&#34;&#34;Module: &#39;utime&#39; on esp32 1.11.0&#34;&#34;&#34;
+import time as dummy
+# MCU: (sysname=&#39;esp32&#39;, nodename=&#39;esp32&#39;, release=&#39;1.11.0&#39;, version=&#39;v1.11-580-g973f68780 on 2019-11-17&#39;, machine=&#39;ESP32 module with ESP32&#39;)
+# Stubber: 1.3.2
+def localtime(secs) -&gt; tuple:
+    &#34;&#34;&#34;
+    Convert a time expressed in seconds since the Epoch (see above) into an 8-tuple which contains: (year, month, mday, hour, minute, second, weekday, yearday) If secs is not provided or None, then the current time from the RTC is used.
+
+    Parameters
+    ----------
+    - [secs]
+    year includes the century (for example 2014).
+    - month is 1-12
+    - mday is 1-31
+    - hour is 0-23
+    - minute is 0-59
+    - second is 0-59
+    - weekday is 0-6 for Mon-Sun
+    - yearday is 1-366
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.localtime
+    &#34;&#34;&#34;
+
+def mktime():
+    &#34;&#34;&#34;
+    This is inverse function of localtime. It’s argument is a full 8-tuple which expresses a time as per localtime. It returns an integer which is the number of seconds since Jan 1, 200
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.mktime
+    &#34;&#34;&#34;
+    
+
+def sleep(seconds):
+    &#34;&#34;&#34;
+    Sleep for the given number of seconds. Some boards may accept seconds as a floating-point number to sleep for a fractional number of seconds. Note that other boards may not accept a floating-point argument, for compatibility with them use sleep_ms() and sleep_us() functions
+
+    Parameters
+    ----------
+    - seconds
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep
+    &#34;&#34;&#34;
+    
+
+def sleep_ms(ms):
+    &#34;&#34;&#34;
+    Delay for given number of milliseconds, should be positive or 0.
+
+    Parameters
+    ----------
+    - ms
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_ms
+    &#34;&#34;&#34;
+    
+
+def sleep_us(us):
+    &#34;&#34;&#34;
+    Delay for given number of microseconds, should be positive or 0.
+
+    Parameters
+    ----------
+    - us
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_us
+
+    &#34;&#34;&#34;
+    
+
+def ticks_add(ticks, delta):
+    &#34;&#34;&#34;
+    Offset ticks value by a given number, which can be either positive or negative. Given a ticks value, this function allows to calculate ticks value delta ticks before or after it, following modular-arithmetic definition of tick values (see ticks_ms() above). ticks parameter must be a direct result of call to ticks_ms(), ticks_us(), or ticks_cpu() functions (or from previous_sent_perc call to ticks_add()). However, delta can be an arbitrary integer number or numeric expression. ticks_add() is useful for calculating deadlines for events/tasks. (Note: you must use ticks_diff() function to work with deadlines.)
+
+    Parameters
+    ----------
+    - ticks
+    - delta
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_add
+    &#34;&#34;&#34;
+    
+
+def ticks_cpu():
+    &#34;&#34;&#34;
+    Similar to ticks_ms() and ticks_us(), but with the highest possible resolution in the system. This is usually CPU clocks, and that’s why the function is named that way. But it doesn’t have to be a CPU clock, some other timing source available in a system (e.g. high-resolution timer) can be used instead. The exact timing unit (resolution) of this function is not specified on utime module level, but documentation for a specific port may provide more specific information. This function is intended for very fine benchmarking or very tight real-time loops. Avoid using it in portable code.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_cpu
+    &#34;&#34;&#34;
+    
+
+def ticks_diff(ticks1, ticks2):
+    &#34;&#34;&#34;
+    Measure ticks difference between values returned from ticks_ms(), ticks_us(), or ticks_cpu() functions, as a signed value which may wrap around.
+
+    Parameters
+    ----------
+    - ticks1
+    - ticks2
+
+    The argument order is the same as for subtraction operator, ticks_diff(ticks1, ticks2) has the same meaning as ticks1 - ticks2. However, values returned by ticks_ms(), etc. functions may wrap around, so directly using subtraction on them will produce incorrect result. That is why ticks_diff() is needed, it implements modular (or more specifically, ring) arithmetics to produce correct result even for wrap-around values (as long as they not too distant inbetween, see below). The function returns signed value in the range [-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1] (that’s a typical range definition for two’s-complement signed binary integers). If the result is negative, it means that ticks1 occurred earlier in time than ticks2. Otherwise, it means that ticks1 occurred after ticks2. This holds only if ticks1 and ticks2 are apart from each other for no more than TICKS_PERIOD/2-1 ticks. If that does not hold, incorrect result will be returned. Specifically, if two tick values are apart for TICKS_PERIOD/2-1 ticks, that value will be returned by the function. However, if TICKS_PERIOD/2 of real-time ticks has ed between them, the function will return -TICKS_PERIOD/2 instead, i.e. result value will wrap around to the negative range of possible values.
+
+    Informal rationale of the constraints above: Suppose you are locked in a room with no means to monitor ing of time except a standard 12-notch clock. Then if you look at dial-plate now, and don’t look again for another 13 hours (e.g., if you fall for a long sleep), then once you finally look again, it may seem to you that only 1 hour has ed. To avoid this mistake, just look at the clock regularly. Your application should do the same. “Too long sleep” metaphor also maps directly to application behavior: don’t let your application run any single task for too long. Run tasks in steps, and do time-keeping inbetween.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_diff
+    &#34;&#34;&#34;
+    
+
+def ticks_ms():
+    &#34;&#34;&#34;
+    Returns an increasing millisecond counter with an arbitrary reference point, that wraps around after some value.
+
+    The wrap-around value is not explicitly exposed, but we will refer to it as TICKS_MAX to simplify discussion. Period of the values is TICKS_PERIOD = TICKS_MAX + 1. TICKS_PERIOD is guaranteed to be a power of two, but otherwise may differ from port to port. The same period value is used for all of ticks_ms(), ticks_us(), ticks_cpu() functions (for simplicity). Thus, these functions will return a value in range [0 .. TICKS_MAX], inclusive, total TICKS_PERIOD values. Note that only non-negative values are used. For the most part, you should treat values returned by these functions as opaque. The only operations available for them are ticks_diff() and ticks_add() functions described below.
+
+    Note: Performing standard mathematical operations (+, -) or relational operators (&lt;, &lt;=, &gt;, &gt;=) directly on these value will lead to invalid result. Performing mathematical operations and then ing their results as arguments to ticks_diff() or ticks_add() will also lead to invalid results from the latter functions.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_ms
+    &#34;&#34;&#34;
+    
+
+def ticks_us():
+    &#34;&#34;&#34;
+    Just like ticks_ms() above, but in microseconds.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_us
+    &#34;&#34;&#34;
+    
+
+def time() -&gt; float:
+    &#34;&#34;&#34;
+    Returns the number of seconds, as an integer, since the Epoch, assuming that underlying RTC is set and maintained as described above. If an RTC is not set, this function returns number of seconds since a port-specific reference point in time (for embedded boards without a battery-backed RTC, usually since power up or reset). If you want to develop portable MicroPython application, you should not rely on this function to provide higher than second precision. If you need higher precision, use ticks_ms() and ticks_us() functions, if you need calendar time, localtime() without an argument is a better choice.
+
+    Difference to CPython
+    ---------------------
+    In CPython, this function returns number of seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point, usually having microsecond precision. With MicroPython, only Unix port uses the same Epoch, and if floating-point precision allows, returns sub-second precision. Embedded hardware usually doesn’t have floating-point precision to represent both long time ranges and subsecond precision, so they use integer value with second precision. Some embedded hardware also lacks battery-powered RTC, so returns number of seconds since last power-up or from other relative, hardware-specific point (e.g. reset).
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.time
+    &#34;&#34;&#34;
+
+    return dummy.time()</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.main.python.utime.localtime"><code class="name flex">
+<span>def <span class="ident">localtime</span></span>(<span>secs) ‑> tuple</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Convert a time expressed in seconds since the Epoch (see above) into an 8-tuple which contains: (year, month, mday, hour, minute, second, weekday, yearday) If secs is not provided or None, then the current time from the RTC is used.</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>[secs]
+year includes the century (for example 2014).</li>
+<li>month is 1-12</li>
+<li>mday is 1-31</li>
+<li>hour is 0-23</li>
+<li>minute is 0-59</li>
+<li>second is 0-59</li>
+<li>weekday is 0-6 for Mon-Sun</li>
+<li>yearday is 1-366</li>
+</ul>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.localtime">http://docs.micropython.org/en/latest/library/utime.html#utime.localtime</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def localtime(secs) -&gt; tuple:
+    &#34;&#34;&#34;
+    Convert a time expressed in seconds since the Epoch (see above) into an 8-tuple which contains: (year, month, mday, hour, minute, second, weekday, yearday) If secs is not provided or None, then the current time from the RTC is used.
+
+    Parameters
+    ----------
+    - [secs]
+    year includes the century (for example 2014).
+    - month is 1-12
+    - mday is 1-31
+    - hour is 0-23
+    - minute is 0-59
+    - second is 0-59
+    - weekday is 0-6 for Mon-Sun
+    - yearday is 1-366
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.localtime
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.mktime"><code class="name flex">
+<span>def <span class="ident">mktime</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This is inverse function of localtime. It’s argument is a full 8-tuple which expresses a time as per localtime. It returns an integer which is the number of seconds since Jan 1, 200</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.mktime">http://docs.micropython.org/en/latest/library/utime.html#utime.mktime</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mktime():
+    &#34;&#34;&#34;
+    This is inverse function of localtime. It’s argument is a full 8-tuple which expresses a time as per localtime. It returns an integer which is the number of seconds since Jan 1, 200
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.mktime
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.sleep"><code class="name flex">
+<span>def <span class="ident">sleep</span></span>(<span>seconds)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sleep for the given number of seconds. Some boards may accept seconds as a floating-point number to sleep for a fractional number of seconds. Note that other boards may not accept a floating-point argument, for compatibility with them use sleep_ms() and sleep_us() functions</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>seconds</li>
+</ul>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.sleep">http://docs.micropython.org/en/latest/library/utime.html#utime.sleep</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sleep(seconds):
+    &#34;&#34;&#34;
+    Sleep for the given number of seconds. Some boards may accept seconds as a floating-point number to sleep for a fractional number of seconds. Note that other boards may not accept a floating-point argument, for compatibility with them use sleep_ms() and sleep_us() functions
+
+    Parameters
+    ----------
+    - seconds
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.sleep_ms"><code class="name flex">
+<span>def <span class="ident">sleep_ms</span></span>(<span>ms)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delay for given number of milliseconds, should be positive or 0.</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>ms</li>
+</ul>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_ms">http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_ms</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sleep_ms(ms):
+    &#34;&#34;&#34;
+    Delay for given number of milliseconds, should be positive or 0.
+
+    Parameters
+    ----------
+    - ms
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_ms
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.sleep_us"><code class="name flex">
+<span>def <span class="ident">sleep_us</span></span>(<span>us)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delay for given number of microseconds, should be positive or 0.</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>us</li>
+</ul>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_us">http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_us</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sleep_us(us):
+    &#34;&#34;&#34;
+    Delay for given number of microseconds, should be positive or 0.
+
+    Parameters
+    ----------
+    - us
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.sleep_us
+
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.ticks_add"><code class="name flex">
+<span>def <span class="ident">ticks_add</span></span>(<span>ticks, delta)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Offset ticks value by a given number, which can be either positive or negative. Given a ticks value, this function allows to calculate ticks value delta ticks before or after it, following modular-arithmetic definition of tick values (see ticks_ms() above). ticks parameter must be a direct result of call to ticks_ms(), ticks_us(), or ticks_cpu() functions (or from previous_sent_perc call to ticks_add()). However, delta can be an arbitrary integer number or numeric expression. ticks_add() is useful for calculating deadlines for events/tasks. (Note: you must use ticks_diff() function to work with deadlines.)</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>ticks</li>
+<li>delta</li>
+</ul>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_add">http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_add</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ticks_add(ticks, delta):
+    &#34;&#34;&#34;
+    Offset ticks value by a given number, which can be either positive or negative. Given a ticks value, this function allows to calculate ticks value delta ticks before or after it, following modular-arithmetic definition of tick values (see ticks_ms() above). ticks parameter must be a direct result of call to ticks_ms(), ticks_us(), or ticks_cpu() functions (or from previous_sent_perc call to ticks_add()). However, delta can be an arbitrary integer number or numeric expression. ticks_add() is useful for calculating deadlines for events/tasks. (Note: you must use ticks_diff() function to work with deadlines.)
+
+    Parameters
+    ----------
+    - ticks
+    - delta
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_add
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.ticks_cpu"><code class="name flex">
+<span>def <span class="ident">ticks_cpu</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Similar to ticks_ms() and ticks_us(), but with the highest possible resolution in the system. This is usually CPU clocks, and that’s why the function is named that way. But it doesn’t have to be a CPU clock, some other timing source available in a system (e.g. high-resolution timer) can be used instead. The exact timing unit (resolution) of this function is not specified on utime module level, but documentation for a specific port may provide more specific information. This function is intended for very fine benchmarking or very tight real-time loops. Avoid using it in portable code.</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_cpu">http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_cpu</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ticks_cpu():
+    &#34;&#34;&#34;
+    Similar to ticks_ms() and ticks_us(), but with the highest possible resolution in the system. This is usually CPU clocks, and that’s why the function is named that way. But it doesn’t have to be a CPU clock, some other timing source available in a system (e.g. high-resolution timer) can be used instead. The exact timing unit (resolution) of this function is not specified on utime module level, but documentation for a specific port may provide more specific information. This function is intended for very fine benchmarking or very tight real-time loops. Avoid using it in portable code.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_cpu
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.ticks_diff"><code class="name flex">
+<span>def <span class="ident">ticks_diff</span></span>(<span>ticks1, ticks2)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Measure ticks difference between values returned from ticks_ms(), ticks_us(), or ticks_cpu() functions, as a signed value which may wrap around.</p>
+<h2 id="parameters">Parameters</h2>
+<ul>
+<li>ticks1</li>
+<li>ticks2</li>
+</ul>
+<p>The argument order is the same as for subtraction operator, ticks_diff(ticks1, ticks2) has the same meaning as ticks1 - ticks2. However, values returned by ticks_ms(), etc. functions may wrap around, so directly using subtraction on them will produce incorrect result. That is why ticks_diff() is needed, it implements modular (or more specifically, ring) arithmetics to produce correct result even for wrap-around values (as long as they not too distant inbetween, see below). The function returns signed value in the range [-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1] (that’s a typical range definition for two’s-complement signed binary integers). If the result is negative, it means that ticks1 occurred earlier in time than ticks2. Otherwise, it means that ticks1 occurred after ticks2. This holds only if ticks1 and ticks2 are apart from each other for no more than TICKS_PERIOD/2-1 ticks. If that does not hold, incorrect result will be returned. Specifically, if two tick values are apart for TICKS_PERIOD/2-1 ticks, that value will be returned by the function. However, if TICKS_PERIOD/2 of real-time ticks has ed between them, the function will return -TICKS_PERIOD/2 instead, i.e. result value will wrap around to the negative range of possible values.</p>
+<p>Informal rationale of the constraints above: Suppose you are locked in a room with no means to monitor ing of time except a standard 12-notch clock. Then if you look at dial-plate now, and don’t look again for another 13 hours (e.g., if you fall for a long sleep), then once you finally look again, it may seem to you that only 1 hour has ed. To avoid this mistake, just look at the clock regularly. Your application should do the same. “Too long sleep” metaphor also maps directly to application behavior: don’t let your application run any single task for too long. Run tasks in steps, and do time-keeping inbetween.</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_diff">http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_diff</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ticks_diff(ticks1, ticks2):
+    &#34;&#34;&#34;
+    Measure ticks difference between values returned from ticks_ms(), ticks_us(), or ticks_cpu() functions, as a signed value which may wrap around.
+
+    Parameters
+    ----------
+    - ticks1
+    - ticks2
+
+    The argument order is the same as for subtraction operator, ticks_diff(ticks1, ticks2) has the same meaning as ticks1 - ticks2. However, values returned by ticks_ms(), etc. functions may wrap around, so directly using subtraction on them will produce incorrect result. That is why ticks_diff() is needed, it implements modular (or more specifically, ring) arithmetics to produce correct result even for wrap-around values (as long as they not too distant inbetween, see below). The function returns signed value in the range [-TICKS_PERIOD/2 .. TICKS_PERIOD/2-1] (that’s a typical range definition for two’s-complement signed binary integers). If the result is negative, it means that ticks1 occurred earlier in time than ticks2. Otherwise, it means that ticks1 occurred after ticks2. This holds only if ticks1 and ticks2 are apart from each other for no more than TICKS_PERIOD/2-1 ticks. If that does not hold, incorrect result will be returned. Specifically, if two tick values are apart for TICKS_PERIOD/2-1 ticks, that value will be returned by the function. However, if TICKS_PERIOD/2 of real-time ticks has ed between them, the function will return -TICKS_PERIOD/2 instead, i.e. result value will wrap around to the negative range of possible values.
+
+    Informal rationale of the constraints above: Suppose you are locked in a room with no means to monitor ing of time except a standard 12-notch clock. Then if you look at dial-plate now, and don’t look again for another 13 hours (e.g., if you fall for a long sleep), then once you finally look again, it may seem to you that only 1 hour has ed. To avoid this mistake, just look at the clock regularly. Your application should do the same. “Too long sleep” metaphor also maps directly to application behavior: don’t let your application run any single task for too long. Run tasks in steps, and do time-keeping inbetween.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_diff
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.ticks_ms"><code class="name flex">
+<span>def <span class="ident">ticks_ms</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns an increasing millisecond counter with an arbitrary reference point, that wraps around after some value.</p>
+<p>The wrap-around value is not explicitly exposed, but we will refer to it as TICKS_MAX to simplify discussion. Period of the values is TICKS_PERIOD = TICKS_MAX + 1. TICKS_PERIOD is guaranteed to be a power of two, but otherwise may differ from port to port. The same period value is used for all of ticks_ms(), ticks_us(), ticks_cpu() functions (for simplicity). Thus, these functions will return a value in range [0 .. TICKS_MAX], inclusive, total TICKS_PERIOD values. Note that only non-negative values are used. For the most part, you should treat values returned by these functions as opaque. The only operations available for them are ticks_diff() and ticks_add() functions described below.</p>
+<p>Note: Performing standard mathematical operations (+, -) or relational operators (&lt;, &lt;=, &gt;, &gt;=) directly on these value will lead to invalid result. Performing mathematical operations and then ing their results as arguments to ticks_diff() or ticks_add() will also lead to invalid results from the latter functions.</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_ms">http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_ms</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ticks_ms():
+    &#34;&#34;&#34;
+    Returns an increasing millisecond counter with an arbitrary reference point, that wraps around after some value.
+
+    The wrap-around value is not explicitly exposed, but we will refer to it as TICKS_MAX to simplify discussion. Period of the values is TICKS_PERIOD = TICKS_MAX + 1. TICKS_PERIOD is guaranteed to be a power of two, but otherwise may differ from port to port. The same period value is used for all of ticks_ms(), ticks_us(), ticks_cpu() functions (for simplicity). Thus, these functions will return a value in range [0 .. TICKS_MAX], inclusive, total TICKS_PERIOD values. Note that only non-negative values are used. For the most part, you should treat values returned by these functions as opaque. The only operations available for them are ticks_diff() and ticks_add() functions described below.
+
+    Note: Performing standard mathematical operations (+, -) or relational operators (&lt;, &lt;=, &gt;, &gt;=) directly on these value will lead to invalid result. Performing mathematical operations and then ing their results as arguments to ticks_diff() or ticks_add() will also lead to invalid results from the latter functions.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_ms
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.ticks_us"><code class="name flex">
+<span>def <span class="ident">ticks_us</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Just like ticks_ms() above, but in microseconds.</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_us">http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_us</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def ticks_us():
+    &#34;&#34;&#34;
+    Just like ticks_ms() above, but in microseconds.
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.ticks_us
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.utime.time"><code class="name flex">
+<span>def <span class="ident">time</span></span>(<span>) ‑> float</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of seconds, as an integer, since the Epoch, assuming that underlying RTC is set and maintained as described above. If an RTC is not set, this function returns number of seconds since a port-specific reference point in time (for embedded boards without a battery-backed RTC, usually since power up or reset). If you want to develop portable MicroPython application, you should not rely on this function to provide higher than second precision. If you need higher precision, use ticks_ms() and ticks_us() functions, if you need calendar time, localtime() without an argument is a better choice.</p>
+<h2 id="difference-to-cpython">Difference To Cpython</h2>
+<p>In CPython, this function returns number of seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point, usually having microsecond precision. With MicroPython, only Unix port uses the same Epoch, and if floating-point precision allows, returns sub-second precision. Embedded hardware usually doesn’t have floating-point precision to represent both long time ranges and subsecond precision, so they use integer value with second precision. Some embedded hardware also lacks battery-powered RTC, so returns number of seconds since last power-up or from other relative, hardware-specific point (e.g. reset).</p>
+<p><a href="http://docs.micropython.org/en/latest/library/utime.html#utime.time">http://docs.micropython.org/en/latest/library/utime.html#utime.time</a></p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def time() -&gt; float:
+    &#34;&#34;&#34;
+    Returns the number of seconds, as an integer, since the Epoch, assuming that underlying RTC is set and maintained as described above. If an RTC is not set, this function returns number of seconds since a port-specific reference point in time (for embedded boards without a battery-backed RTC, usually since power up or reset). If you want to develop portable MicroPython application, you should not rely on this function to provide higher than second precision. If you need higher precision, use ticks_ms() and ticks_us() functions, if you need calendar time, localtime() without an argument is a better choice.
+
+    Difference to CPython
+    ---------------------
+    In CPython, this function returns number of seconds since Unix epoch, 1970-01-01 00:00 UTC, as a floating-point, usually having microsecond precision. With MicroPython, only Unix port uses the same Epoch, and if floating-point precision allows, returns sub-second precision. Embedded hardware usually doesn’t have floating-point precision to represent both long time ranges and subsecond precision, so they use integer value with second precision. Some embedded hardware also lacks battery-powered RTC, so returns number of seconds since last power-up or from other relative, hardware-specific point (e.g. reset).
+
+    http://docs.micropython.org/en/latest/library/utime.html#utime.time
+    &#34;&#34;&#34;
+
+    return dummy.time()</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src.main.python" href="index.html">src.main.python</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="src.main.python.utime.localtime" href="#src.main.python.utime.localtime">localtime</a></code></li>
+<li><code><a title="src.main.python.utime.mktime" href="#src.main.python.utime.mktime">mktime</a></code></li>
+<li><code><a title="src.main.python.utime.sleep" href="#src.main.python.utime.sleep">sleep</a></code></li>
+<li><code><a title="src.main.python.utime.sleep_ms" href="#src.main.python.utime.sleep_ms">sleep_ms</a></code></li>
+<li><code><a title="src.main.python.utime.sleep_us" href="#src.main.python.utime.sleep_us">sleep_us</a></code></li>
+<li><code><a title="src.main.python.utime.ticks_add" href="#src.main.python.utime.ticks_add">ticks_add</a></code></li>
+<li><code><a title="src.main.python.utime.ticks_cpu" href="#src.main.python.utime.ticks_cpu">ticks_cpu</a></code></li>
+<li><code><a title="src.main.python.utime.ticks_diff" href="#src.main.python.utime.ticks_diff">ticks_diff</a></code></li>
+<li><code><a title="src.main.python.utime.ticks_ms" href="#src.main.python.utime.ticks_ms">ticks_ms</a></code></li>
+<li><code><a title="src.main.python.utime.ticks_us" href="#src.main.python.utime.ticks_us">ticks_us</a></code></li>
+<li><code><a title="src.main.python.utime.time" href="#src.main.python.utime.time">time</a></code></li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>

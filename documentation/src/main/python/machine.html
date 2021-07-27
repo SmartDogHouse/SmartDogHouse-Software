@@ -1,0 +1,5011 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.9.2" />
+<title>src.main.python.machine API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>src.main.python.machine</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python"># STUB: do NOT upload to the ESP, it&#39;s used to run the tests
+def delay(ms):
+    &#34;&#34;&#34;
+    Delay for the given number of milliseconds.
+    &#34;&#34;&#34;
+
+
+def udelay(us):
+    &#34;&#34;&#34;
+    Delay for the given number of microseconds.
+    &#34;&#34;&#34;
+
+def millis():
+    &#34;&#34;&#34;
+    Returns the number of milliseconds since the board was last reset.
+    &#34;&#34;&#34;
+    
+
+
+def micros():
+    &#34;&#34;&#34;
+    Returns the number of microseconds since the board was last reset.
+    &#34;&#34;&#34;
+    
+
+
+def elapsed_millis(start):
+    &#34;&#34;&#34;
+    Returns the number of milliseconds which have elapsed since ``start``.
+    &#34;&#34;&#34;
+    
+
+
+def elapsed_micros(start):
+    &#34;&#34;&#34;
+    Returns the number of microseconds which have elapsed since ``start``.
+    &#34;&#34;&#34;
+    
+
+
+def hard_reset():
+    &#34;&#34;&#34;
+    Resets the pyboard in a manner similar to pushing the external RESET
+    button.
+    &#34;&#34;&#34;
+
+
+def bootloader():
+    &#34;&#34;&#34;
+    Activate the bootloader without BOOT\* pins.
+    &#34;&#34;&#34;
+    
+
+
+def disable_irq():
+    &#34;&#34;&#34;
+    Disable interrupt requests.
+    &#34;&#34;&#34;
+    
+
+
+def enable_irq(state=True):
+    &#34;&#34;&#34;
+    Enable interrupt requests.
+    &#34;&#34;&#34;
+    
+
+
+def freq(self, sysclk=None, hclk=None, pclk1=None, pclk2=None):
+    &#34;&#34;&#34;
+    If given no arguments, returns a tuple of clock frequencies.
+    &#34;&#34;&#34;
+    
+
+
+def wfi():
+    &#34;&#34;&#34;
+    Wait for an internal or external interrupt.
+    &#34;&#34;&#34;
+    
+
+
+def stop():
+    &#34;&#34;&#34;
+    Put the pyboard in a &#34;sleeping&#34; state.
+    &#34;&#34;&#34;
+
+
+def standby():
+    &#34;&#34;&#34;
+    Put the pyboard into a &#34;deep sleep&#34; state.
+    &#34;&#34;&#34;
+    
+
+
+def info(dump_alloc_table):
+    &#34;&#34;&#34;
+    Print out lots of information about the board.
+    &#34;&#34;&#34;
+    
+
+
+def main(filename):
+    &#34;&#34;&#34;
+    Set the filename of the main script to run after boot.py is finished.
+    &#34;&#34;&#34;
+    
+
+
+def mount(device, mountpoint, readonly=False, mkfs=False):
+    &#34;&#34;&#34;
+    Mount a block device and make it available as part of the filesystem.
+    &#34;&#34;&#34;
+    
+
+
+def repl_uart(uart):
+    &#34;&#34;&#34;
+    Get or set the UART object where the REPL is repeated on.
+    &#34;&#34;&#34;
+    
+
+
+def rng():
+    &#34;&#34;&#34;
+    Return a 30-bit hardware generated random number.
+    &#34;&#34;&#34;
+    
+
+
+def sync():
+    &#34;&#34;&#34;
+    Sync all file systems.
+    &#34;&#34;&#34;
+    
+
+
+def unique_id():
+    &#34;&#34;&#34;
+    Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
+    &#34;&#34;&#34;
+    
+
+
+def usb_mode(modestr, vid=0xf055, pid=0x9801, hid=0):
+    &#34;&#34;&#34;
+    If called with no arguments, return the current USB mode as a string.
+    If called with modestr provided, attempts to set USB mode.
+    &#34;&#34;&#34;
+    
+
+
+class Accel:
+
+    def filtered_xyz(self):
+        &#34;&#34;&#34;
+        Get a 3-tuple of filtered x, y and z values.
+        &#34;&#34;&#34;
+        
+
+    def tilt(self):
+        &#34;&#34;&#34;
+        Get the tilt register.
+        &#34;&#34;&#34;
+        
+
+    def x(self):
+        &#34;&#34;&#34;
+        Get the x-axis value.
+        &#34;&#34;&#34;
+        
+
+    def y(self):
+        &#34;&#34;&#34;
+        Get the y-axis value.
+        &#34;&#34;&#34;
+        
+
+    def z(self):
+        &#34;&#34;&#34;
+        Get the z-axis value.
+        &#34;&#34;&#34;
+        
+
+    def write(self, register, value):
+        &#34;&#34;&#34;write.&#34;&#34;&#34;
+
+    def read(self, register):
+        &#34;&#34;&#34;read.&#34;&#34;&#34;
+
+
+class ADC:
+    ATTN_0DB = 0
+    ATTN_2_5DB = 1
+    ATTN_6DB = 2
+    ATTN_11DB = 3
+
+    def __init__(self, pin):
+        &#34;&#34;&#34;
+        Create an ADC object associated with the given pin.
+        This allows you to then read analog values on that pin.
+        &#34;&#34;&#34;
+
+
+    def read_timed(self):
+        &#34;&#34;&#34;read timeout.&#34;&#34;&#34;
+
+    def atten(self, num):
+        &#34;&#34;&#34;attenutaiton.&#34;&#34;&#34;
+
+    def read_timed_stop(self):
+        &#34;&#34;&#34;read timed.&#34;&#34;&#34;
+
+    def read(self):
+        &#34;&#34;&#34;
+        Read the value on the analog pin and return it.  The returned value
+        will be between 0 and 4095.
+        &#34;&#34;&#34;
+        return 0
+
+    def read_timed(buf, timer):
+        &#34;&#34;&#34;
+        Read analog values into ``buf`` at a rate set by the ``timer`` object.
+        &#34;&#34;&#34;
+        
+
+
+class CAN:
+    NORMAL = &#34;NORMAL&#34;
+    LOOPBACK = &#34;LOOPBACK&#34;
+    SILENT = &#34;SILENT&#34;
+    SILENT_LOOPBACK = &#34;SILENT_LOOPBACK&#34;
+
+    LIST16 = &#34;LIST16&#34;
+    MASK16 = &#34;MASK16&#34;
+    LIST32 = &#34;LIST32&#34;
+    MASK32 = &#34;MASK32&#34;
+
+    def __init__(self, bus, mode=None, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
+        &#34;&#34;&#34;
+        Construct a CAN object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def initfilterbanks(cls, nr):
+        &#34;&#34;&#34;
+        Reset and disable all filter banks and assign how many banks should be available for CAN(1).
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
+        &#34;&#34;&#34;
+        Initialise the CAN bus with the given parameters
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the CAN bus.
+        &#34;&#34;&#34;
+        
+
+    def setfilter(self, bank, mode, fifo, params, rtr):
+        &#34;&#34;&#34;
+        Configure a filter bank
+        &#34;&#34;&#34;
+        
+
+    def clearfilter(self, bank):
+        &#34;&#34;&#34;
+        Clear and disables a filter bank.
+        &#34;&#34;&#34;
+        
+
+    def any(self, fifo):
+        &#34;&#34;&#34;
+        Return True if any message waiting on the FIFO, else False.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, fifo, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data, id, timeout=0, rtr=False):
+        &#34;&#34;&#34;
+        Send a message on the bus.
+        &#34;&#34;&#34;
+        
+
+    def rxcallback(self, fifo, fun):
+        &#34;&#34;&#34;
+        Register a function to be called when a message is accepted into a empty fifo:
+        &#34;&#34;&#34;
+        
+
+
+class DAC:
+    NORMAL = &#34;NORMAL&#34;
+    CIRCULAR = &#34;CIRCULAR&#34;
+
+    def __init__(self, port, bits=8):
+        &#34;&#34;&#34;
+        Construct a new DAC object.
+        &#34;&#34;&#34;
+        
+
+    def init(self, bits=8):
+        &#34;&#34;&#34;
+        Reinitialise the DAC.  ``bits`` can be 8 or 12.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        De - initialise the DAC making its pin available for other uses.
+        &#34;&#34;&#34;
+
+    def noise(self, freq):
+        &#34;&#34;&#34;
+        Generate a pseudo-random noise signal.
+        &#34;&#34;&#34;
+        
+
+    def triangle(self, freq):
+        &#34;&#34;&#34;
+        Generate a triangle wave.
+        &#34;&#34;&#34;
+        
+
+    def write(self, value):
+        &#34;&#34;&#34;
+        Direct access to the DAC output.
+        &#34;&#34;&#34;
+        
+
+    def write_timed(self, data, freq, mode=NORMAL):
+        &#34;&#34;&#34;
+        Initiates a burst of RAM to DAC using a DMA transfer.
+        &#34;&#34;&#34;
+        
+
+
+class ExtInt:
+    IRQ_FALLING = &#34;IRQ_FALLING&#34;
+    IRQ_RISING = &#34;IRQ_RISING&#34;
+    IRQ_RISING_FALLING = &#34;IRQ_RISING_FALLING&#34;
+
+    def __init__(self, pin, mode, pull, callback):
+        &#34;&#34;&#34;
+        Create an ExtInt object
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def regs(cls):
+        &#34;&#34;&#34;
+        Dump the values of the EXTI registers.
+        &#34;&#34;&#34;
+
+    def disable(self, ):
+        &#34;&#34;&#34;
+        Disable the interrupt associated with the ExtInt object.
+        This could be useful for debouncing.
+        &#34;&#34;&#34;
+        
+
+    def enable(self, ):
+        &#34;&#34;&#34;
+        Enable a disabled interrupt.
+        &#34;&#34;&#34;
+        
+
+    def line(self, ):
+        &#34;&#34;&#34;
+        Return the line number that the pin is mapped to.
+        &#34;&#34;&#34;
+        
+
+    def swint(self, ):
+        &#34;&#34;&#34;
+        Trigger the callback from software.
+        &#34;&#34;&#34;
+        
+
+
+class I2C:
+    MASTER = &#34;MASTER&#34;
+    SLAVE = &#34;SLAVE&#34;
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Construct an I2C object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the I2C bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, addr=0x12, baudrate=400000, gencall=False):
+        &#34;&#34;&#34;
+        Initialise the I2C bus with the given parameters.
+        &#34;&#34;&#34;
+        
+
+    def is_ready(self, addr):
+        &#34;&#34;&#34;
+        Check if an I2C device responds to the given address.  Only valid when in master mode.
+        &#34;&#34;&#34;
+        
+
+    def mem_read(self, data, addr, memaddr, timeout=5000, addr_size=8):
+        &#34;&#34;&#34;
+        Read from the memory of an I2C device.
+        &#34;&#34;&#34;
+        
+
+    def mem_write(self, data, addr, memaddr, timeout=5000, addr_size=8):
+        &#34;&#34;&#34;
+        Write to the memory of an I2C device.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, recv, addr=0x00, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, send, addr=0x00, timeout=5000):
+        &#34;&#34;&#34;
+        Send data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def scan(self):
+        &#34;&#34;&#34;
+        Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
+        &#34;&#34;&#34;
+        
+
+
+class LCD:
+
+    def __init__(self, skin_position):
+        &#34;&#34;&#34;
+        Construct an LCD object in the given skin position.  ``skin_position`` can be &#39;X&#39; or &#39;Y&#39;, and
+        should match the position where the LCD pyskin is plugged in.
+        &#34;&#34;&#34;
+        
+
+    def command(self, instr_data, buf):
+        &#34;&#34;&#34;
+        Send an arbitrary command to the LCD.   0 for ``instr_data`` to send an
+        instruction, otherwise  1 to send data.  ``buf`` is a buffer with the
+        instructions/data to send.
+        &#34;&#34;&#34;
+
+    def contrast(self, value):
+        &#34;&#34;&#34;
+        Set the contrast of the LCD.  Valid values are between 0 and 47.
+        &#34;&#34;&#34;
+        
+
+    def fill(self, colour):
+        &#34;&#34;&#34;
+        Fill the screen with the given colour (0 or 1 for white or black).
+        &#34;&#34;&#34;
+        
+
+    def get(self, x, y):
+        &#34;&#34;&#34;
+        Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
+        &#34;&#34;&#34;
+        
+
+    def light(self, value):
+        &#34;&#34;&#34;
+        Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
+        &#34;&#34;&#34;
+        
+
+    def pixel(self, x, y, colour):
+        &#34;&#34;&#34;
+        Set the pixel at ``(x, y)`` to the given colour (0 or 1).
+        &#34;&#34;&#34;
+        
+
+    def show(self, ):
+        &#34;&#34;&#34;
+        Show the hidden buffer on the screen.
+        &#34;&#34;&#34;
+        
+
+    def text(self, str, x, y, colour):
+        &#34;&#34;&#34;
+        Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
+        &#34;&#34;&#34;
+        
+
+    def write(self, str):
+        &#34;&#34;&#34;
+        Write the string ``str`` to the screen.  It will appear immediately.
+        &#34;&#34;&#34;
+        
+
+
+class LED:
+    def __init__(self, id):
+        &#34;&#34;&#34;
+        Create an LED object associated with the given LED
+        &#34;&#34;&#34;
+        
+
+    def intensity(self, value):
+        &#34;&#34;&#34;
+        Get or set the LED intensity.  Intensity ranges between 0 (off) and 255 (full on).
+        &#34;&#34;&#34;
+
+    def off(self, ):
+        &#34;&#34;&#34;
+        Turn the LED off.
+        &#34;&#34;&#34;
+        
+
+    def on(self, ):
+        &#34;&#34;&#34;
+        Turn the LED on, to maximum intensity.
+        &#34;&#34;&#34;
+        
+
+    def toggle(self, ):
+        &#34;&#34;&#34;
+        Toggle the LED between on (maximum intensity) and off.
+        &#34;&#34;&#34;
+        
+
+
+class _board(object):
+    &#34;&#34;&#34;object has any attribute, returns 1 for requested attribute&#39;s value.&#34;&#34;&#34;
+
+    def __getattr__(self, *args, **kwargs):
+        return 1
+
+
+class Pin:
+    AF_OD = &#34;AF_OD&#34;
+    AF_PP = &#34;AF_PP&#34;
+    ANALOG = &#34;ANALOG&#34;
+    IN = &#34;IN&#34;
+    OUT = &#34;OUT&#34;
+    OUT_OD = &#34;OUT_OD&#34;
+    OUT_PP = &#34;OUT_PP&#34;
+    PULL_DOWN = &#34;PULL_DOWN&#34;
+    PULL_NONE = &#34;PULL_NONE&#34;
+    PULL_UP = &#34;PULL_UP&#34;
+    board = _board()
+    cpu = _board()
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Create a new Pin object associated with the id.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def debug(cls, state):
+        &#34;&#34;&#34;
+        Get or set the debugging state (``True`` or ``False`` for on or off).
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def dict(cls, dict):
+        &#34;&#34;&#34;
+        Get or set the pin mapper dictionary.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def mapper(cls, fun):
+        &#34;&#34;&#34;
+        Get or set the pin mapper function.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, pull=PULL_NONE, af=-1):
+        &#34;&#34;&#34;
+        Initialise the pin:
+        &#34;&#34;&#34;
+        
+
+    def value(self, value=None):
+        &#34;&#34;&#34;
+        Get or set the digital logic level of the pin.
+        &#34;&#34;&#34;
+        return 0
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return a string describing the pin object.
+        &#34;&#34;&#34;
+        
+
+    def af(self):
+        &#34;&#34;&#34;
+        Returns the currently configured alternate-function of the pin.
+        &#34;&#34;&#34;
+        
+
+    def af_list(self, cls):
+        &#34;&#34;&#34;
+        Returns an array of alternate functions available for this pin.
+        &#34;&#34;&#34;
+        
+
+    def gpio(self):
+        &#34;&#34;&#34;
+        Returns the base address of the GPIO block associated with this pin.
+        &#34;&#34;&#34;
+        
+
+    def mode(self):
+        &#34;&#34;&#34;
+        Returns the currently configured mode of the pin.
+        &#34;&#34;&#34;
+        
+
+    def name(self):
+        &#34;&#34;&#34;
+        Get the pin name.
+        &#34;&#34;&#34;
+        
+
+    def names(self):
+        &#34;&#34;&#34;
+        Returns the cpu and board names for this pin.
+        &#34;&#34;&#34;
+        
+
+    def pin(self):
+        &#34;&#34;&#34;
+        Get the pin number.
+        &#34;&#34;&#34;
+        
+
+    def port(self):
+        &#34;&#34;&#34;
+        Get the pin port.
+        &#34;&#34;&#34;
+        
+
+    def pull(self):
+        &#34;&#34;&#34;
+        Returns the currently configured pull of the pin.
+        &#34;&#34;&#34;
+        
+
+    def on(self):
+        &#34;&#34;&#34;on.&#34;&#34;&#34;
+
+    def off(self):
+        &#34;&#34;&#34;off.&#34;&#34;&#34;
+
+
+class PinAF:
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return a string describing the alternate function.
+        &#34;&#34;&#34;
+        
+
+    def index(self):
+        &#34;&#34;&#34;
+        Return the alternate function index.
+        &#34;&#34;&#34;
+        
+
+    def name(self):
+        &#34;&#34;&#34;Return the name of the alternate function.&#34;&#34;&#34;
+        
+
+    def reg(self):
+        &#34;&#34;&#34;
+        Return the base register associated with the peripheral assigned to this
+        alternate function.
+        &#34;&#34;&#34;
+        
+
+
+class RTC:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create an RTC object.
+        &#34;&#34;&#34;
+        
+
+    def datetime(self, datetimetuple):
+        &#34;&#34;&#34;
+        Get or set the date and time of the RTC.
+        &#34;&#34;&#34;
+        
+
+    def wakeup(self, timeout, callback=None):
+        &#34;&#34;&#34;
+        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+        milliseconds.
+        &#34;&#34;&#34;
+        
+
+    def info(self):
+        &#34;&#34;&#34;
+        Get information about the startup time and reset source.
+        &#34;&#34;&#34;
+        
+
+    def calibration(self, cal):
+        &#34;&#34;&#34;
+        Get or set RTC calibration.
+        &#34;&#34;&#34;
+        
+
+
+class Servo:
+
+    def __init__(self, id):
+        &#34;&#34;&#34;
+        Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
+        &#34;&#34;&#34;
+        
+
+    def angle(self, angle, time=0):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current angle.
+        &#34;&#34;&#34;
+        
+
+    def speed(self, speed, time=0):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current speed.
+        &#34;&#34;&#34;
+        
+
+    def pulse_width(self, value):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current raw pulse-width
+        value.
+        &#34;&#34;&#34;
+        
+
+    def calibration(self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current calibration
+        data, as a 5-tuple.
+        &#34;&#34;&#34;
+        
+
+
+class SPI:
+    MASTER = &#34;MASTER&#34;
+    SLAVE = &#34;SLAVE&#34;
+    LSB = &#34;LSB&#34;
+    MSB = &#34;MSB&#34;
+
+    def __init__(self, bus):
+        &#34;&#34;&#34;
+        Construct an SPI object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the SPI bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None):
+        &#34;&#34;&#34;
+        Initialise the SPI bus with the given parameters:
+        &#34;&#34;&#34;
+        
+
+    def recv(self, recv, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus:
+        &#34;&#34;&#34;
+        
+
+    def send(self, send, timeout=5000):
+        &#34;&#34;&#34;
+        Send data on the bus:
+        &#34;&#34;&#34;
+        
+
+    def send_recv(self, send, recv=None, timeout=5000):
+        &#34;&#34;&#34;
+        Send and receive data on the bus at the same time:
+        &#34;&#34;&#34;
+        
+
+
+class Switch:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create and return a switch object.
+        &#34;&#34;&#34;
+        
+
+    def __call__(self):
+        &#34;&#34;&#34;
+        Call switch object directly to get its state: True if pressed down, False otherwise.
+        &#34;&#34;&#34;
+        
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Register the given function to be called when the switch is pressed down.
+        &#34;&#34;&#34;
+        
+
+
+class Timer:
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Construct a new timer object of the given id.
+        &#34;&#34;&#34;
+        
+
+    def init(self, freq, prescaler, period):
+        &#34;&#34;&#34;
+        Initialise the timer.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Deinitialises the timer.
+        &#34;&#34;&#34;
+        
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Set the function to be called when the timer triggers.
+        &#34;&#34;&#34;
+        
+
+    def channel(self, channel, mode):
+        &#34;&#34;&#34;
+        If only a channel number is ed, then a previously initialized channel
+        object is returned (or ``None`` if there is no previous_sent_perc channel).
+        &#34;&#34;&#34;
+        
+
+    def counter(self, value):
+        &#34;&#34;&#34;
+        Get or set the timer counter.
+        &#34;&#34;&#34;
+
+    def freq(self, value):
+        &#34;&#34;&#34;
+        Get or set the frequency for the timer (changes prescaler and period if set).
+        &#34;&#34;&#34;
+        
+
+    def period(self, value):
+        &#34;&#34;&#34;
+        Get or set the period of the timer.
+        &#34;&#34;&#34;
+        
+
+    def prescaler(self, value):
+        &#34;&#34;&#34;
+        Get or set the prescaler for the timer.
+        &#34;&#34;&#34;
+        
+
+    def source_freq(self):
+        &#34;&#34;&#34;
+        Get the frequency of the source of the timer.
+        &#34;&#34;&#34;
+        
+
+
+class TimerChannel:
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Set the function to be called when the timer channel triggers.
+        &#34;&#34;&#34;
+        
+
+    def capture(self, value):
+        &#34;&#34;&#34;
+        Get or set the capture value associated with a channel.
+        &#34;&#34;&#34;
+        
+
+    def compare(self, value):
+        &#34;&#34;&#34;
+        Get or set the compare value associated with a channel.
+        &#34;&#34;&#34;
+        
+
+    def pulse_width(self, value):
+        &#34;&#34;&#34;
+        Get or set the pulse width value associated with a channel.
+        &#34;&#34;&#34;
+
+    def pulse_width_percent(self, value):
+        &#34;&#34;&#34;
+        Get or set the pulse width percentage associated with a channel.
+        &#34;&#34;&#34;
+        
+
+
+class UART:
+    RTS = &#34;RTS&#34;
+    CTS = &#34;CTS&#34;
+
+    def __init__(self, bus):
+        &#34;&#34;&#34;
+        Construct a UART object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, baudrate, bits=8, parity=None, stop=1, timeout=1000, flow=None, timeout_char=0, read_buf_len=64):
+        &#34;&#34;&#34;
+        Initialise the UART bus with the given parameters:
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the UART bus.
+        &#34;&#34;&#34;
+        
+
+    def any(self):
+        &#34;&#34;&#34;
+        Return ``True`` if any characters waiting, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def writechar(self, char):
+        &#34;&#34;&#34;
+        Write a single character on the bus.
+        &#34;&#34;&#34;
+        
+
+    def read(self, nbytes):
+        &#34;&#34;&#34;
+        Read characters.
+        &#34;&#34;&#34;
+        
+
+    def readchar(self):
+        &#34;&#34;&#34;
+        Receive a single character on the bus.
+        &#34;&#34;&#34;
+        
+
+    def readinto(self, buf, nbytes):
+        &#34;&#34;&#34;
+        Read bytes into the ``buf``.
+        &#34;&#34;&#34;
+        
+
+    def readline(self):
+        &#34;&#34;&#34;
+        Read a line, ending in a newline character.
+        &#34;&#34;&#34;
+        
+
+    def write(self, buf):
+        &#34;&#34;&#34;
+        Write the buffer of bytes to the bus.
+        &#34;&#34;&#34;
+
+
+    def sendbreak(self):
+        &#34;&#34;&#34;
+        Send a break condition on the bus.
+        &#34;&#34;&#34;
+        
+
+
+class USB_HID:
+    &#34;&#34;&#34;Create a new USB_HID object.&#34;&#34;&#34;
+
+    def recv(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data):
+        &#34;&#34;&#34;
+        Send data over the USB HID interface:
+        &#34;&#34;&#34;
+        
+
+
+class USB_VCP:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create a new USB_VCP object.
+        &#34;&#34;&#34;
+        
+
+    def setinterrupt(self, chr):
+        &#34;&#34;&#34;
+        Set the character which interrupts running Python code.
+        &#34;&#34;&#34;
+        
+
+    def isconnected(self):
+        &#34;&#34;&#34;
+        Return ``True`` if USB is connected as a serial device, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def any(self):
+        &#34;&#34;&#34;
+        Return ``True`` if any characters waiting, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def close(self):
+        &#34;&#34;&#34;
+        This method does nothing. It exists so the USB_VCP object can act as a file.
+        &#34;&#34;&#34;
+        
+
+    def read(self, nbytes):
+        &#34;&#34;&#34;
+        Read at most ``nbytes`` from the serial device and return them as a bytes object.
+        &#34;&#34;&#34;
+        
+
+    def readinto(self, buf, maxlen):
+        &#34;&#34;&#34;
+        Read bytes from the serial device and store them into ``buf``, which
+        should be a buffer-like object.
+        &#34;&#34;&#34;
+        
+
+    def readline(self):
+        &#34;&#34;&#34;
+        Read a whole line from the serial device.
+        &#34;&#34;&#34;
+        
+
+    def readlines(self):
+        &#34;&#34;&#34;
+        Read as much data as possible from the serial device, breaking it into lines.
+        &#34;&#34;&#34;
+        
+
+    def write(self, buf):
+        &#34;&#34;&#34;
+        Write the bytes from ``buf`` to the serial device.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Send data over the USB VCP.
+        &#34;&#34;&#34;
+        
+
+
+class PWM:
+    def __init__(self, pin, freq):
+        &#34;&#34;&#34;
+        Create PWM object associated with the given pin and frequency.
+        &#34;&#34;&#34;
+
+    def duty(self, angle):
+        &#34;&#34;&#34;move to angle.&#34;&#34;&#34;</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-functions">Functions</h2>
+<dl>
+<dt id="src.main.python.machine.bootloader"><code class="name flex">
+<span>def <span class="ident">bootloader</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Activate the bootloader without BOOT* pins.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def bootloader():
+    &#34;&#34;&#34;
+    Activate the bootloader without BOOT\* pins.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.delay"><code class="name flex">
+<span>def <span class="ident">delay</span></span>(<span>ms)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delay for the given number of milliseconds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def delay(ms):
+    &#34;&#34;&#34;
+    Delay for the given number of milliseconds.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.disable_irq"><code class="name flex">
+<span>def <span class="ident">disable_irq</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Disable interrupt requests.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def disable_irq():
+    &#34;&#34;&#34;
+    Disable interrupt requests.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.elapsed_micros"><code class="name flex">
+<span>def <span class="ident">elapsed_micros</span></span>(<span>start)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of microseconds which have elapsed since <code>start</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def elapsed_micros(start):
+    &#34;&#34;&#34;
+    Returns the number of microseconds which have elapsed since ``start``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.elapsed_millis"><code class="name flex">
+<span>def <span class="ident">elapsed_millis</span></span>(<span>start)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of milliseconds which have elapsed since <code>start</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def elapsed_millis(start):
+    &#34;&#34;&#34;
+    Returns the number of milliseconds which have elapsed since ``start``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.enable_irq"><code class="name flex">
+<span>def <span class="ident">enable_irq</span></span>(<span>state=True)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enable interrupt requests.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def enable_irq(state=True):
+    &#34;&#34;&#34;
+    Enable interrupt requests.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.freq"><code class="name flex">
+<span>def <span class="ident">freq</span></span>(<span>self, sysclk=None, hclk=None, pclk1=None, pclk2=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If given no arguments, returns a tuple of clock frequencies.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def freq(self, sysclk=None, hclk=None, pclk1=None, pclk2=None):
+    &#34;&#34;&#34;
+    If given no arguments, returns a tuple of clock frequencies.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.hard_reset"><code class="name flex">
+<span>def <span class="ident">hard_reset</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Resets the pyboard in a manner similar to pushing the external RESET
+button.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def hard_reset():
+    &#34;&#34;&#34;
+    Resets the pyboard in a manner similar to pushing the external RESET
+    button.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.info"><code class="name flex">
+<span>def <span class="ident">info</span></span>(<span>dump_alloc_table)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Print out lots of information about the board.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def info(dump_alloc_table):
+    &#34;&#34;&#34;
+    Print out lots of information about the board.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.main"><code class="name flex">
+<span>def <span class="ident">main</span></span>(<span>filename)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the filename of the main script to run after boot.py is finished.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def main(filename):
+    &#34;&#34;&#34;
+    Set the filename of the main script to run after boot.py is finished.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.micros"><code class="name flex">
+<span>def <span class="ident">micros</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of microseconds since the board was last reset.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def micros():
+    &#34;&#34;&#34;
+    Returns the number of microseconds since the board was last reset.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.millis"><code class="name flex">
+<span>def <span class="ident">millis</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the number of milliseconds since the board was last reset.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def millis():
+    &#34;&#34;&#34;
+    Returns the number of milliseconds since the board was last reset.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.mount"><code class="name flex">
+<span>def <span class="ident">mount</span></span>(<span>device, mountpoint, readonly=False, mkfs=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Mount a block device and make it available as part of the filesystem.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mount(device, mountpoint, readonly=False, mkfs=False):
+    &#34;&#34;&#34;
+    Mount a block device and make it available as part of the filesystem.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.repl_uart"><code class="name flex">
+<span>def <span class="ident">repl_uart</span></span>(<span>uart)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the UART object where the REPL is repeated on.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def repl_uart(uart):
+    &#34;&#34;&#34;
+    Get or set the UART object where the REPL is repeated on.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.rng"><code class="name flex">
+<span>def <span class="ident">rng</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return a 30-bit hardware generated random number.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rng():
+    &#34;&#34;&#34;
+    Return a 30-bit hardware generated random number.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.standby"><code class="name flex">
+<span>def <span class="ident">standby</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Put the pyboard into a "deep sleep" state.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def standby():
+    &#34;&#34;&#34;
+    Put the pyboard into a &#34;deep sleep&#34; state.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.stop"><code class="name flex">
+<span>def <span class="ident">stop</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Put the pyboard in a "sleeping" state.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def stop():
+    &#34;&#34;&#34;
+    Put the pyboard in a &#34;sleeping&#34; state.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.sync"><code class="name flex">
+<span>def <span class="ident">sync</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Sync all file systems.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sync():
+    &#34;&#34;&#34;
+    Sync all file systems.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.udelay"><code class="name flex">
+<span>def <span class="ident">udelay</span></span>(<span>us)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Delay for the given number of microseconds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def udelay(us):
+    &#34;&#34;&#34;
+    Delay for the given number of microseconds.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.unique_id"><code class="name flex">
+<span>def <span class="ident">unique_id</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def unique_id():
+    &#34;&#34;&#34;
+    Returns a string of 12 bytes (96 bits), which is the unique ID of the MCU.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.usb_mode"><code class="name flex">
+<span>def <span class="ident">usb_mode</span></span>(<span>modestr, vid=61525, pid=38913, hid=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If called with no arguments, return the current USB mode as a string.
+If called with modestr provided, attempts to set USB mode.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def usb_mode(modestr, vid=0xf055, pid=0x9801, hid=0):
+    &#34;&#34;&#34;
+    If called with no arguments, return the current USB mode as a string.
+    If called with modestr provided, attempts to set USB mode.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.wfi"><code class="name flex">
+<span>def <span class="ident">wfi</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Wait for an internal or external interrupt.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wfi():
+    &#34;&#34;&#34;
+    Wait for an internal or external interrupt.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="src.main.python.machine.ADC"><code class="flex name class">
+<span>class <span class="ident">ADC</span></span>
+<span>(</span><span>pin)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an ADC object associated with the given pin.
+This allows you to then read analog values on that pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ADC:
+    ATTN_0DB = 0
+    ATTN_2_5DB = 1
+    ATTN_6DB = 2
+    ATTN_11DB = 3
+
+    def __init__(self, pin):
+        &#34;&#34;&#34;
+        Create an ADC object associated with the given pin.
+        This allows you to then read analog values on that pin.
+        &#34;&#34;&#34;
+
+
+    def read_timed(self):
+        &#34;&#34;&#34;read timeout.&#34;&#34;&#34;
+
+    def atten(self, num):
+        &#34;&#34;&#34;attenutaiton.&#34;&#34;&#34;
+
+    def read_timed_stop(self):
+        &#34;&#34;&#34;read timed.&#34;&#34;&#34;
+
+    def read(self):
+        &#34;&#34;&#34;
+        Read the value on the analog pin and return it.  The returned value
+        will be between 0 and 4095.
+        &#34;&#34;&#34;
+        return 0
+
+    def read_timed(buf, timer):
+        &#34;&#34;&#34;
+        Read analog values into ``buf`` at a rate set by the ``timer`` object.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.ADC.ATTN_0DB"><code class="name">var <span class="ident">ATTN_0DB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.ADC.ATTN_11DB"><code class="name">var <span class="ident">ATTN_11DB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.ADC.ATTN_2_5DB"><code class="name">var <span class="ident">ATTN_2_5DB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.ADC.ATTN_6DB"><code class="name">var <span class="ident">ATTN_6DB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.ADC.atten"><code class="name flex">
+<span>def <span class="ident">atten</span></span>(<span>self, num)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>attenutaiton.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def atten(self, num):
+    &#34;&#34;&#34;attenutaiton.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ADC.read"><code class="name flex">
+<span>def <span class="ident">read</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read the value on the analog pin and return it.
+The returned value
+will be between 0 and 4095.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read(self):
+    &#34;&#34;&#34;
+    Read the value on the analog pin and return it.  The returned value
+    will be between 0 and 4095.
+    &#34;&#34;&#34;
+    return 0</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ADC.read_timed"><code class="name flex">
+<span>def <span class="ident">read_timed</span></span>(<span>buf, timer)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read analog values into <code>buf</code> at a rate set by the <code>timer</code> object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read_timed(buf, timer):
+    &#34;&#34;&#34;
+    Read analog values into ``buf`` at a rate set by the ``timer`` object.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ADC.read_timed_stop"><code class="name flex">
+<span>def <span class="ident">read_timed_stop</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>read timed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read_timed_stop(self):
+    &#34;&#34;&#34;read timed.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.Accel"><code class="flex name class">
+<span>class <span class="ident">Accel</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Accel:
+
+    def filtered_xyz(self):
+        &#34;&#34;&#34;
+        Get a 3-tuple of filtered x, y and z values.
+        &#34;&#34;&#34;
+        
+
+    def tilt(self):
+        &#34;&#34;&#34;
+        Get the tilt register.
+        &#34;&#34;&#34;
+        
+
+    def x(self):
+        &#34;&#34;&#34;
+        Get the x-axis value.
+        &#34;&#34;&#34;
+        
+
+    def y(self):
+        &#34;&#34;&#34;
+        Get the y-axis value.
+        &#34;&#34;&#34;
+        
+
+    def z(self):
+        &#34;&#34;&#34;
+        Get the z-axis value.
+        &#34;&#34;&#34;
+        
+
+    def write(self, register, value):
+        &#34;&#34;&#34;write.&#34;&#34;&#34;
+
+    def read(self, register):
+        &#34;&#34;&#34;read.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.Accel.filtered_xyz"><code class="name flex">
+<span>def <span class="ident">filtered_xyz</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get a 3-tuple of filtered x, y and z values.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def filtered_xyz(self):
+    &#34;&#34;&#34;
+    Get a 3-tuple of filtered x, y and z values.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.read"><code class="name flex">
+<span>def <span class="ident">read</span></span>(<span>self, register)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>read.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read(self, register):
+    &#34;&#34;&#34;read.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.tilt"><code class="name flex">
+<span>def <span class="ident">tilt</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the tilt register.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def tilt(self):
+    &#34;&#34;&#34;
+    Get the tilt register.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self, register, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>write.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self, register, value):
+    &#34;&#34;&#34;write.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.x"><code class="name flex">
+<span>def <span class="ident">x</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the x-axis value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def x(self):
+    &#34;&#34;&#34;
+    Get the x-axis value.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.y"><code class="name flex">
+<span>def <span class="ident">y</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the y-axis value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def y(self):
+    &#34;&#34;&#34;
+    Get the y-axis value.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Accel.z"><code class="name flex">
+<span>def <span class="ident">z</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the z-axis value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def z(self):
+    &#34;&#34;&#34;
+    Get the z-axis value.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.CAN"><code class="flex name class">
+<span>class <span class="ident">CAN</span></span>
+<span>(</span><span>bus, mode=None, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct a CAN object on the given bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class CAN:
+    NORMAL = &#34;NORMAL&#34;
+    LOOPBACK = &#34;LOOPBACK&#34;
+    SILENT = &#34;SILENT&#34;
+    SILENT_LOOPBACK = &#34;SILENT_LOOPBACK&#34;
+
+    LIST16 = &#34;LIST16&#34;
+    MASK16 = &#34;MASK16&#34;
+    LIST32 = &#34;LIST32&#34;
+    MASK32 = &#34;MASK32&#34;
+
+    def __init__(self, bus, mode=None, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
+        &#34;&#34;&#34;
+        Construct a CAN object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def initfilterbanks(cls, nr):
+        &#34;&#34;&#34;
+        Reset and disable all filter banks and assign how many banks should be available for CAN(1).
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
+        &#34;&#34;&#34;
+        Initialise the CAN bus with the given parameters
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the CAN bus.
+        &#34;&#34;&#34;
+        
+
+    def setfilter(self, bank, mode, fifo, params, rtr):
+        &#34;&#34;&#34;
+        Configure a filter bank
+        &#34;&#34;&#34;
+        
+
+    def clearfilter(self, bank):
+        &#34;&#34;&#34;
+        Clear and disables a filter bank.
+        &#34;&#34;&#34;
+        
+
+    def any(self, fifo):
+        &#34;&#34;&#34;
+        Return True if any message waiting on the FIFO, else False.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, fifo, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data, id, timeout=0, rtr=False):
+        &#34;&#34;&#34;
+        Send a message on the bus.
+        &#34;&#34;&#34;
+        
+
+    def rxcallback(self, fifo, fun):
+        &#34;&#34;&#34;
+        Register a function to be called when a message is accepted into a empty fifo:
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.CAN.LIST16"><code class="name">var <span class="ident">LIST16</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.LIST32"><code class="name">var <span class="ident">LIST32</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.LOOPBACK"><code class="name">var <span class="ident">LOOPBACK</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.MASK16"><code class="name">var <span class="ident">MASK16</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.MASK32"><code class="name">var <span class="ident">MASK32</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.SILENT"><code class="name">var <span class="ident">SILENT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.CAN.SILENT_LOOPBACK"><code class="name">var <span class="ident">SILENT_LOOPBACK</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="src.main.python.machine.CAN.initfilterbanks"><code class="name flex">
+<span>def <span class="ident">initfilterbanks</span></span>(<span>nr)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reset and disable all filter banks and assign how many banks should be available for CAN(1).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def initfilterbanks(cls, nr):
+    &#34;&#34;&#34;
+    Reset and disable all filter banks and assign how many banks should be available for CAN(1).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.CAN.any"><code class="name flex">
+<span>def <span class="ident">any</span></span>(<span>self, fifo)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return True if any message waiting on the FIFO, else False.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def any(self, fifo):
+    &#34;&#34;&#34;
+    Return True if any message waiting on the FIFO, else False.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.clearfilter"><code class="name flex">
+<span>def <span class="ident">clearfilter</span></span>(<span>self, bank)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Clear and disables a filter bank.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def clearfilter(self, bank):
+    &#34;&#34;&#34;
+    Clear and disables a filter bank.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn off the CAN bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    Turn off the CAN bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, mode, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the CAN bus with the given parameters</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, mode, extframe=False, prescaler=100, sjw=1, bs1=6, bs2=8):
+    &#34;&#34;&#34;
+    Initialise the CAN bus with the given parameters
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.recv"><code class="name flex">
+<span>def <span class="ident">recv</span></span>(<span>self, fifo, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive data on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recv(self, fifo, timeout=5000):
+    &#34;&#34;&#34;
+    Receive data on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.rxcallback"><code class="name flex">
+<span>def <span class="ident">rxcallback</span></span>(<span>self, fifo, fun)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Register a function to be called when a message is accepted into a empty fifo:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def rxcallback(self, fifo, fun):
+    &#34;&#34;&#34;
+    Register a function to be called when a message is accepted into a empty fifo:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, data, id, timeout=0, rtr=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a message on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, data, id, timeout=0, rtr=False):
+    &#34;&#34;&#34;
+    Send a message on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.CAN.setfilter"><code class="name flex">
+<span>def <span class="ident">setfilter</span></span>(<span>self, bank, mode, fifo, params, rtr)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Configure a filter bank</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setfilter(self, bank, mode, fifo, params, rtr):
+    &#34;&#34;&#34;
+    Configure a filter bank
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.DAC"><code class="flex name class">
+<span>class <span class="ident">DAC</span></span>
+<span>(</span><span>port, bits=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct a new DAC object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DAC:
+    NORMAL = &#34;NORMAL&#34;
+    CIRCULAR = &#34;CIRCULAR&#34;
+
+    def __init__(self, port, bits=8):
+        &#34;&#34;&#34;
+        Construct a new DAC object.
+        &#34;&#34;&#34;
+        
+
+    def init(self, bits=8):
+        &#34;&#34;&#34;
+        Reinitialise the DAC.  ``bits`` can be 8 or 12.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        De - initialise the DAC making its pin available for other uses.
+        &#34;&#34;&#34;
+
+    def noise(self, freq):
+        &#34;&#34;&#34;
+        Generate a pseudo-random noise signal.
+        &#34;&#34;&#34;
+        
+
+    def triangle(self, freq):
+        &#34;&#34;&#34;
+        Generate a triangle wave.
+        &#34;&#34;&#34;
+        
+
+    def write(self, value):
+        &#34;&#34;&#34;
+        Direct access to the DAC output.
+        &#34;&#34;&#34;
+        
+
+    def write_timed(self, data, freq, mode=NORMAL):
+        &#34;&#34;&#34;
+        Initiates a burst of RAM to DAC using a DMA transfer.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.DAC.CIRCULAR"><code class="name">var <span class="ident">CIRCULAR</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.DAC.NORMAL"><code class="name">var <span class="ident">NORMAL</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.DAC.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>De - initialise the DAC making its pin available for other uses.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    De - initialise the DAC making its pin available for other uses.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.DAC.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, bits=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Reinitialise the DAC.
+<code>bits</code> can be 8 or 12.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, bits=8):
+    &#34;&#34;&#34;
+    Reinitialise the DAC.  ``bits`` can be 8 or 12.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.DAC.noise"><code class="name flex">
+<span>def <span class="ident">noise</span></span>(<span>self, freq)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate a pseudo-random noise signal.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def noise(self, freq):
+    &#34;&#34;&#34;
+    Generate a pseudo-random noise signal.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.DAC.triangle"><code class="name flex">
+<span>def <span class="ident">triangle</span></span>(<span>self, freq)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Generate a triangle wave.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def triangle(self, freq):
+    &#34;&#34;&#34;
+    Generate a triangle wave.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.DAC.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Direct access to the DAC output.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self, value):
+    &#34;&#34;&#34;
+    Direct access to the DAC output.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.DAC.write_timed"><code class="name flex">
+<span>def <span class="ident">write_timed</span></span>(<span>self, data, freq, mode='NORMAL')</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initiates a burst of RAM to DAC using a DMA transfer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write_timed(self, data, freq, mode=NORMAL):
+    &#34;&#34;&#34;
+    Initiates a burst of RAM to DAC using a DMA transfer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.ExtInt"><code class="flex name class">
+<span>class <span class="ident">ExtInt</span></span>
+<span>(</span><span>pin, mode, pull, callback)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an ExtInt object</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class ExtInt:
+    IRQ_FALLING = &#34;IRQ_FALLING&#34;
+    IRQ_RISING = &#34;IRQ_RISING&#34;
+    IRQ_RISING_FALLING = &#34;IRQ_RISING_FALLING&#34;
+
+    def __init__(self, pin, mode, pull, callback):
+        &#34;&#34;&#34;
+        Create an ExtInt object
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def regs(cls):
+        &#34;&#34;&#34;
+        Dump the values of the EXTI registers.
+        &#34;&#34;&#34;
+
+    def disable(self, ):
+        &#34;&#34;&#34;
+        Disable the interrupt associated with the ExtInt object.
+        This could be useful for debouncing.
+        &#34;&#34;&#34;
+        
+
+    def enable(self, ):
+        &#34;&#34;&#34;
+        Enable a disabled interrupt.
+        &#34;&#34;&#34;
+        
+
+    def line(self, ):
+        &#34;&#34;&#34;
+        Return the line number that the pin is mapped to.
+        &#34;&#34;&#34;
+        
+
+    def swint(self, ):
+        &#34;&#34;&#34;
+        Trigger the callback from software.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.ExtInt.IRQ_FALLING"><code class="name">var <span class="ident">IRQ_FALLING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.ExtInt.IRQ_RISING"><code class="name">var <span class="ident">IRQ_RISING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.ExtInt.IRQ_RISING_FALLING"><code class="name">var <span class="ident">IRQ_RISING_FALLING</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="src.main.python.machine.ExtInt.regs"><code class="name flex">
+<span>def <span class="ident">regs</span></span>(<span>)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Dump the values of the EXTI registers.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def regs(cls):
+    &#34;&#34;&#34;
+    Dump the values of the EXTI registers.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.ExtInt.disable"><code class="name flex">
+<span>def <span class="ident">disable</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Disable the interrupt associated with the ExtInt object.
+This could be useful for debouncing.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def disable(self, ):
+    &#34;&#34;&#34;
+    Disable the interrupt associated with the ExtInt object.
+    This could be useful for debouncing.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ExtInt.enable"><code class="name flex">
+<span>def <span class="ident">enable</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Enable a disabled interrupt.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def enable(self, ):
+    &#34;&#34;&#34;
+    Enable a disabled interrupt.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ExtInt.line"><code class="name flex">
+<span>def <span class="ident">line</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the line number that the pin is mapped to.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def line(self, ):
+    &#34;&#34;&#34;
+    Return the line number that the pin is mapped to.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.ExtInt.swint"><code class="name flex">
+<span>def <span class="ident">swint</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Trigger the callback from software.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def swint(self, ):
+    &#34;&#34;&#34;
+    Trigger the callback from software.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.I2C"><code class="flex name class">
+<span>class <span class="ident">I2C</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct an I2C object on the given bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class I2C:
+    MASTER = &#34;MASTER&#34;
+    SLAVE = &#34;SLAVE&#34;
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Construct an I2C object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the I2C bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, addr=0x12, baudrate=400000, gencall=False):
+        &#34;&#34;&#34;
+        Initialise the I2C bus with the given parameters.
+        &#34;&#34;&#34;
+        
+
+    def is_ready(self, addr):
+        &#34;&#34;&#34;
+        Check if an I2C device responds to the given address.  Only valid when in master mode.
+        &#34;&#34;&#34;
+        
+
+    def mem_read(self, data, addr, memaddr, timeout=5000, addr_size=8):
+        &#34;&#34;&#34;
+        Read from the memory of an I2C device.
+        &#34;&#34;&#34;
+        
+
+    def mem_write(self, data, addr, memaddr, timeout=5000, addr_size=8):
+        &#34;&#34;&#34;
+        Write to the memory of an I2C device.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, recv, addr=0x00, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, send, addr=0x00, timeout=5000):
+        &#34;&#34;&#34;
+        Send data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def scan(self):
+        &#34;&#34;&#34;
+        Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.I2C.MASTER"><code class="name">var <span class="ident">MASTER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.I2C.SLAVE"><code class="name">var <span class="ident">SLAVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.I2C.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn off the I2C bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    Turn off the I2C bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, mode, addr=18, baudrate=400000, gencall=False)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the I2C bus with the given parameters.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, mode, addr=0x12, baudrate=400000, gencall=False):
+    &#34;&#34;&#34;
+    Initialise the I2C bus with the given parameters.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.is_ready"><code class="name flex">
+<span>def <span class="ident">is_ready</span></span>(<span>self, addr)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Check if an I2C device responds to the given address.
+Only valid when in master mode.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def is_ready(self, addr):
+    &#34;&#34;&#34;
+    Check if an I2C device responds to the given address.  Only valid when in master mode.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.mem_read"><code class="name flex">
+<span>def <span class="ident">mem_read</span></span>(<span>self, data, addr, memaddr, timeout=5000, addr_size=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read from the memory of an I2C device.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mem_read(self, data, addr, memaddr, timeout=5000, addr_size=8):
+    &#34;&#34;&#34;
+    Read from the memory of an I2C device.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.mem_write"><code class="name flex">
+<span>def <span class="ident">mem_write</span></span>(<span>self, data, addr, memaddr, timeout=5000, addr_size=8)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write to the memory of an I2C device.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mem_write(self, data, addr, memaddr, timeout=5000, addr_size=8):
+    &#34;&#34;&#34;
+    Write to the memory of an I2C device.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.recv"><code class="name flex">
+<span>def <span class="ident">recv</span></span>(<span>self, recv, addr=0, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive data on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recv(self, recv, addr=0x00, timeout=5000):
+    &#34;&#34;&#34;
+    Receive data on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.scan"><code class="name flex">
+<span>def <span class="ident">scan</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def scan(self):
+    &#34;&#34;&#34;
+    Scan all I2C addresses from 0x01 to 0x7f and return a list of those that respond.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.I2C.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, send, addr=0, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send data on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, send, addr=0x00, timeout=5000):
+    &#34;&#34;&#34;
+    Send data on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.LCD"><code class="flex name class">
+<span>class <span class="ident">LCD</span></span>
+<span>(</span><span>skin_position)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct an LCD object in the given skin position.
+<code>skin_position</code> can be 'X' or 'Y', and
+should match the position where the LCD pyskin is plugged in.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LCD:
+
+    def __init__(self, skin_position):
+        &#34;&#34;&#34;
+        Construct an LCD object in the given skin position.  ``skin_position`` can be &#39;X&#39; or &#39;Y&#39;, and
+        should match the position where the LCD pyskin is plugged in.
+        &#34;&#34;&#34;
+        
+
+    def command(self, instr_data, buf):
+        &#34;&#34;&#34;
+        Send an arbitrary command to the LCD.   0 for ``instr_data`` to send an
+        instruction, otherwise  1 to send data.  ``buf`` is a buffer with the
+        instructions/data to send.
+        &#34;&#34;&#34;
+
+    def contrast(self, value):
+        &#34;&#34;&#34;
+        Set the contrast of the LCD.  Valid values are between 0 and 47.
+        &#34;&#34;&#34;
+        
+
+    def fill(self, colour):
+        &#34;&#34;&#34;
+        Fill the screen with the given colour (0 or 1 for white or black).
+        &#34;&#34;&#34;
+        
+
+    def get(self, x, y):
+        &#34;&#34;&#34;
+        Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
+        &#34;&#34;&#34;
+        
+
+    def light(self, value):
+        &#34;&#34;&#34;
+        Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
+        &#34;&#34;&#34;
+        
+
+    def pixel(self, x, y, colour):
+        &#34;&#34;&#34;
+        Set the pixel at ``(x, y)`` to the given colour (0 or 1).
+        &#34;&#34;&#34;
+        
+
+    def show(self, ):
+        &#34;&#34;&#34;
+        Show the hidden buffer on the screen.
+        &#34;&#34;&#34;
+        
+
+    def text(self, str, x, y, colour):
+        &#34;&#34;&#34;
+        Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
+        &#34;&#34;&#34;
+        
+
+    def write(self, str):
+        &#34;&#34;&#34;
+        Write the string ``str`` to the screen.  It will appear immediately.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.LCD.command"><code class="name flex">
+<span>def <span class="ident">command</span></span>(<span>self, instr_data, buf)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send an arbitrary command to the LCD.
+0 for <code>instr_data</code> to send an
+instruction, otherwise
+1 to send data.
+<code>buf</code> is a buffer with the
+instructions/data to send.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def command(self, instr_data, buf):
+    &#34;&#34;&#34;
+    Send an arbitrary command to the LCD.   0 for ``instr_data`` to send an
+    instruction, otherwise  1 to send data.  ``buf`` is a buffer with the
+    instructions/data to send.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.contrast"><code class="name flex">
+<span>def <span class="ident">contrast</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the contrast of the LCD.
+Valid values are between 0 and 47.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def contrast(self, value):
+    &#34;&#34;&#34;
+    Set the contrast of the LCD.  Valid values are between 0 and 47.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.fill"><code class="name flex">
+<span>def <span class="ident">fill</span></span>(<span>self, colour)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Fill the screen with the given colour (0 or 1 for white or black).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def fill(self, colour):
+    &#34;&#34;&#34;
+    Fill the screen with the given colour (0 or 1 for white or black).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.get"><code class="name flex">
+<span>def <span class="ident">get</span></span>(<span>self, x, y)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the pixel at the position <code>(x, y)</code>.
+Returns 0 or 1.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def get(self, x, y):
+    &#34;&#34;&#34;
+    Get the pixel at the position ``(x, y)``.  Returns 0 or 1.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.light"><code class="name flex">
+<span>def <span class="ident">light</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn the backlight on/off.
+True or 1 turns it on, False or 0 turns it off.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def light(self, value):
+    &#34;&#34;&#34;
+    Turn the backlight on/off.  True or 1 turns it on, False or 0 turns it off.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.pixel"><code class="name flex">
+<span>def <span class="ident">pixel</span></span>(<span>self, x, y, colour)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the pixel at <code>(x, y)</code> to the given colour (0 or 1).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pixel(self, x, y, colour):
+    &#34;&#34;&#34;
+    Set the pixel at ``(x, y)`` to the given colour (0 or 1).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.show"><code class="name flex">
+<span>def <span class="ident">show</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Show the hidden buffer on the screen.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def show(self, ):
+    &#34;&#34;&#34;
+    Show the hidden buffer on the screen.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.text"><code class="name flex">
+<span>def <span class="ident">text</span></span>(<span>self, str, x, y, colour)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Draw the given text to the position <code>(x, y)</code> using the given colour (0 or 1).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def text(self, str, x, y, colour):
+    &#34;&#34;&#34;
+    Draw the given text to the position ``(x, y)`` using the given colour (0 or 1).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LCD.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self, str)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write the string <code>str</code> to the screen.
+It will appear immediately.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self, str):
+    &#34;&#34;&#34;
+    Write the string ``str`` to the screen.  It will appear immediately.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.LED"><code class="flex name class">
+<span>class <span class="ident">LED</span></span>
+<span>(</span><span>id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an LED object associated with the given LED</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class LED:
+    def __init__(self, id):
+        &#34;&#34;&#34;
+        Create an LED object associated with the given LED
+        &#34;&#34;&#34;
+        
+
+    def intensity(self, value):
+        &#34;&#34;&#34;
+        Get or set the LED intensity.  Intensity ranges between 0 (off) and 255 (full on).
+        &#34;&#34;&#34;
+
+    def off(self, ):
+        &#34;&#34;&#34;
+        Turn the LED off.
+        &#34;&#34;&#34;
+        
+
+    def on(self, ):
+        &#34;&#34;&#34;
+        Turn the LED on, to maximum intensity.
+        &#34;&#34;&#34;
+        
+
+    def toggle(self, ):
+        &#34;&#34;&#34;
+        Toggle the LED between on (maximum intensity) and off.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.LED.intensity"><code class="name flex">
+<span>def <span class="ident">intensity</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the LED intensity.
+Intensity ranges between 0 (off) and 255 (full on).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def intensity(self, value):
+    &#34;&#34;&#34;
+    Get or set the LED intensity.  Intensity ranges between 0 (off) and 255 (full on).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LED.off"><code class="name flex">
+<span>def <span class="ident">off</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn the LED off.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def off(self, ):
+    &#34;&#34;&#34;
+    Turn the LED off.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LED.on"><code class="name flex">
+<span>def <span class="ident">on</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn the LED on, to maximum intensity.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on(self, ):
+    &#34;&#34;&#34;
+    Turn the LED on, to maximum intensity.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.LED.toggle"><code class="name flex">
+<span>def <span class="ident">toggle</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Toggle the LED between on (maximum intensity) and off.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def toggle(self, ):
+    &#34;&#34;&#34;
+    Toggle the LED between on (maximum intensity) and off.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.PWM"><code class="flex name class">
+<span>class <span class="ident">PWM</span></span>
+<span>(</span><span>pin, freq)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create PWM object associated with the given pin and frequency.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PWM:
+    def __init__(self, pin, freq):
+        &#34;&#34;&#34;
+        Create PWM object associated with the given pin and frequency.
+        &#34;&#34;&#34;
+
+    def duty(self, angle):
+        &#34;&#34;&#34;move to angle.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.PWM.duty"><code class="name flex">
+<span>def <span class="ident">duty</span></span>(<span>self, angle)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>move to angle.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def duty(self, angle):
+    &#34;&#34;&#34;move to angle.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.Pin"><code class="flex name class">
+<span>class <span class="ident">Pin</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new Pin object associated with the id.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Pin:
+    AF_OD = &#34;AF_OD&#34;
+    AF_PP = &#34;AF_PP&#34;
+    ANALOG = &#34;ANALOG&#34;
+    IN = &#34;IN&#34;
+    OUT = &#34;OUT&#34;
+    OUT_OD = &#34;OUT_OD&#34;
+    OUT_PP = &#34;OUT_PP&#34;
+    PULL_DOWN = &#34;PULL_DOWN&#34;
+    PULL_NONE = &#34;PULL_NONE&#34;
+    PULL_UP = &#34;PULL_UP&#34;
+    board = _board()
+    cpu = _board()
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Create a new Pin object associated with the id.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def debug(cls, state):
+        &#34;&#34;&#34;
+        Get or set the debugging state (``True`` or ``False`` for on or off).
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def dict(cls, dict):
+        &#34;&#34;&#34;
+        Get or set the pin mapper dictionary.
+        &#34;&#34;&#34;
+        
+
+    @classmethod
+    def mapper(cls, fun):
+        &#34;&#34;&#34;
+        Get or set the pin mapper function.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, pull=PULL_NONE, af=-1):
+        &#34;&#34;&#34;
+        Initialise the pin:
+        &#34;&#34;&#34;
+        
+
+    def value(self, value=None):
+        &#34;&#34;&#34;
+        Get or set the digital logic level of the pin.
+        &#34;&#34;&#34;
+        return 0
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return a string describing the pin object.
+        &#34;&#34;&#34;
+        
+
+    def af(self):
+        &#34;&#34;&#34;
+        Returns the currently configured alternate-function of the pin.
+        &#34;&#34;&#34;
+        
+
+    def af_list(self, cls):
+        &#34;&#34;&#34;
+        Returns an array of alternate functions available for this pin.
+        &#34;&#34;&#34;
+        
+
+    def gpio(self):
+        &#34;&#34;&#34;
+        Returns the base address of the GPIO block associated with this pin.
+        &#34;&#34;&#34;
+        
+
+    def mode(self):
+        &#34;&#34;&#34;
+        Returns the currently configured mode of the pin.
+        &#34;&#34;&#34;
+        
+
+    def name(self):
+        &#34;&#34;&#34;
+        Get the pin name.
+        &#34;&#34;&#34;
+        
+
+    def names(self):
+        &#34;&#34;&#34;
+        Returns the cpu and board names for this pin.
+        &#34;&#34;&#34;
+        
+
+    def pin(self):
+        &#34;&#34;&#34;
+        Get the pin number.
+        &#34;&#34;&#34;
+        
+
+    def port(self):
+        &#34;&#34;&#34;
+        Get the pin port.
+        &#34;&#34;&#34;
+        
+
+    def pull(self):
+        &#34;&#34;&#34;
+        Returns the currently configured pull of the pin.
+        &#34;&#34;&#34;
+        
+
+    def on(self):
+        &#34;&#34;&#34;on.&#34;&#34;&#34;
+
+    def off(self):
+        &#34;&#34;&#34;off.&#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.Pin.AF_OD"><code class="name">var <span class="ident">AF_OD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.AF_PP"><code class="name">var <span class="ident">AF_PP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.ANALOG"><code class="name">var <span class="ident">ANALOG</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.IN"><code class="name">var <span class="ident">IN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.OUT"><code class="name">var <span class="ident">OUT</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.OUT_OD"><code class="name">var <span class="ident">OUT_OD</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.OUT_PP"><code class="name">var <span class="ident">OUT_PP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.PULL_DOWN"><code class="name">var <span class="ident">PULL_DOWN</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.PULL_NONE"><code class="name">var <span class="ident">PULL_NONE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.PULL_UP"><code class="name">var <span class="ident">PULL_UP</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.board"><code class="name">var <span class="ident">board</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.Pin.cpu"><code class="name">var <span class="ident">cpu</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Static methods</h3>
+<dl>
+<dt id="src.main.python.machine.Pin.debug"><code class="name flex">
+<span>def <span class="ident">debug</span></span>(<span>state)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the debugging state (<code>True</code> or <code>False</code> for on or off).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def debug(cls, state):
+    &#34;&#34;&#34;
+    Get or set the debugging state (``True`` or ``False`` for on or off).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.dict"><code class="name flex">
+<span>def <span class="ident">dict</span></span>(<span>dict)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the pin mapper dictionary.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def dict(cls, dict):
+    &#34;&#34;&#34;
+    Get or set the pin mapper dictionary.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.mapper"><code class="name flex">
+<span>def <span class="ident">mapper</span></span>(<span>fun)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the pin mapper function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@classmethod
+def mapper(cls, fun):
+    &#34;&#34;&#34;
+    Get or set the pin mapper function.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.Pin.af"><code class="name flex">
+<span>def <span class="ident">af</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the currently configured alternate-function of the pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def af(self):
+    &#34;&#34;&#34;
+    Returns the currently configured alternate-function of the pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.af_list"><code class="name flex">
+<span>def <span class="ident">af_list</span></span>(<span>self, cls)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns an array of alternate functions available for this pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def af_list(self, cls):
+    &#34;&#34;&#34;
+    Returns an array of alternate functions available for this pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.gpio"><code class="name flex">
+<span>def <span class="ident">gpio</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the base address of the GPIO block associated with this pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def gpio(self):
+    &#34;&#34;&#34;
+    Returns the base address of the GPIO block associated with this pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, mode, pull='PULL_NONE', af=-1)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the pin:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, mode, pull=PULL_NONE, af=-1):
+    &#34;&#34;&#34;
+    Initialise the pin:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.mode"><code class="name flex">
+<span>def <span class="ident">mode</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the currently configured mode of the pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def mode(self):
+    &#34;&#34;&#34;
+    Returns the currently configured mode of the pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.name"><code class="name flex">
+<span>def <span class="ident">name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the pin name.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def name(self):
+    &#34;&#34;&#34;
+    Get the pin name.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.names"><code class="name flex">
+<span>def <span class="ident">names</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the cpu and board names for this pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def names(self):
+    &#34;&#34;&#34;
+    Returns the cpu and board names for this pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.off"><code class="name flex">
+<span>def <span class="ident">off</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>off.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def off(self):
+    &#34;&#34;&#34;off.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.on"><code class="name flex">
+<span>def <span class="ident">on</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>on.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def on(self):
+    &#34;&#34;&#34;on.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.pin"><code class="name flex">
+<span>def <span class="ident">pin</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the pin number.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pin(self):
+    &#34;&#34;&#34;
+    Get the pin number.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.port"><code class="name flex">
+<span>def <span class="ident">port</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the pin port.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def port(self):
+    &#34;&#34;&#34;
+    Get the pin port.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.pull"><code class="name flex">
+<span>def <span class="ident">pull</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Returns the currently configured pull of the pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pull(self):
+    &#34;&#34;&#34;
+    Returns the currently configured pull of the pin.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Pin.value"><code class="name flex">
+<span>def <span class="ident">value</span></span>(<span>self, value=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the digital logic level of the pin.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def value(self, value=None):
+    &#34;&#34;&#34;
+    Get or set the digital logic level of the pin.
+    &#34;&#34;&#34;
+    return 0</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.PinAF"><code class="flex name class">
+<span>class <span class="ident">PinAF</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class PinAF:
+
+    def __str__(self):
+        &#34;&#34;&#34;
+        Return a string describing the alternate function.
+        &#34;&#34;&#34;
+        
+
+    def index(self):
+        &#34;&#34;&#34;
+        Return the alternate function index.
+        &#34;&#34;&#34;
+        
+
+    def name(self):
+        &#34;&#34;&#34;Return the name of the alternate function.&#34;&#34;&#34;
+        
+
+    def reg(self):
+        &#34;&#34;&#34;
+        Return the base register associated with the peripheral assigned to this
+        alternate function.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.PinAF.index"><code class="name flex">
+<span>def <span class="ident">index</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the alternate function index.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def index(self):
+    &#34;&#34;&#34;
+    Return the alternate function index.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.PinAF.name"><code class="name flex">
+<span>def <span class="ident">name</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the name of the alternate function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def name(self):
+    &#34;&#34;&#34;Return the name of the alternate function.&#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.PinAF.reg"><code class="name flex">
+<span>def <span class="ident">reg</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the base register associated with the peripheral assigned to this
+alternate function.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def reg(self):
+    &#34;&#34;&#34;
+    Return the base register associated with the peripheral assigned to this
+    alternate function.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.RTC"><code class="flex name class">
+<span>class <span class="ident">RTC</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create an RTC object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class RTC:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create an RTC object.
+        &#34;&#34;&#34;
+        
+
+    def datetime(self, datetimetuple):
+        &#34;&#34;&#34;
+        Get or set the date and time of the RTC.
+        &#34;&#34;&#34;
+        
+
+    def wakeup(self, timeout, callback=None):
+        &#34;&#34;&#34;
+        Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+        milliseconds.
+        &#34;&#34;&#34;
+        
+
+    def info(self):
+        &#34;&#34;&#34;
+        Get information about the startup time and reset source.
+        &#34;&#34;&#34;
+        
+
+    def calibration(self, cal):
+        &#34;&#34;&#34;
+        Get or set RTC calibration.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.RTC.calibration"><code class="name flex">
+<span>def <span class="ident">calibration</span></span>(<span>self, cal)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set RTC calibration.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calibration(self, cal):
+    &#34;&#34;&#34;
+    Get or set RTC calibration.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.RTC.datetime"><code class="name flex">
+<span>def <span class="ident">datetime</span></span>(<span>self, datetimetuple)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the date and time of the RTC.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def datetime(self, datetimetuple):
+    &#34;&#34;&#34;
+    Get or set the date and time of the RTC.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.RTC.info"><code class="name flex">
+<span>def <span class="ident">info</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get information about the startup time and reset source.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def info(self):
+    &#34;&#34;&#34;
+    Get information about the startup time and reset source.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.RTC.wakeup"><code class="name flex">
+<span>def <span class="ident">wakeup</span></span>(<span>self, timeout, callback=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the RTC wakeup timer to trigger repeatedly at every <code>timeout</code>
+milliseconds.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def wakeup(self, timeout, callback=None):
+    &#34;&#34;&#34;
+    Set the RTC wakeup timer to trigger repeatedly at every ``timeout``
+    milliseconds.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.SPI"><code class="flex name class">
+<span>class <span class="ident">SPI</span></span>
+<span>(</span><span>bus)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct an SPI object on the given bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class SPI:
+    MASTER = &#34;MASTER&#34;
+    SLAVE = &#34;SLAVE&#34;
+    LSB = &#34;LSB&#34;
+    MSB = &#34;MSB&#34;
+
+    def __init__(self, bus):
+        &#34;&#34;&#34;
+        Construct an SPI object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the SPI bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, mode, prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None):
+        &#34;&#34;&#34;
+        Initialise the SPI bus with the given parameters:
+        &#34;&#34;&#34;
+        
+
+    def recv(self, recv, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus:
+        &#34;&#34;&#34;
+        
+
+    def send(self, send, timeout=5000):
+        &#34;&#34;&#34;
+        Send data on the bus:
+        &#34;&#34;&#34;
+        
+
+    def send_recv(self, send, recv=None, timeout=5000):
+        &#34;&#34;&#34;
+        Send and receive data on the bus at the same time:
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.SPI.LSB"><code class="name">var <span class="ident">LSB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.SPI.MASTER"><code class="name">var <span class="ident">MASTER</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.SPI.MSB"><code class="name">var <span class="ident">MSB</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.SPI.SLAVE"><code class="name">var <span class="ident">SLAVE</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.SPI.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn off the SPI bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    Turn off the SPI bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.SPI.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, mode, prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit='MSB', ti=False, crc=None)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the SPI bus with the given parameters:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, mode, prescaler, baudrate=328125, polarity=1, phase=0, bits=8, firstbit=MSB, ti=False, crc=None):
+    &#34;&#34;&#34;
+    Initialise the SPI bus with the given parameters:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.SPI.recv"><code class="name flex">
+<span>def <span class="ident">recv</span></span>(<span>self, recv, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive data on the bus:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recv(self, recv, timeout=5000):
+    &#34;&#34;&#34;
+    Receive data on the bus:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.SPI.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, send, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send data on the bus:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, send, timeout=5000):
+    &#34;&#34;&#34;
+    Send data on the bus:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.SPI.send_recv"><code class="name flex">
+<span>def <span class="ident">send_recv</span></span>(<span>self, send, recv=None, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send and receive data on the bus at the same time:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send_recv(self, send, recv=None, timeout=5000):
+    &#34;&#34;&#34;
+    Send and receive data on the bus at the same time:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.Servo"><code class="flex name class">
+<span>class <span class="ident">Servo</span></span>
+<span>(</span><span>id)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a servo object.
+<code>id</code> is 1-4, and corresponds to pins X1 through X4.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Servo:
+
+    def __init__(self, id):
+        &#34;&#34;&#34;
+        Create a servo object.  ``id`` is 1-4, and corresponds to pins X1 through X4.
+        &#34;&#34;&#34;
+        
+
+    def angle(self, angle, time=0):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current angle.
+        &#34;&#34;&#34;
+        
+
+    def speed(self, speed, time=0):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current speed.
+        &#34;&#34;&#34;
+        
+
+    def pulse_width(self, value):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current raw pulse-width
+        value.
+        &#34;&#34;&#34;
+        
+
+    def calibration(self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100):
+        &#34;&#34;&#34;
+        If no arguments are given, this function returns the current calibration
+        data, as a 5-tuple.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.Servo.angle"><code class="name flex">
+<span>def <span class="ident">angle</span></span>(<span>self, angle, time=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If no arguments are given, this function returns the current angle.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def angle(self, angle, time=0):
+    &#34;&#34;&#34;
+    If no arguments are given, this function returns the current angle.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Servo.calibration"><code class="name flex">
+<span>def <span class="ident">calibration</span></span>(<span>self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If no arguments are given, this function returns the current calibration
+data, as a 5-tuple.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def calibration(self, pulse_min, pulse_max, pulse_centre, pulse_angle_90, pulse_speed_100):
+    &#34;&#34;&#34;
+    If no arguments are given, this function returns the current calibration
+    data, as a 5-tuple.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Servo.pulse_width"><code class="name flex">
+<span>def <span class="ident">pulse_width</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If no arguments are given, this function returns the current raw pulse-width
+value.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pulse_width(self, value):
+    &#34;&#34;&#34;
+    If no arguments are given, this function returns the current raw pulse-width
+    value.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Servo.speed"><code class="name flex">
+<span>def <span class="ident">speed</span></span>(<span>self, speed, time=0)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If no arguments are given, this function returns the current speed.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def speed(self, speed, time=0):
+    &#34;&#34;&#34;
+    If no arguments are given, this function returns the current speed.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.Switch"><code class="flex name class">
+<span>class <span class="ident">Switch</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create and return a switch object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Switch:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create and return a switch object.
+        &#34;&#34;&#34;
+        
+
+    def __call__(self):
+        &#34;&#34;&#34;
+        Call switch object directly to get its state: True if pressed down, False otherwise.
+        &#34;&#34;&#34;
+        
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Register the given function to be called when the switch is pressed down.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.Switch.callback"><code class="name flex">
+<span>def <span class="ident">callback</span></span>(<span>self, fun)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Register the given function to be called when the switch is pressed down.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def callback(self, fun):
+    &#34;&#34;&#34;
+    Register the given function to be called when the switch is pressed down.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.Timer"><code class="flex name class">
+<span>class <span class="ident">Timer</span></span>
+<span>(</span><span>*args, **kwargs)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct a new timer object of the given id.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class Timer:
+
+    def __init__(self, *args, **kwargs):
+        &#34;&#34;&#34;
+        Construct a new timer object of the given id.
+        &#34;&#34;&#34;
+        
+
+    def init(self, freq, prescaler, period):
+        &#34;&#34;&#34;
+        Initialise the timer.
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Deinitialises the timer.
+        &#34;&#34;&#34;
+        
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Set the function to be called when the timer triggers.
+        &#34;&#34;&#34;
+        
+
+    def channel(self, channel, mode):
+        &#34;&#34;&#34;
+        If only a channel number is ed, then a previously initialized channel
+        object is returned (or ``None`` if there is no previous_sent_perc channel).
+        &#34;&#34;&#34;
+        
+
+    def counter(self, value):
+        &#34;&#34;&#34;
+        Get or set the timer counter.
+        &#34;&#34;&#34;
+
+    def freq(self, value):
+        &#34;&#34;&#34;
+        Get or set the frequency for the timer (changes prescaler and period if set).
+        &#34;&#34;&#34;
+        
+
+    def period(self, value):
+        &#34;&#34;&#34;
+        Get or set the period of the timer.
+        &#34;&#34;&#34;
+        
+
+    def prescaler(self, value):
+        &#34;&#34;&#34;
+        Get or set the prescaler for the timer.
+        &#34;&#34;&#34;
+        
+
+    def source_freq(self):
+        &#34;&#34;&#34;
+        Get the frequency of the source of the timer.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.Timer.callback"><code class="name flex">
+<span>def <span class="ident">callback</span></span>(<span>self, fun)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the function to be called when the timer triggers.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def callback(self, fun):
+    &#34;&#34;&#34;
+    Set the function to be called when the timer triggers.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.channel"><code class="name flex">
+<span>def <span class="ident">channel</span></span>(<span>self, channel, mode)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>If only a channel number is ed, then a previously initialized channel
+object is returned (or <code>None</code> if there is no previous_sent_perc channel).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def channel(self, channel, mode):
+    &#34;&#34;&#34;
+    If only a channel number is ed, then a previously initialized channel
+    object is returned (or ``None`` if there is no previous_sent_perc channel).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.counter"><code class="name flex">
+<span>def <span class="ident">counter</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the timer counter.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def counter(self, value):
+    &#34;&#34;&#34;
+    Get or set the timer counter.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Deinitialises the timer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    Deinitialises the timer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.freq"><code class="name flex">
+<span>def <span class="ident">freq</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the frequency for the timer (changes prescaler and period if set).</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def freq(self, value):
+    &#34;&#34;&#34;
+    Get or set the frequency for the timer (changes prescaler and period if set).
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, freq, prescaler, period)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the timer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, freq, prescaler, period):
+    &#34;&#34;&#34;
+    Initialise the timer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.period"><code class="name flex">
+<span>def <span class="ident">period</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the period of the timer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def period(self, value):
+    &#34;&#34;&#34;
+    Get or set the period of the timer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.prescaler"><code class="name flex">
+<span>def <span class="ident">prescaler</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the prescaler for the timer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def prescaler(self, value):
+    &#34;&#34;&#34;
+    Get or set the prescaler for the timer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.Timer.source_freq"><code class="name flex">
+<span>def <span class="ident">source_freq</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get the frequency of the source of the timer.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def source_freq(self):
+    &#34;&#34;&#34;
+    Get the frequency of the source of the timer.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.TimerChannel"><code class="flex name class">
+<span>class <span class="ident">TimerChannel</span></span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class TimerChannel:
+
+    def callback(self, fun):
+        &#34;&#34;&#34;
+        Set the function to be called when the timer channel triggers.
+        &#34;&#34;&#34;
+        
+
+    def capture(self, value):
+        &#34;&#34;&#34;
+        Get or set the capture value associated with a channel.
+        &#34;&#34;&#34;
+        
+
+    def compare(self, value):
+        &#34;&#34;&#34;
+        Get or set the compare value associated with a channel.
+        &#34;&#34;&#34;
+        
+
+    def pulse_width(self, value):
+        &#34;&#34;&#34;
+        Get or set the pulse width value associated with a channel.
+        &#34;&#34;&#34;
+
+    def pulse_width_percent(self, value):
+        &#34;&#34;&#34;
+        Get or set the pulse width percentage associated with a channel.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.TimerChannel.callback"><code class="name flex">
+<span>def <span class="ident">callback</span></span>(<span>self, fun)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the function to be called when the timer channel triggers.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def callback(self, fun):
+    &#34;&#34;&#34;
+    Set the function to be called when the timer channel triggers.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.TimerChannel.capture"><code class="name flex">
+<span>def <span class="ident">capture</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the capture value associated with a channel.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def capture(self, value):
+    &#34;&#34;&#34;
+    Get or set the capture value associated with a channel.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.TimerChannel.compare"><code class="name flex">
+<span>def <span class="ident">compare</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the compare value associated with a channel.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def compare(self, value):
+    &#34;&#34;&#34;
+    Get or set the compare value associated with a channel.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.TimerChannel.pulse_width"><code class="name flex">
+<span>def <span class="ident">pulse_width</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the pulse width value associated with a channel.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pulse_width(self, value):
+    &#34;&#34;&#34;
+    Get or set the pulse width value associated with a channel.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.TimerChannel.pulse_width_percent"><code class="name flex">
+<span>def <span class="ident">pulse_width_percent</span></span>(<span>self, value)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Get or set the pulse width percentage associated with a channel.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def pulse_width_percent(self, value):
+    &#34;&#34;&#34;
+    Get or set the pulse width percentage associated with a channel.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.UART"><code class="flex name class">
+<span>class <span class="ident">UART</span></span>
+<span>(</span><span>bus)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Construct a UART object on the given bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class UART:
+    RTS = &#34;RTS&#34;
+    CTS = &#34;CTS&#34;
+
+    def __init__(self, bus):
+        &#34;&#34;&#34;
+        Construct a UART object on the given bus.
+        &#34;&#34;&#34;
+        
+
+    def init(self, baudrate, bits=8, parity=None, stop=1, timeout=1000, flow=None, timeout_char=0, read_buf_len=64):
+        &#34;&#34;&#34;
+        Initialise the UART bus with the given parameters:
+        &#34;&#34;&#34;
+        
+
+    def deinit(self):
+        &#34;&#34;&#34;
+        Turn off the UART bus.
+        &#34;&#34;&#34;
+        
+
+    def any(self):
+        &#34;&#34;&#34;
+        Return ``True`` if any characters waiting, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def writechar(self, char):
+        &#34;&#34;&#34;
+        Write a single character on the bus.
+        &#34;&#34;&#34;
+        
+
+    def read(self, nbytes):
+        &#34;&#34;&#34;
+        Read characters.
+        &#34;&#34;&#34;
+        
+
+    def readchar(self):
+        &#34;&#34;&#34;
+        Receive a single character on the bus.
+        &#34;&#34;&#34;
+        
+
+    def readinto(self, buf, nbytes):
+        &#34;&#34;&#34;
+        Read bytes into the ``buf``.
+        &#34;&#34;&#34;
+        
+
+    def readline(self):
+        &#34;&#34;&#34;
+        Read a line, ending in a newline character.
+        &#34;&#34;&#34;
+        
+
+    def write(self, buf):
+        &#34;&#34;&#34;
+        Write the buffer of bytes to the bus.
+        &#34;&#34;&#34;
+
+
+    def sendbreak(self):
+        &#34;&#34;&#34;
+        Send a break condition on the bus.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Class variables</h3>
+<dl>
+<dt id="src.main.python.machine.UART.CTS"><code class="name">var <span class="ident">CTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+<dt id="src.main.python.machine.UART.RTS"><code class="name">var <span class="ident">RTS</span></code></dt>
+<dd>
+<div class="desc"></div>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.UART.any"><code class="name flex">
+<span>def <span class="ident">any</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return <code>True</code> if any characters waiting, else <code>False</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def any(self):
+    &#34;&#34;&#34;
+    Return ``True`` if any characters waiting, else ``False``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.deinit"><code class="name flex">
+<span>def <span class="ident">deinit</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Turn off the UART bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def deinit(self):
+    &#34;&#34;&#34;
+    Turn off the UART bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.init"><code class="name flex">
+<span>def <span class="ident">init</span></span>(<span>self, baudrate, bits=8, parity=None, stop=1, timeout=1000, flow=None, timeout_char=0, read_buf_len=64)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Initialise the UART bus with the given parameters:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def init(self, baudrate, bits=8, parity=None, stop=1, timeout=1000, flow=None, timeout_char=0, read_buf_len=64):
+    &#34;&#34;&#34;
+    Initialise the UART bus with the given parameters:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.read"><code class="name flex">
+<span>def <span class="ident">read</span></span>(<span>self, nbytes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read characters.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read(self, nbytes):
+    &#34;&#34;&#34;
+    Read characters.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.readchar"><code class="name flex">
+<span>def <span class="ident">readchar</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive a single character on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readchar(self):
+    &#34;&#34;&#34;
+    Receive a single character on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.readinto"><code class="name flex">
+<span>def <span class="ident">readinto</span></span>(<span>self, buf, nbytes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read bytes into the <code>buf</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readinto(self, buf, nbytes):
+    &#34;&#34;&#34;
+    Read bytes into the ``buf``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.readline"><code class="name flex">
+<span>def <span class="ident">readline</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read a line, ending in a newline character.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readline(self):
+    &#34;&#34;&#34;
+    Read a line, ending in a newline character.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.sendbreak"><code class="name flex">
+<span>def <span class="ident">sendbreak</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send a break condition on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def sendbreak(self):
+    &#34;&#34;&#34;
+    Send a break condition on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self, buf)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write the buffer of bytes to the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self, buf):
+    &#34;&#34;&#34;
+    Write the buffer of bytes to the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.UART.writechar"><code class="name flex">
+<span>def <span class="ident">writechar</span></span>(<span>self, char)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write a single character on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def writechar(self, char):
+    &#34;&#34;&#34;
+    Write a single character on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.USB_HID"><code class="flex name class">
+<span>class <span class="ident">USB_HID</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new USB_HID object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class USB_HID:
+    &#34;&#34;&#34;Create a new USB_HID object.&#34;&#34;&#34;
+
+    def recv(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data):
+        &#34;&#34;&#34;
+        Send data over the USB HID interface:
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.USB_HID.recv"><code class="name flex">
+<span>def <span class="ident">recv</span></span>(<span>self, data, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive data on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recv(self, data, timeout=5000):
+    &#34;&#34;&#34;
+    Receive data on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_HID.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, data)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send data over the USB HID interface:</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, data):
+    &#34;&#34;&#34;
+    Send data over the USB HID interface:
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="src.main.python.machine.USB_VCP"><code class="flex name class">
+<span>class <span class="ident">USB_VCP</span></span>
+</code></dt>
+<dd>
+<div class="desc"><p>Create a new USB_VCP object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class USB_VCP:
+
+    def __init__(self):
+        &#34;&#34;&#34;
+        Create a new USB_VCP object.
+        &#34;&#34;&#34;
+        
+
+    def setinterrupt(self, chr):
+        &#34;&#34;&#34;
+        Set the character which interrupts running Python code.
+        &#34;&#34;&#34;
+        
+
+    def isconnected(self):
+        &#34;&#34;&#34;
+        Return ``True`` if USB is connected as a serial device, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def any(self):
+        &#34;&#34;&#34;
+        Return ``True`` if any characters waiting, else ``False``.
+        &#34;&#34;&#34;
+        
+
+    def close(self):
+        &#34;&#34;&#34;
+        This method does nothing. It exists so the USB_VCP object can act as a file.
+        &#34;&#34;&#34;
+        
+
+    def read(self, nbytes):
+        &#34;&#34;&#34;
+        Read at most ``nbytes`` from the serial device and return them as a bytes object.
+        &#34;&#34;&#34;
+        
+
+    def readinto(self, buf, maxlen):
+        &#34;&#34;&#34;
+        Read bytes from the serial device and store them into ``buf``, which
+        should be a buffer-like object.
+        &#34;&#34;&#34;
+        
+
+    def readline(self):
+        &#34;&#34;&#34;
+        Read a whole line from the serial device.
+        &#34;&#34;&#34;
+        
+
+    def readlines(self):
+        &#34;&#34;&#34;
+        Read as much data as possible from the serial device, breaking it into lines.
+        &#34;&#34;&#34;
+        
+
+    def write(self, buf):
+        &#34;&#34;&#34;
+        Write the bytes from ``buf`` to the serial device.
+        &#34;&#34;&#34;
+        
+
+    def recv(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Receive data on the bus.
+        &#34;&#34;&#34;
+        
+
+    def send(self, data, timeout=5000):
+        &#34;&#34;&#34;
+        Send data over the USB VCP.
+        &#34;&#34;&#34;</code></pre>
+</details>
+<h3>Methods</h3>
+<dl>
+<dt id="src.main.python.machine.USB_VCP.any"><code class="name flex">
+<span>def <span class="ident">any</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return <code>True</code> if any characters waiting, else <code>False</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def any(self):
+    &#34;&#34;&#34;
+    Return ``True`` if any characters waiting, else ``False``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.close"><code class="name flex">
+<span>def <span class="ident">close</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>This method does nothing. It exists so the USB_VCP object can act as a file.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def close(self):
+    &#34;&#34;&#34;
+    This method does nothing. It exists so the USB_VCP object can act as a file.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.isconnected"><code class="name flex">
+<span>def <span class="ident">isconnected</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return <code>True</code> if USB is connected as a serial device, else <code>False</code>.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def isconnected(self):
+    &#34;&#34;&#34;
+    Return ``True`` if USB is connected as a serial device, else ``False``.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.read"><code class="name flex">
+<span>def <span class="ident">read</span></span>(<span>self, nbytes)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read at most <code>nbytes</code> from the serial device and return them as a bytes object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def read(self, nbytes):
+    &#34;&#34;&#34;
+    Read at most ``nbytes`` from the serial device and return them as a bytes object.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.readinto"><code class="name flex">
+<span>def <span class="ident">readinto</span></span>(<span>self, buf, maxlen)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read bytes from the serial device and store them into <code>buf</code>, which
+should be a buffer-like object.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readinto(self, buf, maxlen):
+    &#34;&#34;&#34;
+    Read bytes from the serial device and store them into ``buf``, which
+    should be a buffer-like object.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.readline"><code class="name flex">
+<span>def <span class="ident">readline</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read a whole line from the serial device.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readline(self):
+    &#34;&#34;&#34;
+    Read a whole line from the serial device.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.readlines"><code class="name flex">
+<span>def <span class="ident">readlines</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Read as much data as possible from the serial device, breaking it into lines.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def readlines(self):
+    &#34;&#34;&#34;
+    Read as much data as possible from the serial device, breaking it into lines.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.recv"><code class="name flex">
+<span>def <span class="ident">recv</span></span>(<span>self, data, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Receive data on the bus.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def recv(self, data, timeout=5000):
+    &#34;&#34;&#34;
+    Receive data on the bus.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.send"><code class="name flex">
+<span>def <span class="ident">send</span></span>(<span>self, data, timeout=5000)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Send data over the USB VCP.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def send(self, data, timeout=5000):
+    &#34;&#34;&#34;
+    Send data over the USB VCP.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.setinterrupt"><code class="name flex">
+<span>def <span class="ident">setinterrupt</span></span>(<span>self, chr)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Set the character which interrupts running Python code.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def setinterrupt(self, chr):
+    &#34;&#34;&#34;
+    Set the character which interrupts running Python code.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+<dt id="src.main.python.machine.USB_VCP.write"><code class="name flex">
+<span>def <span class="ident">write</span></span>(<span>self, buf)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Write the bytes from <code>buf</code> to the serial device.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def write(self, buf):
+    &#34;&#34;&#34;
+    Write the bytes from ``buf`` to the serial device.
+    &#34;&#34;&#34;</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="src.main.python" href="index.html">src.main.python</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-functions">Functions</a></h3>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.bootloader" href="#src.main.python.machine.bootloader">bootloader</a></code></li>
+<li><code><a title="src.main.python.machine.delay" href="#src.main.python.machine.delay">delay</a></code></li>
+<li><code><a title="src.main.python.machine.disable_irq" href="#src.main.python.machine.disable_irq">disable_irq</a></code></li>
+<li><code><a title="src.main.python.machine.elapsed_micros" href="#src.main.python.machine.elapsed_micros">elapsed_micros</a></code></li>
+<li><code><a title="src.main.python.machine.elapsed_millis" href="#src.main.python.machine.elapsed_millis">elapsed_millis</a></code></li>
+<li><code><a title="src.main.python.machine.enable_irq" href="#src.main.python.machine.enable_irq">enable_irq</a></code></li>
+<li><code><a title="src.main.python.machine.freq" href="#src.main.python.machine.freq">freq</a></code></li>
+<li><code><a title="src.main.python.machine.hard_reset" href="#src.main.python.machine.hard_reset">hard_reset</a></code></li>
+<li><code><a title="src.main.python.machine.info" href="#src.main.python.machine.info">info</a></code></li>
+<li><code><a title="src.main.python.machine.main" href="#src.main.python.machine.main">main</a></code></li>
+<li><code><a title="src.main.python.machine.micros" href="#src.main.python.machine.micros">micros</a></code></li>
+<li><code><a title="src.main.python.machine.millis" href="#src.main.python.machine.millis">millis</a></code></li>
+<li><code><a title="src.main.python.machine.mount" href="#src.main.python.machine.mount">mount</a></code></li>
+<li><code><a title="src.main.python.machine.repl_uart" href="#src.main.python.machine.repl_uart">repl_uart</a></code></li>
+<li><code><a title="src.main.python.machine.rng" href="#src.main.python.machine.rng">rng</a></code></li>
+<li><code><a title="src.main.python.machine.standby" href="#src.main.python.machine.standby">standby</a></code></li>
+<li><code><a title="src.main.python.machine.stop" href="#src.main.python.machine.stop">stop</a></code></li>
+<li><code><a title="src.main.python.machine.sync" href="#src.main.python.machine.sync">sync</a></code></li>
+<li><code><a title="src.main.python.machine.udelay" href="#src.main.python.machine.udelay">udelay</a></code></li>
+<li><code><a title="src.main.python.machine.unique_id" href="#src.main.python.machine.unique_id">unique_id</a></code></li>
+<li><code><a title="src.main.python.machine.usb_mode" href="#src.main.python.machine.usb_mode">usb_mode</a></code></li>
+<li><code><a title="src.main.python.machine.wfi" href="#src.main.python.machine.wfi">wfi</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="src.main.python.machine.ADC" href="#src.main.python.machine.ADC">ADC</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.ADC.ATTN_0DB" href="#src.main.python.machine.ADC.ATTN_0DB">ATTN_0DB</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.ATTN_11DB" href="#src.main.python.machine.ADC.ATTN_11DB">ATTN_11DB</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.ATTN_2_5DB" href="#src.main.python.machine.ADC.ATTN_2_5DB">ATTN_2_5DB</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.ATTN_6DB" href="#src.main.python.machine.ADC.ATTN_6DB">ATTN_6DB</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.atten" href="#src.main.python.machine.ADC.atten">atten</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.read" href="#src.main.python.machine.ADC.read">read</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.read_timed" href="#src.main.python.machine.ADC.read_timed">read_timed</a></code></li>
+<li><code><a title="src.main.python.machine.ADC.read_timed_stop" href="#src.main.python.machine.ADC.read_timed_stop">read_timed_stop</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.Accel" href="#src.main.python.machine.Accel">Accel</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.Accel.filtered_xyz" href="#src.main.python.machine.Accel.filtered_xyz">filtered_xyz</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.read" href="#src.main.python.machine.Accel.read">read</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.tilt" href="#src.main.python.machine.Accel.tilt">tilt</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.write" href="#src.main.python.machine.Accel.write">write</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.x" href="#src.main.python.machine.Accel.x">x</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.y" href="#src.main.python.machine.Accel.y">y</a></code></li>
+<li><code><a title="src.main.python.machine.Accel.z" href="#src.main.python.machine.Accel.z">z</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.CAN" href="#src.main.python.machine.CAN">CAN</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.CAN.LIST16" href="#src.main.python.machine.CAN.LIST16">LIST16</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.LIST32" href="#src.main.python.machine.CAN.LIST32">LIST32</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.LOOPBACK" href="#src.main.python.machine.CAN.LOOPBACK">LOOPBACK</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.MASK16" href="#src.main.python.machine.CAN.MASK16">MASK16</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.MASK32" href="#src.main.python.machine.CAN.MASK32">MASK32</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.NORMAL" href="#src.main.python.machine.CAN.NORMAL">NORMAL</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.SILENT" href="#src.main.python.machine.CAN.SILENT">SILENT</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.SILENT_LOOPBACK" href="#src.main.python.machine.CAN.SILENT_LOOPBACK">SILENT_LOOPBACK</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.any" href="#src.main.python.machine.CAN.any">any</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.clearfilter" href="#src.main.python.machine.CAN.clearfilter">clearfilter</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.deinit" href="#src.main.python.machine.CAN.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.init" href="#src.main.python.machine.CAN.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.initfilterbanks" href="#src.main.python.machine.CAN.initfilterbanks">initfilterbanks</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.recv" href="#src.main.python.machine.CAN.recv">recv</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.rxcallback" href="#src.main.python.machine.CAN.rxcallback">rxcallback</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.send" href="#src.main.python.machine.CAN.send">send</a></code></li>
+<li><code><a title="src.main.python.machine.CAN.setfilter" href="#src.main.python.machine.CAN.setfilter">setfilter</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.DAC" href="#src.main.python.machine.DAC">DAC</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.DAC.CIRCULAR" href="#src.main.python.machine.DAC.CIRCULAR">CIRCULAR</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.NORMAL" href="#src.main.python.machine.DAC.NORMAL">NORMAL</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.deinit" href="#src.main.python.machine.DAC.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.init" href="#src.main.python.machine.DAC.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.noise" href="#src.main.python.machine.DAC.noise">noise</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.triangle" href="#src.main.python.machine.DAC.triangle">triangle</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.write" href="#src.main.python.machine.DAC.write">write</a></code></li>
+<li><code><a title="src.main.python.machine.DAC.write_timed" href="#src.main.python.machine.DAC.write_timed">write_timed</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.ExtInt" href="#src.main.python.machine.ExtInt">ExtInt</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.ExtInt.IRQ_FALLING" href="#src.main.python.machine.ExtInt.IRQ_FALLING">IRQ_FALLING</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.IRQ_RISING" href="#src.main.python.machine.ExtInt.IRQ_RISING">IRQ_RISING</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.IRQ_RISING_FALLING" href="#src.main.python.machine.ExtInt.IRQ_RISING_FALLING">IRQ_RISING_FALLING</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.disable" href="#src.main.python.machine.ExtInt.disable">disable</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.enable" href="#src.main.python.machine.ExtInt.enable">enable</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.line" href="#src.main.python.machine.ExtInt.line">line</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.regs" href="#src.main.python.machine.ExtInt.regs">regs</a></code></li>
+<li><code><a title="src.main.python.machine.ExtInt.swint" href="#src.main.python.machine.ExtInt.swint">swint</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.I2C" href="#src.main.python.machine.I2C">I2C</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.I2C.MASTER" href="#src.main.python.machine.I2C.MASTER">MASTER</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.SLAVE" href="#src.main.python.machine.I2C.SLAVE">SLAVE</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.deinit" href="#src.main.python.machine.I2C.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.init" href="#src.main.python.machine.I2C.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.is_ready" href="#src.main.python.machine.I2C.is_ready">is_ready</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.mem_read" href="#src.main.python.machine.I2C.mem_read">mem_read</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.mem_write" href="#src.main.python.machine.I2C.mem_write">mem_write</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.recv" href="#src.main.python.machine.I2C.recv">recv</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.scan" href="#src.main.python.machine.I2C.scan">scan</a></code></li>
+<li><code><a title="src.main.python.machine.I2C.send" href="#src.main.python.machine.I2C.send">send</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.LCD" href="#src.main.python.machine.LCD">LCD</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.LCD.command" href="#src.main.python.machine.LCD.command">command</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.contrast" href="#src.main.python.machine.LCD.contrast">contrast</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.fill" href="#src.main.python.machine.LCD.fill">fill</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.get" href="#src.main.python.machine.LCD.get">get</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.light" href="#src.main.python.machine.LCD.light">light</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.pixel" href="#src.main.python.machine.LCD.pixel">pixel</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.show" href="#src.main.python.machine.LCD.show">show</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.text" href="#src.main.python.machine.LCD.text">text</a></code></li>
+<li><code><a title="src.main.python.machine.LCD.write" href="#src.main.python.machine.LCD.write">write</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.LED" href="#src.main.python.machine.LED">LED</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.LED.intensity" href="#src.main.python.machine.LED.intensity">intensity</a></code></li>
+<li><code><a title="src.main.python.machine.LED.off" href="#src.main.python.machine.LED.off">off</a></code></li>
+<li><code><a title="src.main.python.machine.LED.on" href="#src.main.python.machine.LED.on">on</a></code></li>
+<li><code><a title="src.main.python.machine.LED.toggle" href="#src.main.python.machine.LED.toggle">toggle</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.PWM" href="#src.main.python.machine.PWM">PWM</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.PWM.duty" href="#src.main.python.machine.PWM.duty">duty</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.Pin" href="#src.main.python.machine.Pin">Pin</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.Pin.AF_OD" href="#src.main.python.machine.Pin.AF_OD">AF_OD</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.AF_PP" href="#src.main.python.machine.Pin.AF_PP">AF_PP</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.ANALOG" href="#src.main.python.machine.Pin.ANALOG">ANALOG</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.IN" href="#src.main.python.machine.Pin.IN">IN</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.OUT" href="#src.main.python.machine.Pin.OUT">OUT</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.OUT_OD" href="#src.main.python.machine.Pin.OUT_OD">OUT_OD</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.OUT_PP" href="#src.main.python.machine.Pin.OUT_PP">OUT_PP</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.PULL_DOWN" href="#src.main.python.machine.Pin.PULL_DOWN">PULL_DOWN</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.PULL_NONE" href="#src.main.python.machine.Pin.PULL_NONE">PULL_NONE</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.PULL_UP" href="#src.main.python.machine.Pin.PULL_UP">PULL_UP</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.af" href="#src.main.python.machine.Pin.af">af</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.af_list" href="#src.main.python.machine.Pin.af_list">af_list</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.board" href="#src.main.python.machine.Pin.board">board</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.cpu" href="#src.main.python.machine.Pin.cpu">cpu</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.debug" href="#src.main.python.machine.Pin.debug">debug</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.dict" href="#src.main.python.machine.Pin.dict">dict</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.gpio" href="#src.main.python.machine.Pin.gpio">gpio</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.init" href="#src.main.python.machine.Pin.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.mapper" href="#src.main.python.machine.Pin.mapper">mapper</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.mode" href="#src.main.python.machine.Pin.mode">mode</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.name" href="#src.main.python.machine.Pin.name">name</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.names" href="#src.main.python.machine.Pin.names">names</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.off" href="#src.main.python.machine.Pin.off">off</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.on" href="#src.main.python.machine.Pin.on">on</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.pin" href="#src.main.python.machine.Pin.pin">pin</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.port" href="#src.main.python.machine.Pin.port">port</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.pull" href="#src.main.python.machine.Pin.pull">pull</a></code></li>
+<li><code><a title="src.main.python.machine.Pin.value" href="#src.main.python.machine.Pin.value">value</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.PinAF" href="#src.main.python.machine.PinAF">PinAF</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.PinAF.index" href="#src.main.python.machine.PinAF.index">index</a></code></li>
+<li><code><a title="src.main.python.machine.PinAF.name" href="#src.main.python.machine.PinAF.name">name</a></code></li>
+<li><code><a title="src.main.python.machine.PinAF.reg" href="#src.main.python.machine.PinAF.reg">reg</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.RTC" href="#src.main.python.machine.RTC">RTC</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.RTC.calibration" href="#src.main.python.machine.RTC.calibration">calibration</a></code></li>
+<li><code><a title="src.main.python.machine.RTC.datetime" href="#src.main.python.machine.RTC.datetime">datetime</a></code></li>
+<li><code><a title="src.main.python.machine.RTC.info" href="#src.main.python.machine.RTC.info">info</a></code></li>
+<li><code><a title="src.main.python.machine.RTC.wakeup" href="#src.main.python.machine.RTC.wakeup">wakeup</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.SPI" href="#src.main.python.machine.SPI">SPI</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.SPI.LSB" href="#src.main.python.machine.SPI.LSB">LSB</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.MASTER" href="#src.main.python.machine.SPI.MASTER">MASTER</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.MSB" href="#src.main.python.machine.SPI.MSB">MSB</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.SLAVE" href="#src.main.python.machine.SPI.SLAVE">SLAVE</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.deinit" href="#src.main.python.machine.SPI.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.init" href="#src.main.python.machine.SPI.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.recv" href="#src.main.python.machine.SPI.recv">recv</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.send" href="#src.main.python.machine.SPI.send">send</a></code></li>
+<li><code><a title="src.main.python.machine.SPI.send_recv" href="#src.main.python.machine.SPI.send_recv">send_recv</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.Servo" href="#src.main.python.machine.Servo">Servo</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.Servo.angle" href="#src.main.python.machine.Servo.angle">angle</a></code></li>
+<li><code><a title="src.main.python.machine.Servo.calibration" href="#src.main.python.machine.Servo.calibration">calibration</a></code></li>
+<li><code><a title="src.main.python.machine.Servo.pulse_width" href="#src.main.python.machine.Servo.pulse_width">pulse_width</a></code></li>
+<li><code><a title="src.main.python.machine.Servo.speed" href="#src.main.python.machine.Servo.speed">speed</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.Switch" href="#src.main.python.machine.Switch">Switch</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.Switch.callback" href="#src.main.python.machine.Switch.callback">callback</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.Timer" href="#src.main.python.machine.Timer">Timer</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.Timer.callback" href="#src.main.python.machine.Timer.callback">callback</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.channel" href="#src.main.python.machine.Timer.channel">channel</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.counter" href="#src.main.python.machine.Timer.counter">counter</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.deinit" href="#src.main.python.machine.Timer.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.freq" href="#src.main.python.machine.Timer.freq">freq</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.init" href="#src.main.python.machine.Timer.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.period" href="#src.main.python.machine.Timer.period">period</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.prescaler" href="#src.main.python.machine.Timer.prescaler">prescaler</a></code></li>
+<li><code><a title="src.main.python.machine.Timer.source_freq" href="#src.main.python.machine.Timer.source_freq">source_freq</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.TimerChannel" href="#src.main.python.machine.TimerChannel">TimerChannel</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.TimerChannel.callback" href="#src.main.python.machine.TimerChannel.callback">callback</a></code></li>
+<li><code><a title="src.main.python.machine.TimerChannel.capture" href="#src.main.python.machine.TimerChannel.capture">capture</a></code></li>
+<li><code><a title="src.main.python.machine.TimerChannel.compare" href="#src.main.python.machine.TimerChannel.compare">compare</a></code></li>
+<li><code><a title="src.main.python.machine.TimerChannel.pulse_width" href="#src.main.python.machine.TimerChannel.pulse_width">pulse_width</a></code></li>
+<li><code><a title="src.main.python.machine.TimerChannel.pulse_width_percent" href="#src.main.python.machine.TimerChannel.pulse_width_percent">pulse_width_percent</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.UART" href="#src.main.python.machine.UART">UART</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.UART.CTS" href="#src.main.python.machine.UART.CTS">CTS</a></code></li>
+<li><code><a title="src.main.python.machine.UART.RTS" href="#src.main.python.machine.UART.RTS">RTS</a></code></li>
+<li><code><a title="src.main.python.machine.UART.any" href="#src.main.python.machine.UART.any">any</a></code></li>
+<li><code><a title="src.main.python.machine.UART.deinit" href="#src.main.python.machine.UART.deinit">deinit</a></code></li>
+<li><code><a title="src.main.python.machine.UART.init" href="#src.main.python.machine.UART.init">init</a></code></li>
+<li><code><a title="src.main.python.machine.UART.read" href="#src.main.python.machine.UART.read">read</a></code></li>
+<li><code><a title="src.main.python.machine.UART.readchar" href="#src.main.python.machine.UART.readchar">readchar</a></code></li>
+<li><code><a title="src.main.python.machine.UART.readinto" href="#src.main.python.machine.UART.readinto">readinto</a></code></li>
+<li><code><a title="src.main.python.machine.UART.readline" href="#src.main.python.machine.UART.readline">readline</a></code></li>
+<li><code><a title="src.main.python.machine.UART.sendbreak" href="#src.main.python.machine.UART.sendbreak">sendbreak</a></code></li>
+<li><code><a title="src.main.python.machine.UART.write" href="#src.main.python.machine.UART.write">write</a></code></li>
+<li><code><a title="src.main.python.machine.UART.writechar" href="#src.main.python.machine.UART.writechar">writechar</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.USB_HID" href="#src.main.python.machine.USB_HID">USB_HID</a></code></h4>
+<ul class="">
+<li><code><a title="src.main.python.machine.USB_HID.recv" href="#src.main.python.machine.USB_HID.recv">recv</a></code></li>
+<li><code><a title="src.main.python.machine.USB_HID.send" href="#src.main.python.machine.USB_HID.send">send</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="src.main.python.machine.USB_VCP" href="#src.main.python.machine.USB_VCP">USB_VCP</a></code></h4>
+<ul class="two-column">
+<li><code><a title="src.main.python.machine.USB_VCP.any" href="#src.main.python.machine.USB_VCP.any">any</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.close" href="#src.main.python.machine.USB_VCP.close">close</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.isconnected" href="#src.main.python.machine.USB_VCP.isconnected">isconnected</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.read" href="#src.main.python.machine.USB_VCP.read">read</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.readinto" href="#src.main.python.machine.USB_VCP.readinto">readinto</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.readline" href="#src.main.python.machine.USB_VCP.readline">readline</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.readlines" href="#src.main.python.machine.USB_VCP.readlines">readlines</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.recv" href="#src.main.python.machine.USB_VCP.recv">recv</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.send" href="#src.main.python.machine.USB_VCP.send">send</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.setinterrupt" href="#src.main.python.machine.USB_VCP.setinterrupt">setinterrupt</a></code></li>
+<li><code><a title="src.main.python.machine.USB_VCP.write" href="#src.main.python.machine.USB_VCP.write">write</a></code></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc"><cite>pdoc</cite> 0.9.2</a>.</p>
+</footer>
+</body>
+</html>
