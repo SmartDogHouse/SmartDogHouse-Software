@@ -22,6 +22,8 @@ This repo contains the code for the microcontrollers that automates the food and
 they are used to identify your ESP to AWS.
  - substitute you WiFi SSID, Password and amazon host in file _main.py_ (either changing the strings either creating a module "_secret.py_ with the strings that won't be tracked)
 
+you can find the documentation of the code at:
+[https://smartdoghouse.github.io/SmartDogHouse-Software/documentation/src/](https://smartdoghouse.github.io/SmartDogHouse-Software/documentation/src/)
 
 ## Run Tests
 If you want to run the tests of the code, inside project folder root execute
