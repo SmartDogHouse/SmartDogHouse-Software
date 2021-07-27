@@ -95,11 +95,29 @@ jobs:
               coverage xml #generate xml coverage
               mv coverage.xml coverage_main.xml #rename xml 
               rm -rdf src  #remove src folder
+          - name: Install pdo3 for documentation
+            shell: bash
+            run: pip3 install pdoc3
+          - name: Build Documentation for main
+            shell: bash
+            run: |
+              git checkout origin/main src #Take src folder from main
+              rm -rdf src/main/python/smart_collar_heartbeat_task.py
+              rm -rdf src/main/python/mqtt_manager.py
+              rm -rdf src/main/python/boot.py
+              rm -rdf src/main/python/smart_collar_temperature_task.py
+              rm -rdf src/main/python/smart_food_bowl_task.py
+              rm -rdf src/main/python/mqtt_message_checker_task.py
+              rm -rdf src/main/python/smart_water_bowl_task.py
+              rm -rdf src/main/python/main.py
+              pdoc3 --html ./src/  # generates documentation html
+              mv html documentation # changes name to folder
+              rm -rdf src  #remove src folder
           - name: Commit changes
             shell: bash
             run: |
               git add .
-              git commit -m 'Updated gh-pages coverage'
+              git commit -m 'Updated gh-pages coverage and documentation'
               git push
             
   FindTagJob:
